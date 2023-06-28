@@ -6,16 +6,15 @@ def validate_data(name):
     If entry is empty or does not contain a minimum of two letters, 
     raise ValueError and ask for name entry again.
     """
-    invalid_chars = ['!', '@', '#', '$', '%', '.', ':', ';', '?', '/']  # Specify the list of invalid characters
-    for char in invalid_chars:
-        if char in name:
-            raise ValueError("Invalid characters found in name. Please try again.")
-
+    invalid_chars = ['!', '@', '#', '$', '%', '.', ':', ';', '?', '/', '(', ')', '{', '}', '[', ']', '<', '>']  
+    
+    if any(char in name for char in invalid_chars):
+        raise ValueError("Invalid characters found in name. Please try again.")
 
     if len(name) < 2:
-        raise ValueError("Your name entry must have a minimum of two letters. Please try again")
-    else:
-        return True
+        raise ValueError("Your name entry must have a minimum of two letters. Please try again.")
+    
+    return True
 
     
 def username():
