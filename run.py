@@ -46,6 +46,23 @@ def validate_nav(nav_choice):
     return True
 
 
+def play_game():
+    """
+    """
+    print("You chose to call play_game function")
+
+
+def how_to_play():
+    """
+    """
+    print("You chose to call how_to_play function")
+
+def leaderboard():
+    """
+    """
+    print("You chose to call leaderboard function")
+
+
 def navigation():
     """
     Display navigation options. 
@@ -58,9 +75,17 @@ def navigation():
             print("2. How To Play")
             print("3. Leaderboard")
             nav_choice = input("\n")
-            if validate_nav(nav_choice):
-                print()
-                print(f"You chose {nav_choice}")
+
+            validate_nav(nav_choice)
+
+            if nav_choice == "1":
+                play_game()
+                break
+            elif nav_choice == "2":
+                how_to_play()
+                break
+            else:
+                leaderboard()
                 break
         except ValueError as e:
             print("Invalid entry:", str(e))
