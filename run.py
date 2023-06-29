@@ -54,8 +54,33 @@ def play_game():
 
 def how_to_play():
     """
+    Display instructions for how to play the game.
+    Prompt user to play the game.
     """
-    print("You chose to call how_to_play function")
+    print()
+
+    instructions = """
+HOW TO PLAY:
+* Our tech has been scrambled 
+* You must use all the letters provided to spell out a technology-related word.
+* For each scrambled tech, you are playing against the clock, so be quick.
+* The available time for each scramble reduces with the more correct answers you get.
+* The game ends when you get an answer wrong or fail to answer within the allowed time.
+
+How many correct answers can you get?
+-------------------------------------
+
+Example
+
+Scrambled Tech:
+PROMUTCE
+
+Unscrambled Tech:
+COMPUTER 
+-------------------------------------
+"""
+    print(instructions)
+
 
 def leaderboard():
     """
