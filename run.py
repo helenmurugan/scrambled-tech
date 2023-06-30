@@ -1,4 +1,4 @@
-
+import os
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 def validate_data(name):
     """
@@ -48,25 +48,36 @@ def validate_nav(nav_choice):
     return True
 
 
+def clear_terminal():
+    """
+    Clear the terminal
+    """
+    os.system("clear")
+
+
 def play_game():
     """
+    Clear the terminal
+    Play game
     """
-    print("You chose to call play_game function")
+    clear_terminal()
+    print("You chose to play the game")
 
 
 def how_to_play(username):
     """
+    Clear the terminal.
     Display instructions for how to play the game.
     Prompt user to play the game.
     """
-    print()
+    clear_terminal()
 
     instructions = """
 HOW TO PLAY:
-* Our tech has been scrambled 
+* Our tech has been scrambled! 
 * You must use all the letters provided to spell out a technology-related word.
-* For each scrambled tech, you are playing against the clock, so be quick.
-* The available time for each scramble reduces with the more correct answers you get.
+* For each Scrambled Tech, you are playing against the clock, so be quick.
+* The available time for each scramble reduces the more correct answers you get.
 * The game ends when you get an answer wrong or fail to answer within the allowed time.
 
 How many correct answers can you get?
@@ -82,12 +93,16 @@ COMPUTER
 -------------------------------------
 """
     print(instructions)
-    print(f"{username}, are you ready to play? (y/n)\n")
+    play_input = input(f"{username}, are you ready to play? (y/n)\n")
+
+    validate_play_input()
 
 
 def leaderboard():
     """
+    Clear the terminal
     """
+    clear_terminal()
     print("You chose to call leaderboard function")
 
 
