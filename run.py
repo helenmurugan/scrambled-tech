@@ -33,6 +33,8 @@ def username():
         except ValueError as e:
             print("Invalid name:", str(e))
 
+    navigation(name)
+    
 
 def validate_nav(nav_choice):
     """
@@ -52,7 +54,7 @@ def play_game():
     print("You chose to call play_game function")
 
 
-def how_to_play():
+def how_to_play(username):
     """
     Display instructions for how to play the game.
     Prompt user to play the game.
@@ -80,6 +82,7 @@ COMPUTER
 -------------------------------------
 """
     print(instructions)
+    print(f"{username}, are you ready to play? (y/n)\n")
 
 
 def leaderboard():
@@ -88,7 +91,7 @@ def leaderboard():
     print("You chose to call leaderboard function")
 
 
-def navigation():
+def navigation(username):
     """
     Display navigation options. 
     The user can choose between three navigation options (Play Game, How To Play or Leaderboard).
@@ -107,7 +110,7 @@ def navigation():
                 play_game()
                 break
             elif nav_choice == "2":
-                how_to_play()
+                how_to_play(username)
                 break
             else:
                 leaderboard()
@@ -119,7 +122,7 @@ def navigation():
 
 def main():
     username()
-    navigation()
+    
 
 main()
 
