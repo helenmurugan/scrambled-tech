@@ -1,6 +1,6 @@
 import os
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
-def validate_data(name):
+def validate_name(name):
     """
     Validate there are a minimum of 2 letters in the name entry.
     Check name entry for invalid special characters.
@@ -26,9 +26,9 @@ def username():
     while True:
         try:
             name = input("Enter your name here:\n")
-            if validate_data(name):
+            if validate_name(name):
                 print()
-                print(f"Hi {name}, welcome to Scrambled Tech.\n")
+                print(f"Hi {name}, welcome to Scrambled Tech!\n")
                 break
         except ValueError as e:
             print("Invalid name:", str(e))
@@ -36,7 +36,7 @@ def username():
     navigation(name)
     
 
-def validate_nav(nav_choice):
+def validate_nav_choice(nav_choice):
     """
     Validate that an entry '1','2' or '3' has been made.
     Raise ValueError if any other entry has been made.
@@ -57,16 +57,25 @@ def clear_terminal():
 
 def play_game():
     """
-    Clear the terminal
     Play game
     """
     clear_terminal()
     print("You chose to play the game")
 
 
+def validate_play_input(play_input):
+    """
+    Validate that y or n has been entered.
+    Raise ValueError if any other entry has been made.
+    """
+    if play_input != "y" and play_input != "n":
+        raise ValueError
+
+    return True
+
+
 def how_to_play(username):
     """
-    Clear the terminal.
     Display instructions for how to play the game.
     Prompt user to play the game.
     """
@@ -94,13 +103,25 @@ COMPUTER
 """
     print(instructions)
     play_input = input(f"{username}, are you ready to play? (y/n)\n")
+    print()
 
-    validate_play_input()
+    validate_play_input(play_input)
+
+    while True:
+        try:    
+            if play_input == "y":
+                play_game()
+                break
+            elif play_input == "n":
+                navigation(username)
+                break
+        except ValueError:
+            print("Invalid entry")
 
 
 def leaderboard():
     """
-    Clear the terminal
+    Display leaderboard
     """
     clear_terminal()
     print("You chose to call leaderboard function")
@@ -119,7 +140,7 @@ def navigation(username):
             print("3. Leaderboard")
             nav_choice = input("\n")
 
-            validate_nav(nav_choice)
+            validate_nav_choice(nav_choice)
 
             if nav_choice == "1":
                 play_game()
