@@ -3,7 +3,8 @@ import random
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 tech_list = ['computer', 'wifi', 'internet']
-
+shuffled_list = random.sample(tech_list, len(tech_list))
+current_index = 0
 
 def validate_name(name):
     """
@@ -45,13 +46,15 @@ def clear_terminal():
     """
     os.system("clear")
 
-def shuffle_list():
-    """
-    Shuffle tech list.
-    """
-    shuffled_list = random.sample(tech_list, len(tech_list))
-    scramble_word(shuffled_list)
 
+def get_index():
+    """
+    Increment current index by 1
+    """
+    global current_index
+    current_index += 1
+    print(current_index)
+    scramble_word(shuffled_list)
 
 def scramble_word(shuffled_list):
     """
@@ -61,15 +64,13 @@ def scramble_word(shuffled_list):
     Capitalize the list of letters.
     Join the letters together to form a scrambled tech word.
     """
-    
-    tech_word = shuffled_list[0]
+    global current_index
+    tech_word = shuffled_list[current_index]
     letters_list = list(tech_word)
     shuffled_letters = random.sample(letters_list, len(letters_list))
     shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
     scrambled_tech = ''.join(shuffled_letters_upper)
     show_question(scrambled_tech)
-
-   
 
 
 def show_question(scrambled_tech):
@@ -86,6 +87,7 @@ def show_question(scrambled_tech):
     answer = input('_' * len(scrambled_tech))
     print()
     print("--------------------------\n")
+    get_index()
     
 
 def play_game():
@@ -93,7 +95,7 @@ def play_game():
     Play game
     """
     clear_terminal()
-    shuffle_list()
+    scramble_word(shuffled_list)
     
    
 
