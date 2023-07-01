@@ -51,20 +51,39 @@ def shuffle_list():
     Shuffle tech list.
     """
     shuffled_list = random.sample(tech_list, len(tech_list))
-    shuffle_letters(shuffled_list)
+    scramble_word(shuffled_list)
 
 
-def shuffle_letters(shuffled_list):
+def scramble_word(shuffled_list):
     """
-    Take the first word from the shuffled words list.
+    Take a word from the shuffled words list.
     Split it into a list of letters.
-    Shuffle the letters in the list of letters.
+    Shuffle the list of letters.
+    Capitalize the list of letters.
+    Join the letters together to form a scrambled tech word.
     """
     
     tech_word = shuffled_list[0]
     letters_list = list(tech_word)
-    scrambled_tech = random.sample(letters_list, len(letters_list))
+    shuffled_letters = random.sample(letters_list, len(letters_list))
+    shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
+    scrambled_tech = ''.join(shuffled_letters_upper)
+    showQuestion(scrambled_tech)
+
+
+def show_question(scrambled_tech):
+    """
+    Display a scrambled tech word.
+    Display placeholders for letters, where the user can input letters
+    """
+
+    print("--------------------------\n")
+    print("Scrambled Tech:\n")
     print(scrambled_tech)
+    print()
+    print("Unscrambled Tech:\n")
+    print(f"placeholders _ with the same length as scrambled tech\n")
+    print("--------------------------\n")
     
 
 def play_game():
