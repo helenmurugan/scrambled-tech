@@ -4,6 +4,7 @@ import random
 
 tech_list = ['computer', 'wifi', 'internet']
 
+
 def validate_name(name):
     """
     Validate there are a minimum of 2 letters in the name entry.
@@ -36,8 +37,6 @@ def username():
                 break
         except ValueError as e:
             print("Invalid name:", str(e))
-
-    navigation(name)
     
 
 def clear_terminal():
@@ -68,7 +67,9 @@ def scramble_word(shuffled_list):
     shuffled_letters = random.sample(letters_list, len(letters_list))
     shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
     scrambled_tech = ''.join(shuffled_letters_upper)
-    showQuestion(scrambled_tech)
+    show_question(scrambled_tech)
+
+   
 
 
 def show_question(scrambled_tech):
@@ -82,7 +83,8 @@ def show_question(scrambled_tech):
     print(scrambled_tech)
     print()
     print("Unscrambled Tech:\n")
-    print(f"placeholders _ with the same length as scrambled tech\n")
+    answer = input('_' * len(scrambled_tech))
+    print()
     print("--------------------------\n")
     
 
@@ -106,7 +108,7 @@ def validate_play_input(play_input):
     return True
 
 
-def how_to_play(username):
+def how_to_play():
     """
     Display instructions for how to play the game.
     Prompt user to play the game.
@@ -134,7 +136,7 @@ COMPUTER
 -------------------------------------
 """
     print(instructions)
-    play_input = input(f"{username}, are you ready to play? (y/n)\n")
+    play_input = input("Are you ready to play? (y/n)\n")
     print()
 
     validate_play_input(play_input)
@@ -170,7 +172,7 @@ def validate_nav_choice(nav_choice):
 
     return True
 
-def navigation(username):
+def navigation():
     """
     Display navigation options. 
     The user can choose between three navigation options (Play Game, How To Play or Leaderboard).
@@ -189,7 +191,7 @@ def navigation(username):
                 play_game()
                 break
             elif nav_choice == "2":
-                how_to_play(username)
+                how_to_play()
                 break
             else:
                 leaderboard()
@@ -201,7 +203,7 @@ def navigation(username):
 
 def main():
     username()
-    
+    navigation()
 
 main()
 
