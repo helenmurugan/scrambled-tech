@@ -1,5 +1,9 @@
 import os
+import random
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
+
+tech_list = ['computer', 'wifi', 'internet']
+
 def validate_name(name):
     """
     Validate there are a minimum of 2 letters in the name entry.
@@ -36,32 +40,41 @@ def username():
     navigation(name)
     
 
-def validate_nav_choice(nav_choice):
-    """
-    Validate that an entry '1','2' or '3' has been made.
-    Raise ValueError if any other entry has been made.
-    Prompt user to enter another navigation choice.
-    """
-    if nav_choice != "1" and nav_choice != "2" and nav_choice != "3":
-        raise ValueError("Please select where you would like to go (1,2 or 3):\n")
-
-    return True
-
-
 def clear_terminal():
     """
     Clear the terminal
     """
     os.system("clear")
 
+def shuffle_list():
+    """
+    Shuffle tech list.
+    """
+    shuffled_list = random.sample(tech_list, len(tech_list))
+    shuffle_letters(shuffled_list)
+
+
+def shuffle_letters(shuffled_list):
+    """
+    Take the first word from the shuffled words list.
+    Split it into a list of letters.
+    Shuffle the letters in the list of letters.
+    """
+    
+    tech_word = shuffled_list[0]
+    letters_list = list(tech_word)
+    scrambled_tech = random.sample(letters_list, len(letters_list))
+    print(scrambled_tech)
+    
 
 def play_game():
     """
     Play game
     """
     clear_terminal()
-    print("You chose to play the game")
-
+    shuffle_list()
+    
+   
 
 def validate_play_input(play_input):
     """
@@ -126,6 +139,17 @@ def leaderboard():
     clear_terminal()
     print("You chose to call leaderboard function")
 
+
+def validate_nav_choice(nav_choice):
+    """
+    Validate that an entry '1','2' or '3' has been made.
+    Raise ValueError if any other entry has been made.
+    Prompt user to enter another navigation choice.
+    """
+    if nav_choice != "1" and nav_choice != "2" and nav_choice != "3":
+        raise ValueError("Please select where you would like to go (1,2 or 3):\n")
+
+    return True
 
 def navigation(username):
     """
