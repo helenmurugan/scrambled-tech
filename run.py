@@ -2,7 +2,7 @@ import os
 import random
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
-tech_list = ['computer', 'wifi', 'internet']
+tech_list = ['computer', 'wifi', 'internet', 'nintendo', 'playstation', 'apple', 'laptop']
 shuffled_list = random.sample(tech_list, len(tech_list))
 current_index = 0
 

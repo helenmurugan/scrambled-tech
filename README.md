@@ -30,3 +30,56 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 ---
 
 Happy coding!
+
+
+# Scrambled Tech
+
+By Helen Murugan
+[View the live site here]()
+
+* Scrambled Tech is a 
+
+# CONTENTS
+* [User Experience](#user-experience)
+    * [User Stories](#user-stories)
+* [Planning](#planning)
+    * [Wireframes](#wireframes)
+    * [Flowchart??](#flowchart)
+* [Features](#features)
+* [Testing](#testing)
+    * [Validator Testing](#validator-testing)
+    * [Accessibility](#accessibility)
+    * [Fixed Bugs](#fixed-bugs)
+    * [Unfixed Bugs](#unfixed-bugs)
+    * [Further Testing](#further-testing)
+* [Technologies Used](#technologies-used)
+* [Deployment](#deployment)
+* [Credits](#credits)
+    * [Code](#code)
+    * [Media](#media)
+    * [Content](#content)
+    * [Acknowledgements](#acknowledgements)
+
+## User Experience
+### User Stories
+## Planning
+### Wireframes
+### Flowchart
+## Features
+## Testing
+### Validator Testing
+### Accessibility
+### Fixed Bugs
+### Unfixed Bugs
+### Further Testing
+## Technologies Used
+## Deployment
+## Credits
+### Code
+### Content
+* All content was written by the developer
+### Acknowledgements
+* I would like to thank my mentor Victor Miclovich for his excellent advice and guidance during the development of this project.
+* I would like to thank Tutor Support at Code Institute for their support.
+
+
