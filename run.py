@@ -1,6 +1,8 @@
 import os
 import random
 import time
+import threading
+
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 tech_list = [
@@ -126,6 +128,7 @@ def scramble_word(shuffled_list):
     shuffled_letters = random.sample(letters_list, len(letters_list))
     shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
     scrambled_tech = ''.join(shuffled_letters_upper)
+    start_countdown(60)
     show_question(scrambled_tech, tech_word)
 
 
@@ -148,11 +151,26 @@ def get_index():
     scramble_word(shuffled_list)
 
 
-def countdown_timer(time_limit):
-    for t in range(time_limit, 0, -1): #start, stop, step
-        print(f"Time left: {t} seconds")
-        time.sleep(1) #gives  a 1 second delay after time runs out
+def countdown_timer(t):
+    """
+
+    """
+
+    while t:
+        seconds = '{:02d}'.format(t)
+        print(seconds, end="\r") #each iteration overwrites the previous iteration
+        time.sleep(1)
+        t -= 1
+
     print("GAME OVER")
+
+def start_countdown(seconds):
+    """
+    Use threading to run countdown_timer,
+    at the same time as show_question.
+    """
+    countdown_thread = threading.Thread(target=countdown_timer, args=(seconds,))
+    countdown_thread.start()
 
 
 def score_count():
@@ -200,14 +218,14 @@ def show_question(scrambled_tech, tech_word):
     """
 
     question_number = current_index + 1
-
     print(f"Question {question_number}")
     print()
+
     print("Scrambled Tech:")
     print(scrambled_tech)
     print()
     print("Unscrambled Tech:")
-    answer = input()
+    answer = input() 
     print()
     
     check_answer(tech_word, answer)
@@ -355,6 +373,10 @@ def main():
     username()
     navigation()
 
-main()
+# main()
+
+play_game()
 
 
+
+  
