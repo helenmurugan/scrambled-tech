@@ -1,5 +1,6 @@
 import os
 import random
+import time
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 tech_list = [
@@ -145,6 +146,14 @@ def get_index():
 
     clear_terminal()
     scramble_word(shuffled_list)
+
+
+def countdown_timer(time_limit):
+    for t in range(time_limit, 0, -1): #start, stop, step
+        print(f"Time left: {t} seconds")
+        time.sleep(1) #gives  a 1 second delay after time runs out
+    print("GAME OVER")
+
 
 def score_count():
     """
