@@ -76,17 +76,15 @@ def scramble_word(shuffled_list):
 def show_question(scrambled_tech):
     """
     Display a scrambled tech word.
-    Display placeholders for letters, where the user can input letters
+    Ask for user input to unscramble the word.
     """
 
-    print("--------------------------\n")
-    print("Scrambled Tech:\n")
+    print("Scrambled Tech:")
     print(scrambled_tech)
     print()
-    print("Unscrambled Tech:\n")
-    answer = input('_' * len(scrambled_tech))
-    print()
-    print("--------------------------\n")
+    print("Unscrambled Tech:")
+    guess = input().upper()
+  
     get_index()
     
 
@@ -96,8 +94,7 @@ def play_game():
     """
     clear_terminal()
     scramble_word(shuffled_list)
-    
-   
+
 
 def validate_play_input(play_input):
     """
