@@ -157,8 +157,23 @@ def get_index():
     """
     global current_index
     current_index += 1
-    print(current_index)
+    # print(current_index)
+
+    clear_terminal()
     scramble_word(shuffled_list)
+
+def score_count():
+    """
+    Keep tally of score
+    Call show_question function
+    """
+
+def get_score():
+    """
+    Calculate and print total score
+    Call leaderboard function
+    """
+    # leaderboard()
 
 def scramble_word(shuffled_list):
     """
@@ -185,6 +200,7 @@ def check_answer(tech_word, answer):
 
     if answer == tech_word:
         get_index()
+        # score_count()
     else:
         print("GAME OVER")
         # get_score()
@@ -192,10 +208,15 @@ def check_answer(tech_word, answer):
 
 def show_question(scrambled_tech, tech_word):
     """
+    Display question number
     Display a scrambled tech word.
     Ask for user input to unscramble the word.
     """
 
+    question_number = current_index + 1
+
+    print(f"Question {question_number}")
+    print()
     print("Scrambled Tech:")
     print(scrambled_tech)
     print()
