@@ -12,99 +12,99 @@ tech_list = [
     'laptop',
     'software',
     'hardware',
-    'mobile',
-    'tablet',
-    'desktop',
-    'netflix',
-    'lenovo',
-    'iphone',
-    'samsung',
-    'dell',
-    'huaweii',
-    'website',
-    'application',
-    'cybersecurity',
-    'device',
-    'drone',
-    'robotics',
-    'cloud',
-    'cryptocurrency',
-    'automation',
-    'wireless',
-    'biometrics',
-    'machine',
-    'virtual',
-    'nanotechnology',
-    'biotechnology',
-    'analytics',
-    'digital',
-    'gaming',
-    'algorithm',
-    'code',
-    'data',
-    'network',
-    'server',
-    'browser',
-    'mouse',
-    'keyboard',
-    'monitor',
-    'printer',
-    'scanner',
-    'backup',
-    'virus',
-    'malware',
-    'firewall',
-    'router',
-    'encryption',
-    'database',
-    'bluetooth',
-    'speaker',
-    'camera',
-    'microphone',
-    'sensor',
-    'battery',
-    'microchip',
-    'semiconductor',
-    'robot',
-    'satellite',
-    'streaming',
-    'mousepad',
-    'headphones',
-    'earphones',
-    'upload',
-    'download',
-    'hacking',
-    'phishing',
-    'cache',
-    'cybercrime',
-    'email',
-    'spam',
-    'debugging',
-    'java',
-    'electronics',
-    'javascript',
-    'windows',
-    'python',
-    'linux',
-    'android',
-    'metadata',
-    'password',
-    'username',
-    'spotify',
-    'podcast',
-    'amazon',
-    'google',
-    'chrome',
-    'whatsapp',
-    'fitbit',
-    'calculator',
-    'instagram',
-    'twitter',
-    'facebook',
-    'linkedin',
-    'whatsapp',
-    'zoom',
-    'youtube',
+    # 'mobile',
+    # 'tablet',
+    # 'desktop',
+    # 'netflix',
+    # 'lenovo',
+    # 'iphone',
+    # 'samsung',
+    # 'dell',
+    # 'huaweii',
+    # 'website',
+    # 'application',
+    # 'cybersecurity',
+    # 'device',
+    # 'drone',
+    # 'robotics',
+    # 'cloud',
+    # 'cryptocurrency',
+    # 'automation',
+    # 'wireless',
+    # 'biometrics',
+    # 'machine',
+    # 'virtual',
+    # 'nanotechnology',
+    # 'biotechnology',
+    # 'analytics',
+    # 'digital',
+    # 'gaming',
+    # 'algorithm',
+    # 'code',
+    # 'data',
+    # 'network',
+    # 'server',
+    # 'browser',
+    # 'mouse',
+    # 'keyboard',
+    # 'monitor',
+    # 'printer',
+    # 'scanner',
+    # 'backup',
+    # 'virus',
+    # 'malware',
+    # 'firewall',
+    # 'router',
+    # 'encryption',
+    # 'database',
+    # 'bluetooth',
+    # 'speaker',
+    # 'camera',
+    # 'microphone',
+    # 'sensor',
+    # 'battery',
+    # 'microchip',
+    # 'semiconductor',
+    # 'robot',
+    # 'satellite',
+    # 'streaming',
+    # 'mousepad',
+    # 'headphones',
+    # 'earphones',
+    # 'upload',
+    # 'download',
+    # 'hacking',
+    # 'phishing',
+    # 'cache',
+    # 'cybercrime',
+    # 'email',
+    # 'spam',
+    # 'debugging',
+    # 'java',
+    # 'electronics',
+    # 'javascript',
+    # 'windows',
+    # 'python',
+    # 'linux',
+    # 'android',
+    # 'metadata',
+    # 'password',
+    # 'username',
+    # 'spotify',
+    # 'podcast',
+    # 'amazon',
+    # 'google',
+    # 'chrome',
+    # 'whatsapp',
+    # 'fitbit',
+    # 'calculator',
+    # 'instagram',
+    # 'twitter',
+    # 'facebook',
+    # 'linkedin',
+    # 'whatsapp',
+    # 'zoom',
+    # 'youtube',
     ]
 
 shuffled_list = random.sample(tech_list, len(tech_list))
@@ -174,10 +174,23 @@ def scramble_word(shuffled_list):
     shuffled_letters = random.sample(letters_list, len(letters_list))
     shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
     scrambled_tech = ''.join(shuffled_letters_upper)
-    show_question(scrambled_tech)
+    show_question(scrambled_tech, tech_word)
+
+def check_answer(tech_word, answer):
+    """
+    Check if answer is correct by comparing tech_word and answer variables.
+    Continue to show_question if correct.
+    Exit game if incorrect.
+    """
+
+    if answer == tech_word:
+        get_index()
+    else:
+        print("GAME OVER")
+        # get_score()
 
 
-def show_question(scrambled_tech):
+def show_question(scrambled_tech, tech_word):
     """
     Display a scrambled tech word.
     Ask for user input to unscramble the word.
@@ -187,10 +200,11 @@ def show_question(scrambled_tech):
     print(scrambled_tech)
     print()
     print("Unscrambled Tech:")
-    guess = input()
+    answer = input()
     print()
-  
-    get_index()
+    
+    check_answer(tech_word, answer)
+   
     
 
 def play_game():
@@ -251,7 +265,7 @@ COMPUTER
                 play_game()
                 break
             elif play_input == "n":
-                navigation(username)
+                navigation()
                 break
         except ValueError:
             print("Invalid entry")
