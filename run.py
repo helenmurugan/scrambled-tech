@@ -110,39 +110,23 @@ tech_list = [
 shuffled_list = random.sample(tech_list, len(tech_list))
 current_index = 0
 
-def validate_name(name):
-    """
-    Validate there are a minimum of 2 letters in the name entry.
-    Check name entry for invalid special characters.
-    Raise ValueError if name entry is not valid.
-    """
-    invalid_chars = ['!', '@', '#', '$', '%', '.', ':', ';', '?', '/', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
-    
-    if any(char in name for char in invalid_chars):
-        raise ValueError("Invalid characters found in name. Please try again.\n")
 
-    letter_count = sum(1 for char in name if char.isalpha())
-
-    if letter_count < 2:
-        raise ValueError("Your name entry must have a minimum of two letters. Please try again.\n")
-    
-    return True
-
-    
-def username():
+def scramble_word(shuffled_list):
     """
-    Request name input and welcome user to the game.
+    Take a word from the shuffled words list.
+    Split it into a list of letters.
+    Shuffle the list of letters.
+    Capitalize the list of letters.
+    Join the letters together to form a scrambled tech word.
     """
-    while True:
-        try:
-            name = input("Enter your name here:\n")
-            if validate_name(name):
-                print()
-                print(f"Hi {name}, welcome to Scrambled Tech!\n")
-                break
-        except ValueError as e:
-            print("Invalid name:", str(e))
-    
+    global current_index
+    tech_word = shuffled_list[current_index]
+    letters_list = list(tech_word)
+    shuffled_letters = random.sample(letters_list, len(letters_list))
+    shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
+    scrambled_tech = ''.join(shuffled_letters_upper)
+    show_question(scrambled_tech, tech_word)
+
 
 def clear_terminal():
     """
@@ -175,21 +159,6 @@ def get_score():
     """
     # leaderboard()
 
-def scramble_word(shuffled_list):
-    """
-    Take a word from the shuffled words list.
-    Split it into a list of letters.
-    Shuffle the list of letters.
-    Capitalize the list of letters.
-    Join the letters together to form a scrambled tech word.
-    """
-    global current_index
-    tech_word = shuffled_list[current_index]
-    letters_list = list(tech_word)
-    shuffled_letters = random.sample(letters_list, len(letters_list))
-    shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
-    scrambled_tech = ''.join(shuffled_letters_upper)
-    show_question(scrambled_tech, tech_word)
 
 def check_answer(tech_word, answer):
     """
@@ -204,6 +173,14 @@ def check_answer(tech_word, answer):
     else:
         print("GAME OVER")
         # get_score()
+
+
+def leaderboard():
+    """
+    Display leaderboard
+    """
+    clear_terminal()
+    print("You chose to call leaderboard function")
 
 
 def show_question(scrambled_tech, tech_word):
@@ -227,7 +204,6 @@ def show_question(scrambled_tech, tech_word):
     check_answer(tech_word, answer)
    
     
-
 def play_game():
     """
     Play game
@@ -292,13 +268,39 @@ COMPUTER
             print("Invalid entry")
 
 
-def leaderboard():
+def validate_name(name):
     """
-    Display leaderboard
+    Validate there are a minimum of 2 letters in the name entry.
+    Check name entry for invalid special characters.
+    Raise ValueError if name entry is not valid.
     """
-    clear_terminal()
-    print("You chose to call leaderboard function")
+    invalid_chars = ['!', '@', '#', '$', '%', '.', ':', ';', '?', '/', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
+    
+    if any(char in name for char in invalid_chars):
+        raise ValueError("Invalid characters found in name. Please try again.\n")
 
+    letter_count = sum(1 for char in name if char.isalpha())
+
+    if letter_count < 2:
+        raise ValueError("Your name entry must have a minimum of two letters. Please try again.\n")
+    
+    return True
+
+    
+def username():
+    """
+    Request name input and welcome user to the game.
+    """
+    while True:
+        try:
+            name = input("Enter your name here:\n")
+            if validate_name(name):
+                print()
+                print(f"Hi {name}, welcome to Scrambled Tech!\n")
+                break
+        except ValueError as e:
+            print("Invalid name:", str(e))
+    
 
 def validate_nav_choice(nav_choice):
     """
