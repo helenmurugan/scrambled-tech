@@ -2,17 +2,15 @@ import os
 import random
 import time
 import threading
-import sys
-import shutil
+# import sys
+# import shutil
 
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
-tech_list = [
+tech_list_easy = [
     'computer', 
     'wifi', 
     'internet', 
-    'nintendo', 
-    'playstation', 
     'apple', 
     'laptop',
     'software',
@@ -27,14 +25,10 @@ tech_list = [
     # 'dell',
     # 'huaweii',
     # 'website',
-    # 'application',
-    # 'cybersecurity',
     # 'device',
     # 'drone',
     # 'robotics',
     # 'cloud',
-    # 'cryptocurrency',
-    # 'automation',
     # 'wireless',
     # 'biometrics',
     # 'machine',
@@ -61,8 +55,6 @@ tech_list = [
     # 'firewall',
     # 'router',
     # 'encryption',
-    # 'database',
-    # 'bluetooth',
     # 'speaker',
     # 'camera',
     # 'microphone',
@@ -87,7 +79,6 @@ tech_list = [
     # 'debugging',
     # 'java',
     # 'electronics',
-    # 'javascript',
     # 'windows',
     # 'python',
     # 'linux',
@@ -112,7 +103,25 @@ tech_list = [
     # 'youtube',
     ]
 
-shuffled_list = random.sample(tech_list, len(tech_list))
+tech_list_medium = [
+    'nintendo', 
+    'playstation',
+    'database',
+    'bluetooth'
+]
+
+tech_list_expert = [
+    'cryptocurrency',
+    'automation',
+    'javascript',
+    'application',
+    'cybersecurity'
+]
+
+shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
+shuffled_list_medium = random.sample(tech_list_medium, len(tech_list_medium))
+shuffled_list_expert = random.sample(tech_list_expert, len(tech_list_expert))
+
 current_index = 0
 
 
@@ -132,10 +141,8 @@ def scramble_word(shuffled_list):
     scrambled_tech = ''.join(shuffled_letters_upper)
 
     start_countdown(60)
-    show_question(scrambled_tech, tech_word)
+    show_question(scrambled_tech, tech_word, shuffled_list)
     
-   
-
 
 def clear_terminal():
     """
@@ -144,7 +151,7 @@ def clear_terminal():
     os.system("clear")
 
 
-def get_index():
+def get_index(shuffled_list):
     """
     Increment current index by 1
     """
@@ -192,7 +199,7 @@ def get_score():
     # leaderboard()
 
 
-def check_answer(tech_word, answer):
+def check_answer(tech_word, answer, shuffled_list):
     """
     Check if answer is correct by comparing tech_word and answer variables.
     Continue to get_index if correct.
@@ -200,10 +207,9 @@ def check_answer(tech_word, answer):
     """
 
     if answer == tech_word:
-        get_index()
+        get_index(shuffled_list)
     else:
         print("GAME OVER")
-        print("You scored 0 points")
         play_again()
        
 
@@ -215,7 +221,7 @@ def leaderboard():
     print("You chose to call leaderboard function")
 
 
-def show_question(scrambled_tech, tech_word):
+def show_question(scrambled_tech, tech_word, shuffled_list):
     """
     Display question number
     Display a scrambled tech word.
@@ -233,15 +239,16 @@ def show_question(scrambled_tech, tech_word):
     answer = input() 
     print()
     
-    check_answer(tech_word, answer)
+    check_answer(tech_word, answer, shuffled_list)
    
     
 def play_game():
     """
-    Play game
+    Clear terminal.
+    Start play by calling scramble_word function
     """
     clear_terminal()
-    scramble_word(shuffled_list)
+    scramble_word(shuffled_list_medium)
 
 
 def validate_play_input(play_input):
@@ -296,12 +303,11 @@ def how_to_play():
 HOW TO PLAY:
 * Our tech has been scrambled! 
 * You must use all the letters provided to spell out a technology-related word.
-* If you get it correct, you will move on to the next Scrambled Tech.
-* If you get it wrong, the game will end.
-* To complete the game, you must correctly unscramble 5 words.
-* You will be scored based on your selected difficulty level and the time it takes you to complete the game.
+* Press Enter to submit your answer.
+* If you answer correctly, you will move on to the next Scrambled Tech.
+* If you answer incorrectly, Game Over.
+* To complete the game, you must correctly unscramble 5 words, as fast as you can!
 
-You are playing against the clock so answer quickly for a high score!
 -------------------------------------
 
 Example
@@ -312,6 +318,10 @@ PROMUTCE
 Unscrambled Tech:
 COMPUTER 
 -------------------------------------
+
+SCORING
+* You will be scored based on your selected difficulty level AND the time it takes you to complete the game.
+* Remember - you are playing against the clock so answer quickly for a high score!
 """
     print(instructions)
     ready_to_play()
