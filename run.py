@@ -2,6 +2,8 @@ import os
 import random
 import time
 import threading
+import sys
+import shutil
 
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
@@ -128,8 +130,11 @@ def scramble_word(shuffled_list):
     shuffled_letters = random.sample(letters_list, len(letters_list))
     shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
     scrambled_tech = ''.join(shuffled_letters_upper)
+
     start_countdown(60)
     show_question(scrambled_tech, tech_word)
+    
+   
 
 
 def clear_terminal():
@@ -151,25 +156,25 @@ def get_index():
     scramble_word(shuffled_list)
 
 
-def countdown_timer(t):
+def timer(t):
+    """
+    Timer starts at 0 and counts up
+    Use of threading to run timer at the same time as show_question 
     """
 
-    """
-
-    while t:
-        seconds = '{:02d}'.format(t)
-        print(seconds, end="\r") #each iteration overwrites the previous iteration
+    seconds = 0
+    while True:
         time.sleep(1)
-        t -= 1
+        seconds += 1
 
-    print("GAME OVER")
+    # print("")
 
 def start_countdown(seconds):
     """
-    Use threading to run countdown_timer,
+    Use threading to run timer,
     at the same time as show_question.
     """
-    countdown_thread = threading.Thread(target=countdown_timer, args=(seconds,))
+    countdown_thread = threading.Thread(target=timer, args=(seconds,))
     countdown_thread.start()
 
 
@@ -190,17 +195,17 @@ def get_score():
 def check_answer(tech_word, answer):
     """
     Check if answer is correct by comparing tech_word and answer variables.
-    Continue to show_question if correct.
-    Exit game if incorrect.
+    Continue to get_index if correct.
+    Exit game and show score if incorrect.
     """
 
     if answer == tech_word:
         get_index()
-        # score_count()
     else:
         print("GAME OVER")
-        # get_score()
-
+        print("You scored 0 points")
+        play_again()
+       
 
 def leaderboard():
     """
@@ -218,7 +223,7 @@ def show_question(scrambled_tech, tech_word):
     """
 
     question_number = current_index + 1
-    print(f"Question {question_number}")
+    print(f"Question {question_number} out of 10")
     print()
 
     print("Scrambled Tech:")
@@ -243,11 +248,41 @@ def validate_play_input(play_input):
     """
     Validate that y or n has been entered.
     Raise ValueError if any other entry has been made.
+    If yes, call play game function.
+    If no, call navigation function
     """
     if play_input != "y" and play_input != "n":
         raise ValueError
 
-    return True
+    while True:
+        try:    
+            if play_input == "y":
+                play_game()
+                break
+            elif play_input == "n":
+                navigation()
+                break
+        except ValueError:
+            print("Invalid entry")
+
+def play_again():
+    """
+    Ask user if they want to play again
+    """
+    play_input = input("Play again? (y/n)\n")
+    print()
+
+    validate_play_input(play_input)
+
+
+def ready_to_play():
+    """
+    Ask user if they are ready to play the game.
+    """
+    play_input = input("Are you ready to play? (y/n)\n")
+    print()
+
+    validate_play_input(play_input)
 
 
 def how_to_play():
@@ -261,11 +296,12 @@ def how_to_play():
 HOW TO PLAY:
 * Our tech has been scrambled! 
 * You must use all the letters provided to spell out a technology-related word.
-* For each Scrambled Tech, you are playing against the clock, so be quick.
-* The available time for each scramble reduces the more correct answers you get.
-* The game ends when you get an answer wrong or fail to answer within the allowed time.
+* If you get it correct, you will move on to the next Scrambled Tech.
+* If you get it wrong, the game will end.
+* To complete the game, you must correctly unscramble 5 words.
+* You will be scored based on your selected difficulty level and the time it takes you to complete the game.
 
-How many correct answers can you get?
+You are playing against the clock so answer quickly for a high score!
 -------------------------------------
 
 Example
@@ -278,21 +314,7 @@ COMPUTER
 -------------------------------------
 """
     print(instructions)
-    play_input = input("Are you ready to play? (y/n)\n")
-    print()
-
-    validate_play_input(play_input)
-
-    while True:
-        try:    
-            if play_input == "y":
-                play_game()
-                break
-            elif play_input == "n":
-                navigation()
-                break
-        except ValueError:
-            print("Invalid entry")
+    ready_to_play()
 
 
 def validate_name(name):
@@ -347,7 +369,7 @@ def navigation():
     """
     while True:
         try:
-            print("Where would you like to go (1,2 or 3)?:\n")
+            print("Where would you like to go? (1,2 or 3)\n")
             print("1. Play Game")
             print("2. How To Play")
             print("3. Leaderboard")
@@ -373,10 +395,7 @@ def main():
     username()
     navigation()
 
-# main()
+main()
 
-play_game()
+# play_game()
 
-
-
-  
