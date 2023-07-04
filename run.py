@@ -2,8 +2,6 @@ import os
 import random
 import time
 import threading
-# import sys
-# import shutil
 
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
@@ -13,8 +11,6 @@ tech_list_easy = [
     'internet', 
     'apple', 
     'laptop',
-    'software',
-    'hardware',
     # 'mobile',
     # 'tablet',
     # 'desktop',
@@ -25,80 +21,28 @@ tech_list_easy = [
     # 'dell',
     # 'huaweii',
     # 'website',
-    # 'device',
-    # 'drone',
-    # 'robotics',
     # 'cloud',
-    # 'wireless',
-    # 'biometrics',
-    # 'machine',
-    # 'virtual',
-    # 'nanotechnology',
-    # 'biotechnology',
-    # 'analytics',
-    # 'digital',
     # 'gaming',
-    # 'algorithm',
     # 'code',
     # 'data',
-    # 'network',
-    # 'server',
-    # 'browser',
     # 'mouse',
     # 'keyboard',
     # 'monitor',
     # 'printer',
     # 'scanner',
-    # 'backup',
-    # 'virus',
-    # 'malware',
-    # 'firewall',
-    # 'router',
-    # 'encryption',
     # 'speaker',
     # 'camera',
     # 'microphone',
-    # 'sensor',
-    # 'battery',
-    # 'microchip',
-    # 'semiconductor',
     # 'robot',
-    # 'satellite',
-    # 'streaming',
     # 'mousepad',
-    # 'headphones',
-    # 'earphones',
-    # 'upload',
-    # 'download',
-    # 'hacking',
-    # 'phishing',
-    # 'cache',
-    # 'cybercrime',
     # 'email',
     # 'spam',
-    # 'debugging',
-    # 'java',
-    # 'electronics',
-    # 'windows',
-    # 'python',
-    # 'linux',
-    # 'android',
-    # 'metadata',
     # 'password',
     # 'username',
     # 'spotify',
     # 'podcast',
     # 'amazon',
     # 'google',
-    # 'chrome',
-    # 'whatsapp',
-    # 'fitbit',
-    # 'calculator',
-    # 'instagram',
-    # 'twitter',
-    # 'facebook',
-    # 'linkedin',
-    # 'whatsapp',
     # 'zoom',
     # 'youtube',
     ]
@@ -107,7 +51,34 @@ tech_list_medium = [
     'nintendo', 
     'playstation',
     'database',
-    'bluetooth'
+    'bluetooth',
+    'software',
+    'hardware',
+    # 'device',
+    # 'drone',
+    # 'robotics',
+    # 'server',
+    # 'browser',
+    # 'network',
+    # 'sensor',
+    # 'battery',
+    # 'microchip',
+    # 'headphones',
+    # 'earphones',
+    # 'upload',
+    # 'download',
+    # 'hacking',
+    # 'phishing',
+    # 'cache',
+    # 'calculator',
+    # 'chrome',
+    # 'whatsapp',
+    # 'fitbit',
+    # 'instagram',
+    # 'twitter',
+    # 'facebook',
+    # 'linkedin',
+    # 'whatsapp'
 ]
 
 tech_list_expert = [
@@ -115,7 +86,34 @@ tech_list_expert = [
     'automation',
     'javascript',
     'application',
-    'cybersecurity'
+    'cybersecurity',
+    'wireless',
+    # 'biometrics',
+    # 'machine',
+    # 'virtual',
+    # 'nanotechnology',
+    # 'biotechnology',
+    # 'analytics',
+    # 'digital',
+    # 'algorithm',
+    # 'backup',
+    # 'virus',
+    # 'malware',
+    # 'firewall',
+    # 'router',
+    # 'encryption',
+    # 'semiconductor',
+    # 'satellite',
+    # 'streaming',
+    # 'cybercrime',
+    # 'debugging',
+    # 'java',
+    # 'electronics',
+    # 'windows',
+    # 'python',
+    # 'linux',
+    # 'android',
+    # 'metadata'
 ]
 
 shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
@@ -159,7 +157,6 @@ def get_index(shuffled_list):
     current_index += 1
     # print(current_index)
 
-    clear_terminal()
     scramble_word(shuffled_list)
 
 
@@ -227,7 +224,7 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     Display a scrambled tech word.
     Ask for user input to unscramble the word.
     """
-
+    clear_terminal()
     question_number = current_index + 1
     print(f"Question {question_number} out of 10")
     print()
@@ -255,7 +252,8 @@ def play_game():
     """
     Clear terminal.
     Ask user to select a difficulty level
-    Initiate play by calling scramble_word
+    Initiate play by calling scramble_word function.
+    shuffled_list argument corresponds to selected difficulty level.
     """
     clear_terminal()
     
@@ -282,7 +280,6 @@ def play_game():
         except ValueError as e:
             print("Invalid entry:", str(e))
 
-    clear_terminal()
     scramble_word(shuffled_list)
 
 
