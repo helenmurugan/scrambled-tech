@@ -241,14 +241,49 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     
     check_answer(tech_word, answer, shuffled_list)
    
-    
+
+def validate_level(level):
+    """
+    Validate that 1,2 or 3 has been entered.
+    Raise ValueError if any other entry has been made.
+    """
+    if level != "1" and level != "2" and level != "3":
+        raise ValueError("Please select a level (1,2 or 3):\n")
+
+
 def play_game():
     """
     Clear terminal.
-    Start play by calling scramble_word function
+    Ask user to select a difficulty level
+    Initiate play by calling scramble_word
     """
     clear_terminal()
-    scramble_word(shuffled_list_medium)
+    
+    while True:
+        try:
+            print("Please select a level (1,2 or 3):\n")
+            print()
+            print("1. Easy")
+            print("2. Medium")
+            print("3. Expert")
+            level = input("\n")
+
+            validate_level(level)
+
+            if level == "1":
+                shuffled_list = shuffled_list_easy
+                break
+            elif level == "2":
+                shuffled_list = shuffled_list_medium
+                break
+            else:
+                shuffled_list = shuffled_list_expert
+                break
+        except ValueError as e:
+            print("Invalid entry:", str(e))
+
+    clear_terminal()
+    scramble_word(shuffled_list)
 
 
 def validate_play_input(play_input):
