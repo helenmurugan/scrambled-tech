@@ -13,11 +13,9 @@ tech_list_easy = [
     'laptop',
     'mobile',
     'ipad',
-    # 'tablet',
-    # 'desktop',
-    # 'netflix',
-    # 'lenovo',
-    # 'iphone',
+    'tablet',
+    'desktop',
+    'iphone',
     # 'samsung',
     # 'dell',
     # 'website',
@@ -28,20 +26,22 @@ tech_list_easy = [
     # 'mouse',
     # 'camera',
     # 'robot',
-    # 'mousepad',
     # 'email',
     # 'spam',
-    # 'password',
-    # 'username',
-    # 'spotify',
-    # 'podcast',
     # 'amazon',
     # 'google',
     # 'zoom',
-    # 'youtube',
+    # 'youtube'
     ]
 
 tech_list_medium = [
+    # 'password',
+    # 'mousepad',
+    # 'username',
+    'spotify',
+    'podcast',
+    'netflix',
+    'lenovo',
     'nintendo', 
     'playstation',
     'database',
@@ -80,6 +80,15 @@ tech_list_medium = [
     # 'facebook',
     # 'linkedin',
     # 'whatsapp'
+    # 'machine',
+    # 'virtual',
+    # 'backup',
+    # 'virus',
+    # 'java',
+    # 'windows',
+    # 'python',
+    # 'linux',
+    # 'android'
 ]
 
 tech_list_expert = [
@@ -90,31 +99,22 @@ tech_list_expert = [
     'cybersecurity',
     'wireless',
     'biometrics',
-    'machine',
-    'virtual',
     'nanotechnology',
     'biotechnology',
     'analytics',
-    'digital',
-    'algorithm',
-    'backup',
-    'virus',
-    'malware',
-    'firewall',
-    'router',
-    'encryption',
-    'semiconductor',
-    'satellite',
-    'streaming',
-    'cybercrime',
-    'debugging',
-    'java',
-    'electronics',
-    'windows',
-    'python',
-    'linux',
-    'android',
-    'metadata'
+    # 'digital',
+    # 'algorithm',
+    # 'malware',
+    # 'firewall',
+    # 'router',
+    # 'encryption',
+    # 'semiconductor',
+    # 'satellite',
+    # 'streaming',
+    # 'cybercrime',
+    # 'debugging',
+    # 'electronics',
+    # 'metadata'
 ]
 
 shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
@@ -141,7 +141,7 @@ def scramble_word(shuffled_list):
     scrambled_tech = ''.join(shuffled_letters_upper)
 
     tech_word_upper = tech_word.upper()
-    
+
     if scrambled_tech == tech_word_upper:
         scramble_word(shuffled_list)
     else:
@@ -213,7 +213,7 @@ def get_index(shuffled_list):
     global current_index
     current_index += 1
 
-    if current_index < 5:
+    if current_index < 10:
         scramble_word(shuffled_list)
     else:
         end_game(shuffled_list)
@@ -265,7 +265,7 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     clear_terminal()
     
     question_number = current_index + 1
-    print(f"Question {question_number} out of 5")
+    print(f"Question {question_number} out of 10")
     print()
 
     print("Scrambled Tech:")
