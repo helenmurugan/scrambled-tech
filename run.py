@@ -12,6 +12,7 @@ tech_list_easy = [
     'apple', 
     'laptop',
     # 'mobile',
+    # 'ipad',
     # 'tablet',
     # 'desktop',
     # 'netflix',
@@ -19,20 +20,13 @@ tech_list_easy = [
     # 'iphone',
     # 'samsung',
     # 'dell',
-    # 'huaweii',
     # 'website',
     # 'cloud',
     # 'gaming',
     # 'code',
     # 'data',
     # 'mouse',
-    # 'keyboard',
-    # 'monitor',
-    # 'printer',
-    # 'scanner',
-    # 'speaker',
     # 'camera',
-    # 'microphone',
     # 'robot',
     # 'mousepad',
     # 'email',
@@ -54,6 +48,13 @@ tech_list_medium = [
     'bluetooth',
     'software',
     'hardware',
+    # 'keyboard',
+    # 'monitor',
+    # 'printer',
+    # 'scanner',
+    # 'speaker',
+    # 'microphone',
+    # 'huaweii',
     # 'device',
     # 'drone',
     # 'robotics',
@@ -88,32 +89,32 @@ tech_list_expert = [
     'application',
     'cybersecurity',
     'wireless',
-    # 'biometrics',
-    # 'machine',
-    # 'virtual',
-    # 'nanotechnology',
-    # 'biotechnology',
-    # 'analytics',
-    # 'digital',
-    # 'algorithm',
-    # 'backup',
-    # 'virus',
-    # 'malware',
-    # 'firewall',
-    # 'router',
-    # 'encryption',
-    # 'semiconductor',
-    # 'satellite',
-    # 'streaming',
-    # 'cybercrime',
-    # 'debugging',
-    # 'java',
-    # 'electronics',
-    # 'windows',
-    # 'python',
-    # 'linux',
-    # 'android',
-    # 'metadata'
+    'biometrics',
+    'machine',
+    'virtual',
+    'nanotechnology',
+    'biotechnology',
+    'analytics',
+    'digital',
+    'algorithm',
+    'backup',
+    'virus',
+    'malware',
+    'firewall',
+    'router',
+    'encryption',
+    'semiconductor',
+    'satellite',
+    'streaming',
+    'cybercrime',
+    'debugging',
+    'java',
+    'electronics',
+    'windows',
+    'python',
+    'linux',
+    'android',
+    'metadata'
 ]
 
 shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
@@ -138,7 +139,6 @@ def scramble_word(shuffled_list):
     shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
     scrambled_tech = ''.join(shuffled_letters_upper)
 
-    start_countdown(60)
     show_question(scrambled_tech, tech_word, shuffled_list)
     
 
@@ -147,17 +147,6 @@ def clear_terminal():
     Clear the terminal
     """
     os.system("clear")
-
-
-def get_index(shuffled_list):
-    """
-    Increment current index by 1
-    """
-    global current_index
-    current_index += 1
-    # print(current_index)
-
-    scramble_word(shuffled_list)
 
 
 def timer(t):
@@ -171,15 +160,57 @@ def timer(t):
         time.sleep(1)
         seconds += 1
 
-    # print("")
+    print(seconds)
+    print("timer stopped")
 
-def start_countdown(seconds):
+def start_timer():
     """
     Use threading to run timer,
     at the same time as show_question.
     """
-    countdown_thread = threading.Thread(target=timer, args=(seconds,))
-    countdown_thread.start()
+    timer_thread = threading.Thread(target=timer)
+    timer_thread.start()
+    
+
+def stop_timer():
+    """
+    Stop the timer
+    """
+    timer_thread = threading.Thread(target=timer)
+    timer_thread_stop() #need to stop timer by adding a stop event. there is no stop attribute
+
+
+def end_game(shuffled_list):
+    """
+    End game is called when current_index is greater than 5
+    Ends the game
+    Shows score
+    Shows leaderboard
+    """
+    # stop_timer()
+    print("Game complete")
+
+    if shuffled_list == shuffled_list_easy:
+        level = "easy"
+    elif shuffled_list == shuffled_list_medium:
+        level = "medium"
+    else:
+        level = "expert"
+
+    print(f"You completed the {level} level Scrambled Tech in X minutes and seconds")
+
+
+def get_index(shuffled_list):
+    """
+    Increment current index by 1
+    """
+    global current_index
+    current_index += 1
+
+    if current_index < 5:
+        scramble_word(shuffled_list)
+    else:
+        end_game(shuffled_list)
 
 
 def score_count():
@@ -206,6 +237,7 @@ def check_answer(tech_word, answer, shuffled_list):
     if answer == tech_word:
         get_index(shuffled_list)
     else:
+        print("Incorrect answer...")
         print("GAME OVER")
         play_again()
        
@@ -225,8 +257,9 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     Ask for user input to unscramble the word.
     """
     clear_terminal()
+    
     question_number = current_index + 1
-    print(f"Question {question_number} out of 10")
+    print(f"Question {question_number} out of 5")
     print()
 
     print("Scrambled Tech:")
@@ -234,8 +267,7 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     print()
     print("Unscrambled Tech:")
     answer = input() 
-    print()
-    
+   
     check_answer(tech_word, answer, shuffled_list)
    
 
@@ -250,16 +282,14 @@ def validate_level(level):
 
 def play_game():
     """
-    Clear terminal.
     Ask user to select a difficulty level
     Initiate play by calling scramble_word function.
-    shuffled_list argument corresponds to selected difficulty level.
     """
     clear_terminal()
     
     while True:
         try:
-            print("Please select a level (1,2 or 3):\n")
+            print("Please select a level (1, 2 or 3):\n")
             print()
             print("1. Easy")
             print("2. Medium")
@@ -280,6 +310,7 @@ def play_game():
         except ValueError as e:
             print("Invalid entry:", str(e))
 
+    start_timer()
     scramble_word(shuffled_list)
 
 
@@ -411,7 +442,7 @@ def navigation():
     """
     while True:
         try:
-            print("Where would you like to go? (1,2 or 3)\n")
+            print("Where would you like to go? (1, 2 or 3)\n")
             print("1. Play Game")
             print("2. How To Play")
             print("3. Leaderboard")
