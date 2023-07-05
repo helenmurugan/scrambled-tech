@@ -6,11 +6,11 @@ import threading
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 tech_list_easy = [
-    'computer', 
-    'wifi', 
-    'internet', 
-    'apple', 
-    'laptop',
+    # 'computer', 
+    # 'wifi', 
+    # 'internet', 
+    # 'apple', 
+    # 'laptop',
     # 'mobile',
     # 'ipad',
     # 'tablet',
@@ -131,6 +131,7 @@ def scramble_word(shuffled_list):
     Shuffle the list of letters.
     Capitalize the list of letters.
     Join the letters together to form a scrambled tech word.
+    Check that the shuffled word is not the same as the original word.
     """
     global current_index
     tech_word = shuffled_list[current_index]
@@ -139,7 +140,12 @@ def scramble_word(shuffled_list):
     shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
     scrambled_tech = ''.join(shuffled_letters_upper)
 
-    show_question(scrambled_tech, tech_word, shuffled_list)
+    tech_word_upper = tech_word.upper()
+    
+    if scrambled_tech == tech_word_upper:
+        scramble_word(shuffled_list)
+    else:
+        show_question(scrambled_tech, tech_word, shuffled_list)
     
 
 def clear_terminal():
@@ -310,7 +316,7 @@ def play_game():
         except ValueError as e:
             print("Invalid entry:", str(e))
 
-    start_timer()
+    # start_timer()
     scramble_word(shuffled_list)
 
 
@@ -468,7 +474,7 @@ def main():
     username()
     navigation()
 
-main()
+# main()
 
-# play_game()
+play_game()
 
