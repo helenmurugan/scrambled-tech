@@ -6,13 +6,13 @@ import threading
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 tech_list_easy = [
-    # 'computer', 
-    # 'wifi', 
-    # 'internet', 
-    # 'apple', 
-    # 'laptop',
-    # 'mobile',
-    # 'ipad',
+    'computer', 
+    'wifi', 
+    'internet', 
+    'apple', 
+    'laptop',
+    'mobile',
+    'ipad',
     # 'tablet',
     # 'desktop',
     # 'netflix',
@@ -292,6 +292,8 @@ def play_game():
     Initiate play by calling scramble_word function.
     """
     clear_terminal()
+    global current_index
+    current_index = 0 #reset to 0 for play again
     
     while True:
         try:
@@ -474,7 +476,7 @@ def main():
     username()
     navigation()
 
-# main()
+main()
 
-play_game()
+# play_game()
 
