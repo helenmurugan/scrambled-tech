@@ -179,9 +179,11 @@ def timer():
     """
     global seconds
     seconds = 0
+
     while not stop_timer:
         time.sleep(1)
         seconds += 1
+
     return seconds
     
 
@@ -211,7 +213,6 @@ def end_game(shuffled_list):
     Shows score
     Shows leaderboard
     """
-    
     stop_time()
     final_seconds = seconds
     print()
@@ -224,12 +225,15 @@ def end_game(shuffled_list):
     else:
         level = "expert"
 
-    print(f"You completed the {level} level Scrambled Tech in  {final_seconds} seconds")
+    minutes = final_seconds // 60
+    secs = final_seconds % 60
+    print(f"You completed the {level} level Scrambled Tech in {minutes:02d}:{secs:02d}")
 
 
 def get_index(shuffled_list):
     """
     Increment current index by 1
+    Call end_game function after 10 questions
     """
     global current_index
     current_index += 1
