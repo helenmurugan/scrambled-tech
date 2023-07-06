@@ -147,7 +147,8 @@ def scramble_word(shuffled_list):
         scramble_word(shuffled_list)
     else:
         show_question(scrambled_tech, tech_word, shuffled_list)
-    
+
+
 
 def clear_terminal():
     """
@@ -156,10 +157,27 @@ def clear_terminal():
     os.system("clear")
 
 
+def leaderboard():
+    """
+    Display leaderboard
+    """
+    clear_terminal()
+    print("You chose to call leaderboard function")
+
+
+def get_score():
+    """
+    Calculate and print total score
+    Call leaderboard function
+    """
+    # leaderboard()
+
+
 def timer():
     """
     Timer starts at 0 and counts up in one-second increments
     """
+    global seconds
     seconds = 0
     while not stop_timer:
         time.sleep(1)
@@ -186,21 +204,6 @@ def stop_time():
     stop_timer = True
 
 
-def leaderboard():
-    """
-    Display leaderboard
-    """
-    clear_terminal()
-    print("You chose to call leaderboard function")
-
-
-def get_score():
-    """
-    Calculate and print total score
-    Call leaderboard function
-    """
-    # leaderboard()
-
 def end_game(shuffled_list):
     """
     End game is called when current_index is greater than 10
@@ -210,7 +213,7 @@ def end_game(shuffled_list):
     """
     
     stop_time()
-    final_seconds = timer()
+    final_seconds = seconds
     print()
     print("Game complete!")
 
@@ -231,7 +234,7 @@ def get_index(shuffled_list):
     global current_index
     current_index += 1
 
-    if current_index < 1:
+    if current_index < 2:
         scramble_word(shuffled_list)
     else:
         end_game(shuffled_list)
