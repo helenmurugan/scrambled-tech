@@ -238,7 +238,7 @@ def get_index(shuffled_list):
     global current_index
     current_index += 1
 
-    if current_index < 2:
+    if current_index < 10:
         scramble_word(shuffled_list)
     else:
         end_game(shuffled_list)
