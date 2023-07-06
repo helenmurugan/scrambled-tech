@@ -122,6 +122,7 @@ shuffled_list_medium = random.sample(tech_list_medium, len(tech_list_medium))
 shuffled_list_expert = random.sample(tech_list_expert, len(tech_list_expert))
 
 current_index = 0
+stop_timer = False
 
 
 def scramble_word(shuffled_list):
@@ -155,43 +156,61 @@ def clear_terminal():
     os.system("clear")
 
 
-def timer(t):
+def timer():
     """
-    Timer starts at 0 and counts up in one second increments
+    Timer starts at 0 and counts up in one-second increments
     """
-
     seconds = 0
-    while True:
+    while not stop_timer:
         time.sleep(1)
         seconds += 1
-
-    print(seconds)
-    print("timer stopped")
+    return seconds
+    
 
 def start_timer():
     """
     Use threading to run timer at the same time as show_question 
     """
+    global stop_timer
+    stop_timer = False
+
     timer_thread = threading.Thread(target=timer)
     timer_thread.start()
     
 
-def stop_timer():
+def stop_time():
     """
-    Stop the timer
+    Stop the running timer
     """
-    timer_thread = threading.Thread(target=timer)
-    timer_thread_stop() #need to stop timer by adding a stop event. there is no stop attribute
+    global stop_timer
+    stop_timer = True
 
+
+def leaderboard():
+    """
+    Display leaderboard
+    """
+    clear_terminal()
+    print("You chose to call leaderboard function")
+
+
+def get_score():
+    """
+    Calculate and print total score
+    Call leaderboard function
+    """
+    # leaderboard()
 
 def end_game(shuffled_list):
     """
-    End game is called when current_index is greater than 5
-    Ends the game
+    End game is called when current_index is greater than 10
+    Ends the game by stopping the timer
     Shows score
     Shows leaderboard
     """
-    # stop_timer()
+    
+    stop_time()
+    final_seconds = timer()
     print()
     print("Game complete!")
 
@@ -202,7 +221,7 @@ def end_game(shuffled_list):
     else:
         level = "expert"
 
-    print(f"You completed the {level} level Scrambled Tech in X minutes and seconds")
+    print(f"You completed the {level} level Scrambled Tech in  {final_seconds} seconds")
 
 
 def get_index(shuffled_list):
@@ -212,18 +231,10 @@ def get_index(shuffled_list):
     global current_index
     current_index += 1
 
-    if current_index < 10:
+    if current_index < 1:
         scramble_word(shuffled_list)
     else:
         end_game(shuffled_list)
-
-
-def get_score():
-    """
-    Calculate and print total score
-    Call leaderboard function
-    """
-    # leaderboard()
 
 
 def check_answer(tech_word, answer, shuffled_list):
@@ -239,14 +250,6 @@ def check_answer(tech_word, answer, shuffled_list):
         print("Incorrect answer...")
         print("GAME OVER")
         play_again()
-       
-
-def leaderboard():
-    """
-    Display leaderboard
-    """
-    clear_terminal()
-    print("You chose to call leaderboard function")
 
 
 def show_question(scrambled_tech, tech_word, shuffled_list):
@@ -274,8 +277,8 @@ def play_game(shuffled_list):
     Start timer
     Initiate play by calling scramble_word function
     """
-    # timer
-    scramble_word(shuffled_list)
+    start_timer()
+    scramble_word(shuffled_list) #does the order of these functions matter?
 
 
 def validate_level(level):
@@ -475,7 +478,8 @@ def main():
     username()
     navigation()
 
-main()
+# main()
 
-# level_selection()
+level_selection()
 
+# start_timer()
