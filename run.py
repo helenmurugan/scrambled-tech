@@ -157,8 +157,7 @@ def clear_terminal():
 
 def timer(t):
     """
-    Timer starts at 0 and counts up
-    Use of threading to run timer at the same time as show_question 
+    Timer starts at 0 and counts up in one second increments
     """
 
     seconds = 0
@@ -171,8 +170,7 @@ def timer(t):
 
 def start_timer():
     """
-    Use threading to run timer,
-    at the same time as show_question.
+    Use threading to run timer at the same time as show_question 
     """
     timer_thread = threading.Thread(target=timer)
     timer_thread.start()
@@ -194,7 +192,8 @@ def end_game(shuffled_list):
     Shows leaderboard
     """
     # stop_timer()
-    print("Game complete")
+    print()
+    print("Game complete!")
 
     if shuffled_list == shuffled_list_easy:
         level = "easy"
@@ -218,12 +217,6 @@ def get_index(shuffled_list):
     else:
         end_game(shuffled_list)
 
-
-def score_count():
-    """
-    Keep tally of score
-    Call show_question function
-    """
 
 def get_score():
     """
@@ -275,7 +268,15 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     answer = input() 
    
     check_answer(tech_word, answer, shuffled_list)
-   
+
+def play_game(shuffled_list):
+    """
+    Start timer
+    Initiate play by calling scramble_word function
+    """
+    # timer
+    scramble_word(shuffled_list)
+
 
 def validate_level(level):
     """
@@ -283,22 +284,22 @@ def validate_level(level):
     Raise ValueError if any other entry has been made.
     """
     if level != "1" and level != "2" and level != "3":
-        raise ValueError("Please select a level (1,2 or 3):\n")
+        raise ValueError("Please select a level (1, 2 or 3):\n")
 
-
-def play_game():
+def level_selection():
     """
     Ask user to select a difficulty level
-    Initiate play by calling scramble_word function.
+    Select appropriate tech_list for difficulty level
+    Call scramble_word function to initiate play
     """
     clear_terminal()
     global current_index
-    current_index = 0 #reset to 0 for play again
-    
+    current_index = 0 #reset to 0 for play again purposes
+
     while True:
         try:
+            
             print("Please select a level (1, 2 or 3):\n")
-            print()
             print("1. Easy")
             print("2. Medium")
             print("3. Expert")
@@ -318,9 +319,8 @@ def play_game():
         except ValueError as e:
             print("Invalid entry:", str(e))
 
-    # start_timer()
-    scramble_word(shuffled_list)
-
+    play_game(shuffled_list)
+    
 
 def validate_play_input(play_input):
     """
@@ -335,7 +335,7 @@ def validate_play_input(play_input):
     while True:
         try:    
             if play_input == "y":
-                play_game()
+                level_selection()
                 break
             elif play_input == "n":
                 navigation()
@@ -459,7 +459,7 @@ def navigation():
             validate_nav_choice(nav_choice)
 
             if nav_choice == "1":
-                play_game()
+                level_selection()
                 break
             elif nav_choice == "2":
                 how_to_play()
@@ -471,12 +471,11 @@ def navigation():
             print("Invalid entry:", str(e))
 
 
-
 def main():
     username()
     navigation()
 
 main()
 
-# play_game()
+# level_selection()
 
