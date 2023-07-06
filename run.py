@@ -219,15 +219,15 @@ def end_game(shuffled_list):
     print("Game complete!")
 
     if shuffled_list == shuffled_list_easy:
-        level = "easy"
+        level = "Easy"
     elif shuffled_list == shuffled_list_medium:
-        level = "medium"
+        level = "Medium"
     else:
-        level = "expert"
+        level = "Expert"
 
     minutes = final_seconds // 60
     secs = final_seconds % 60
-    print(f"You completed the {level} level Scrambled Tech in {minutes:02d}:{secs:02d}")
+    print(f"You completed Scrambled Tech {level} Level in {minutes:02d}:{secs:02d}")
 
 
 def get_index(shuffled_list):
@@ -383,11 +383,11 @@ def how_to_play():
     instructions = """
 HOW TO PLAY:
 * Our tech has been scrambled! 
-* You must use all the letters provided to spell out a technology-related word.
-* Press Enter to submit your answer.
+* You must use all the letters provided to unscramble the technology-related word.
 * If you answer correctly, you will move on to the next Scrambled Tech.
-* If you answer incorrectly, Game Over.
-* To complete the game, you must correctly unscramble 5 words, as fast as you can!
+* If you answer incorrectly, Game Over!
+* To complete the game, you must correctly unscramble 10 words, as fast as you can.
+* You are being timed!
 
 -------------------------------------
 
@@ -400,9 +400,6 @@ Unscrambled Tech:
 COMPUTER 
 -------------------------------------
 
-SCORING
-* You will be scored based on your selected difficulty level AND the time it takes you to complete the game.
-* Remember - you are playing against the clock so answer quickly for a high score!
 """
     print(instructions)
     ready_to_play()
@@ -485,8 +482,6 @@ def main():
     username()
     navigation()
 
-# main()
+main()
 
-level_selection()
 
-# start_timer()
