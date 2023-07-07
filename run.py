@@ -181,8 +181,6 @@ def get_score(shuffled_list, final_seconds):
 
     score = (1 / final_seconds) * multiplier
 
-    print(final_seconds)
-
     print(f"You scored {int(score)}")
     leaderboard()
 
