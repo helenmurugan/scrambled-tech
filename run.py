@@ -142,6 +142,7 @@ shuffled_list_expert = random.sample(tech_list_expert, len(tech_list_expert))
 
 current_index = 0
 stop_timer = False
+leaderboard_worksheet = SHEET.worksheet("leaderboard")
 
 
 def scramble_word(shuffled_list):
@@ -174,10 +175,19 @@ def clear_terminal():
     """
     os.system("clear")
 
+
 def display_leaderboard():
     """
     print the first 10 rows of the leaderboard worksheet
     """
+    leaderboard = leaderboard_worksheet.get_all_values()
+
+    print("Leaderboard (Top 10):\n")
+
+    for rank, item in enumerate(leaderboard[:10], start=1):
+        username, score = item
+        print(f"Rank {rank}: {username} - {score}")
+
 
 def update_leaderboard(score):
     """
@@ -190,17 +200,24 @@ def update_leaderboard(score):
     data.append(score)
     print("Updating leaderboard....\n")
 
-    leaderboard_worksheet = SHEET.worksheet("leaderboard")
     leaderboard_worksheet.append_row(data)
 
     data_list = leaderboard_worksheet.get_all_values()
-    data_list.pop(0)
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
-    print (sorted_list)
- 
-    # print("leaderboard updated successfully")
 
-    # display_leaderboard()
+    print (sorted_list)
+
+    values = [[username, score] for username, score in sorted_list]
+    leaderboard_worksheet.update('A1:B', values)
+
+    # for row_index, item in enumerate(sorted_list, start=1):
+    #     username, score = item
+    #     row_values = [username, score]
+    #     leaderboard_worksheet.update(f"A{row_index}:B{row_index}", [row_values])
+
+    print("Leaderboard updated successfully.")
+
+    display_leaderboard()
 
 
 def get_score(shuffled_list, final_seconds):
@@ -540,5 +557,6 @@ def main():
 main()
 # level_selection()
 # update_leaderboard(score)
+# display_leaderboard()
 
 
