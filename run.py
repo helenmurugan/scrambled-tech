@@ -114,7 +114,9 @@ tech_list_expert = [
     # 'cybercrime',
     # 'debugging',
     # 'electronics',
-    # 'metadata'
+    # 'metadata',
+    # 'microsoft',
+    # 'engineer'
 ]
 
 shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
@@ -161,16 +163,28 @@ def leaderboard():
     """
     Display leaderboard
     """
-    clear_terminal()
     print("You chose to call leaderboard function")
 
 
-def get_score():
+def get_score(shuffled_list, final_seconds):
     """
-    Calculate and print total score
+    Calculate and print score
     Call leaderboard function
     """
-    # leaderboard()
+
+    if shuffled_list == shuffled_list_easy:
+        multiplier = 1000
+    elif shuffled_list == shuffled_list_medium:
+        multiplier = 100000
+    elif shuffled_list == shuffled_list_expert:
+        multiplier = 1000000
+
+    score = (1 / final_seconds) * multiplier
+
+    print(final_seconds)
+
+    print(f"You scored {int(score)}")
+    leaderboard()
 
 
 def timer():
@@ -228,6 +242,7 @@ def end_game(shuffled_list):
     minutes = final_seconds // 60
     secs = final_seconds % 60
     print(f"You completed Scrambled Tech {level} Level in {minutes:02d}:{secs:02d}")
+    get_score(shuffled_list, final_seconds)
 
 
 def get_index(shuffled_list):
@@ -483,5 +498,6 @@ def main():
     navigation()
 
 main()
+# level_selection()
 
 
