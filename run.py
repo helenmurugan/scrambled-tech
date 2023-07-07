@@ -16,9 +16,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('scrambled_tech')
 
-leaderboard = SHEET.worksheet('leaderboard')
-data = leaderboard.get_all_values()
-print(data)
+# leaderboard = SHEET.worksheet('leaderboard')
+# data = leaderboard.get_all_values()
+# print(data)
 
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
@@ -168,25 +168,45 @@ def scramble_word(shuffled_list):
         show_question(scrambled_tech, tech_word, shuffled_list)
 
 
-
 def clear_terminal():
     """
     Clear the terminal
     """
     os.system("clear")
 
+def display_leaderboard():
+    """
+    print the first 10 rows of the leaderboard worksheet
+    """
 
-def leaderboard():
+def update_leaderboard(score):
     """
-    Display leaderboard
+    Update leaderboard worksheet, add new row with name and score.
+    Sort rows in order of highest to lowest score
     """
-    print("You chose to call leaderboard function")
+    username = name
+    data = []
+    data.append(username)
+    data.append(score)
+    print("Updating leaderboard....\n")
+
+    leaderboard_worksheet = SHEET.worksheet("leaderboard")
+    leaderboard_worksheet.append_row(data)
+
+    data_list = leaderboard_worksheet.get_all_values()
+    data_list.pop(0)
+    sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
+    print (sorted_list)
+ 
+    # print("leaderboard updated successfully")
+
+    # display_leaderboard()
 
 
 def get_score(shuffled_list, final_seconds):
     """
-    Calculate and print score
-    Call leaderboard function
+    Calculate score based on the difficulty level and time taken to complete the game.
+    Print score
     """
 
     if shuffled_list == shuffled_list_easy:
@@ -196,10 +216,11 @@ def get_score(shuffled_list, final_seconds):
     elif shuffled_list == shuffled_list_expert:
         multiplier = 1000000
 
-    score = (1 / final_seconds) * multiplier
+    score_float = (1 / final_seconds) * multiplier
+    score = int(score_float)
 
-    print(f"You scored {int(score)}")
-    leaderboard()
+    print(f"You scored {score}")
+    update_leaderboard(score)
 
 
 def timer():
@@ -237,10 +258,8 @@ def stop_time():
 
 def end_game(shuffled_list):
     """
-    End game is called when current_index is greater than 10
-    Ends the game by stopping the timer
-    Shows score
-    Shows leaderboard
+    Ends the game by stopping the timer.
+    Prints time taken to complete game.
     """
     stop_time()
     final_seconds = seconds
@@ -268,7 +287,7 @@ def get_index(shuffled_list):
     global current_index
     current_index += 1
 
-    if current_index < 10:
+    if current_index < 3:
         scramble_word(shuffled_list)
     else:
         end_game(shuffled_list)
@@ -369,6 +388,7 @@ def validate_play_input(play_input):
     If yes, call play game function.
     If no, call navigation function
     """
+    
     if play_input != "y" and play_input != "n":
         raise ValueError
 
@@ -441,7 +461,7 @@ def validate_name(name):
     Check name entry for invalid special characters.
     Raise ValueError if name entry is not valid.
     """
-    invalid_chars = ['!', '@', '#', '$', '%', '.', ':', ';', '?', '/', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
+    invalid_chars = ['!', '@', '#', '$', '%', ':', ';', '?', '/', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
     
     if any(char in name for char in invalid_chars):
         raise ValueError("Invalid characters found in name. Please try again.\n")
@@ -457,7 +477,10 @@ def validate_name(name):
 def username():
     """
     Request name input and welcome user to the game.
+    Update global variable name
     """
+    global name
+   
     while True:
         try:
             name = input("Enter your name here:\n")
@@ -467,6 +490,8 @@ def username():
                 break
         except ValueError as e:
             print("Invalid name:", str(e))
+
+    return name
     
 
 def validate_nav_choice(nav_choice):
@@ -483,7 +508,7 @@ def validate_nav_choice(nav_choice):
 def navigation():
     """
     Display navigation options. 
-    The user can choose between three navigation options (Play Game, How To Play or Leaderboard).
+    Ask user to select one of three options.
     """
     while True:
         try:
@@ -502,7 +527,7 @@ def navigation():
                 how_to_play()
                 break
             else:
-                leaderboard()
+                display_leaderboard()
                 break
         except ValueError as e:
             print("Invalid entry:", str(e))
@@ -512,7 +537,8 @@ def main():
     username()
     navigation()
 
-# main()
+main()
 # level_selection()
+# update_leaderboard(score)
 
 
