@@ -4,7 +4,7 @@ import os
 import random
 import time
 import threading
-import warnings
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -233,16 +233,12 @@ def update_leaderboard(score):
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
     print(sorted_list)
 
-    warnings.filterwarnings("ignore", category=DeprecationWarning) #code to suppress warning associated with worksheet.update but it does not work
-    leaderboard_worksheet.update(sorted_list, 'A:B')
-    warnings.filterwarnings("default", category=DeprecationWarning)
-
     # values = [[username, score] for username, score in sorted_list]
     # leaderboard_worksheet.update('A1:B1', values) #this does work but you get the warning message
     # leaderboard_worksheet.update(values, 'A1:B1') #this does work but you get the warning message
     # leaderboard_worksheet.update([[username, score]], 'A1:B1') #this does NOT work. It adds a new row at the top and the bottom and leaves the list unsorted
     # leaderboard_worksheet.update(sorted_list, 'A1:B1')  #this does work but you get the warning message
-    leaderboard_worksheet.update(sorted_list, 'A:B') #this does work but you get the warning message
+    leaderboard_worksheet.update(sorted_list, "A:B") #this does work but you get the warning message
 
     display_leaderboard()
 
@@ -370,7 +366,7 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     print(scrambled_tech)
     print()
     print("Unscrambled Tech:")
-    answer = input() 
+    answer = input("\n")
    
     check_answer(tech_word, answer, shuffled_list)
 
