@@ -16,10 +16,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('scrambled_tech')
 
-# leaderboard = SHEET.worksheet('leaderboard')
-# data = leaderboard.get_all_values()
-# print(data)
-
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 tech_list_easy = [
@@ -33,6 +29,7 @@ tech_list_easy = [
     'tablet',
     'desktop',
     'iphone',
+    'kindle',
     # 'samsung',
     # 'dell',
     # 'website',
@@ -52,9 +49,9 @@ tech_list_easy = [
     ]
 
 tech_list_medium = [
-    # 'password',
-    # 'mousepad',
-    # 'username',
+    'password',
+    'mousepad',
+    'username',
     'spotify',
     'podcast',
     'netflix',
@@ -65,47 +62,46 @@ tech_list_medium = [
     'bluetooth',
     'software',
     'hardware',
-    # 'keyboard',
-    # 'monitor',
-    # 'printer',
-    # 'scanner',
-    # 'speaker',
-    # 'microphone',
-    # 'huaweii',
-    # 'device',
-    # 'drone',
-    # 'robotics',
-    # 'server',
-    # 'browser',
-    # 'network',
-    # 'sensor',
-    # 'battery',
-    # 'microchip',
-    # 'headphones',
-    # 'earphones',
-    # 'upload',
-    # 'download',
-    # 'hacking',
-    # 'phishing',
-    # 'cache',
-    # 'calculator',
-    # 'chrome',
-    # 'whatsapp',
-    # 'fitbit',
-    # 'instagram',
-    # 'twitter',
-    # 'facebook',
-    # 'linkedin',
-    # 'whatsapp'
-    # 'machine',
-    # 'virtual',
-    # 'backup',
-    # 'virus',
-    # 'java',
-    # 'windows',
-    # 'python',
-    # 'linux',
-    # 'android'
+    'keyboard',
+    'monitor',
+    'printer',
+    'scanner',
+    'speaker',
+    'microphone',
+    'huaweii',
+    'device',
+    'drone',
+    'robotics',
+    'server',
+    'browser',
+    'network',
+    'sensor',
+    'battery',
+    'microchip',
+    'headphones',
+    'earphones',
+    'upload',
+    'download',
+    'hacking',
+    'cache',
+    'calculator',
+    'chrome',
+    'whatsapp',
+    'fitbit',
+    'instagram',
+    'twitter',
+    'facebook',
+    'linkedin',
+    'whatsapp'
+    'machine',
+    'virtual',
+    'backup',
+    'virus',
+    'java',
+    'windows',
+    'python',
+    'linux',
+    'android'
 ]
 
 tech_list_expert = [
@@ -113,27 +109,28 @@ tech_list_expert = [
     'automation',
     'javascript',
     'application',
+    'phishing',
     'cybersecurity',
     'wireless',
     'biometrics',
     'nanotechnology',
     'biotechnology',
     'analytics',
-    # 'digital',
-    # 'algorithm',
-    # 'malware',
-    # 'firewall',
-    # 'router',
-    # 'encryption',
-    # 'semiconductor',
-    # 'satellite',
-    # 'streaming',
-    # 'cybercrime',
-    # 'debugging',
-    # 'electronics',
-    # 'metadata',
-    # 'microsoft',
-    # 'engineer'
+    'digital',
+    'algorithm',
+    'malware',
+    'firewall',
+    'router',
+    'encryption',
+    'semiconductor',
+    'satellite',
+    'streaming',
+    'cybercrime',
+    'debugging',
+    'electronics',
+    'metadata',
+    'microsoft',
+    'engineer'
 ]
 
 shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
@@ -176,17 +173,47 @@ def clear_terminal():
     os.system("clear")
 
 
+def validate_back_to_menu(back_to_menu):
+    """
+    Validate that only y or n has been entered.
+    Raise ValueError for an exception.
+    For 'y' take back to navigation(), for 'n' print 'Thank you for playing!' message.
+    """
+    if back_to_menu != "y" and back_to_menu != "n":
+        raise ValueError
+
+    while True:
+        try:    
+            if back_to_menu == "y":
+                print()
+                navigation()
+                break
+            elif back_to_menu == "n":
+                print()
+                print("Thank you for playing!")
+                break
+            else:
+                print()
+                navigation()
+        except ValueError as e:
+            print("Invalid entry:")
+
+
 def display_leaderboard():
     """
     print the first 10 rows of the leaderboard worksheet
     """
     leaderboard = leaderboard_worksheet.get_all_values()
-
+    print()
     print("Leaderboard (Top 10):\n")
 
     for rank, item in enumerate(leaderboard[:10], start=1):
         username, score = item
         print(f"Rank {rank}: {username} - {score}")
+
+    print()
+    back_to_menu = input("Back to Main Menu? (y/n)\n")
+    validate_back_to_menu(back_to_menu)
 
 
 def update_leaderboard(score):
@@ -201,21 +228,12 @@ def update_leaderboard(score):
     print("Updating leaderboard....\n")
 
     leaderboard_worksheet.append_row(data)
-
     data_list = leaderboard_worksheet.get_all_values()
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
 
-    print (sorted_list)
-
     values = [[username, score] for username, score in sorted_list]
-    leaderboard_worksheet.update('A1:B', values)
-
-    # for row_index, item in enumerate(sorted_list, start=1):
-    #     username, score = item
-    #     row_values = [username, score]
-    #     leaderboard_worksheet.update(f"A{row_index}:B{row_index}", [row_values])
-
-    print("Leaderboard updated successfully.")
+    # leaderboard_worksheet.update('A1:B', values)
+    leaderboard_worksheet.update(values, 'A1:B')
 
     display_leaderboard()
 
@@ -236,7 +254,8 @@ def get_score(shuffled_list, final_seconds):
     score_float = (1 / final_seconds) * multiplier
     score = int(score_float)
 
-    print(f"You scored {score}")
+    print(f"You scored {score}\n")
+    print()
     update_leaderboard(score)
 
 
@@ -282,6 +301,7 @@ def end_game(shuffled_list):
     final_seconds = seconds
     print()
     print("Game complete!")
+    print()
 
     if shuffled_list == shuffled_list_easy:
         level = "Easy"
@@ -304,7 +324,7 @@ def get_index(shuffled_list):
     global current_index
     current_index += 1
 
-    if current_index < 3:
+    if current_index < 10:
         scramble_word(shuffled_list)
     else:
         end_game(shuffled_list)
@@ -417,8 +437,8 @@ def validate_play_input(play_input):
             elif play_input == "n":
                 navigation()
                 break
-        except ValueError:
-            print("Invalid entry")
+        except ValueError as e:
+            print("Invalid entry:")
 
 def play_again():
     """
