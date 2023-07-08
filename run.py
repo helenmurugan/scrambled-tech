@@ -543,7 +543,7 @@ def validate_nav_choice(nav_choice):
     Prompt user to enter another navigation choice.
     """
     if nav_choice != "1" and nav_choice != "2" and nav_choice != "3":
-        raise ValueError("Please select where you would like to go (1,2 or 3):\n")
+        raise ValueError
 
     return True
 
@@ -571,8 +571,8 @@ def navigation():
             else:
                 display_leaderboard()
                 break
-        except ValueError as e:
-            print("Invalid entry:", str(e))
+        except ValueError:
+            print("Invalid entry:")
 
 
 def main():
