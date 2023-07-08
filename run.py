@@ -4,6 +4,7 @@ import os
 import random
 import time
 import threading
+import warnings
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -53,55 +54,55 @@ tech_list_medium = [
     'mousepad',
     'username',
     'spotify',
-    'podcast',
-    'netflix',
-    'lenovo',
-    'nintendo', 
-    'playstation',
-    'database',
-    'bluetooth',
-    'software',
-    'hardware',
-    'keyboard',
-    'monitor',
-    'printer',
-    'scanner',
-    'speaker',
-    'microphone',
-    'huaweii',
-    'device',
-    'drone',
-    'robotics',
-    'server',
-    'browser',
-    'network',
-    'sensor',
-    'battery',
-    'microchip',
-    'headphones',
-    'earphones',
-    'upload',
-    'download',
-    'hacking',
-    'cache',
-    'calculator',
-    'chrome',
-    'whatsapp',
-    'fitbit',
-    'instagram',
-    'twitter',
-    'facebook',
-    'linkedin',
-    'whatsapp'
-    'machine',
-    'virtual',
-    'backup',
-    'virus',
-    'java',
-    'windows',
-    'python',
-    'linux',
-    'android'
+    # 'podcast',
+    # 'netflix',
+    # 'lenovo',
+    # 'nintendo', 
+    # 'playstation',
+    # 'database',
+    # 'bluetooth',
+    # 'software',
+    # 'hardware',
+    # 'keyboard',
+    # 'monitor',
+    # 'printer',
+    # 'scanner',
+    # 'speaker',
+    # 'microphone',
+    # 'huaweii',
+    # 'device',
+    # 'drone',
+    # 'robotics',
+    # 'server',
+    # 'browser',
+    # 'network',
+    # 'sensor',
+    # 'battery',
+    # 'microchip',
+    # 'headphones',
+    # 'earphones',
+    # 'upload',
+    # 'download',
+    # 'hacking',
+    # 'cache',
+    # 'calculator',
+    # 'chrome',
+    # 'whatsapp',
+    # 'fitbit',
+    # 'instagram',
+    # 'twitter',
+    # 'facebook',
+    # 'linkedin',
+    # 'whatsapp'
+    # 'machine',
+    # 'virtual',
+    # 'backup',
+    # 'virus',
+    # 'java',
+    # 'windows',
+    # 'python',
+    # 'linux',
+    # 'android'
 ]
 
 tech_list_expert = [
@@ -230,10 +231,18 @@ def update_leaderboard(score):
     leaderboard_worksheet.append_row(data)
     data_list = leaderboard_worksheet.get_all_values()
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
+    print(sorted_list)
 
-    values = [[username, score] for username, score in sorted_list]
-    # leaderboard_worksheet.update('A1:B', values)
-    leaderboard_worksheet.update(values, 'A1:B')
+    warnings.filterwarnings("ignore", category=DeprecationWarning) #code to suppress warning associated with worksheet.update but it does not work
+    leaderboard_worksheet.update(sorted_list, 'A:B')
+    warnings.filterwarnings("default", category=DeprecationWarning)
+
+    # values = [[username, score] for username, score in sorted_list]
+    # leaderboard_worksheet.update('A1:B1', values) #this does work but you get the warning message
+    # leaderboard_worksheet.update(values, 'A1:B1') #this does work but you get the warning message
+    # leaderboard_worksheet.update([[username, score]], 'A1:B1') #this does NOT work. It adds a new row at the top and the bottom and leaves the list unsorted
+    # leaderboard_worksheet.update(sorted_list, 'A1:B1')  #this does work but you get the warning message
+    leaderboard_worksheet.update(sorted_list, 'A:B') #this does work but you get the warning message
 
     display_leaderboard()
 
@@ -324,7 +333,7 @@ def get_index(shuffled_list):
     global current_index
     current_index += 1
 
-    if current_index < 10:
+    if current_index < 3:
         scramble_word(shuffled_list)
     else:
         end_game(shuffled_list)
