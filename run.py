@@ -329,7 +329,7 @@ def get_index(shuffled_list):
     global current_index
     current_index += 1
 
-    if current_index < 3:
+    if current_index < 10:
         scramble_word(shuffled_list)
     else:
         end_game(shuffled_list)
@@ -385,7 +385,7 @@ def validate_level(level):
     Raise ValueError if any other entry has been made.
     """
     if level != "1" and level != "2" and level != "3":
-        raise ValueError("Please select a level (1, 2 or 3):\n")
+        raise ValueError
 
 def level_selection():
     """
@@ -417,8 +417,8 @@ def level_selection():
             else:
                 shuffled_list = shuffled_list_expert
                 break
-        except ValueError as e:
-            print("Invalid entry:", str(e))
+        except ValueError:
+            print("Invalid entry:")
 
     play_game(shuffled_list)
     
@@ -522,10 +522,12 @@ def username():
     Update global variable name
     """
     global name
+
+    print("Welcome to Scrambled Tech")
    
     while True:
         try:
-            name = input("Enter your name here:\n")
+            name = input("Please enter your name:\n")
             if validate_name(name):
                 print()
                 print(f"Hi {name}, welcome to Scrambled Tech!\n")
@@ -576,6 +578,7 @@ def navigation():
 
 
 def main():
+    print("testing")
     username()
     navigation()
 
