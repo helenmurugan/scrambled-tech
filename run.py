@@ -31,22 +31,22 @@ tech_list_easy = [
     'desktop',
     'iphone',
     'kindle',
-    # 'samsung',
-    # 'dell',
-    # 'website',
-    # 'cloud',
-    # 'gaming',
-    # 'code',
-    # 'data',
-    # 'mouse',
-    # 'camera',
-    # 'robot',
-    # 'email',
-    # 'spam',
-    # 'amazon',
-    # 'google',
-    # 'zoom',
-    # 'youtube'
+    'samsung',
+    'dell',
+    'website',
+    'cloud',
+    'gaming',
+    'code',
+    'data',
+    'mouse',
+    'camera',
+    'robot',
+    'email',
+    'spam',
+    'amazon',
+    'google',
+    'zoom',
+    'youtube'
     ]
 
 tech_list_medium = [
@@ -54,55 +54,55 @@ tech_list_medium = [
     'mousepad',
     'username',
     'spotify',
-    # 'podcast',
-    # 'netflix',
-    # 'lenovo',
-    # 'nintendo', 
-    # 'playstation',
-    # 'database',
-    # 'bluetooth',
-    # 'software',
-    # 'hardware',
-    # 'keyboard',
-    # 'monitor',
-    # 'printer',
-    # 'scanner',
-    # 'speaker',
-    # 'microphone',
-    # 'huaweii',
-    # 'device',
-    # 'drone',
-    # 'robotics',
-    # 'server',
-    # 'browser',
-    # 'network',
-    # 'sensor',
-    # 'battery',
-    # 'microchip',
-    # 'headphones',
-    # 'earphones',
-    # 'upload',
-    # 'download',
-    # 'hacking',
-    # 'cache',
-    # 'calculator',
-    # 'chrome',
-    # 'whatsapp',
-    # 'fitbit',
-    # 'instagram',
-    # 'twitter',
-    # 'facebook',
-    # 'linkedin',
-    # 'whatsapp'
-    # 'machine',
-    # 'virtual',
-    # 'backup',
-    # 'virus',
-    # 'java',
-    # 'windows',
-    # 'python',
-    # 'linux',
-    # 'android'
+    'podcast',
+    'netflix',
+    'lenovo',
+    'nintendo', 
+    'playstation',
+    'database',
+    'bluetooth',
+    'software',
+    'hardware',
+    'keyboard',
+    'monitor',
+    'printer',
+    'scanner',
+    'speaker',
+    'microphone',
+    'huawei',
+    'device',
+    'drone',
+    'robotics',
+    'server',
+    'browser',
+    'network',
+    'sensor',
+    'battery',
+    'microchip',
+    'headphones',
+    'earphones',
+    'upload',
+    'download',
+    'hacking',
+    'cache',
+    'calculator',
+    'chrome',
+    'whatsapp',
+    'fitbit',
+    'instagram',
+    'twitter',
+    'facebook',
+    'linkedin',
+    'whatsapp'
+    'machine',
+    'virtual',
+    'backup',
+    'virus',
+    'java',
+    'windows',
+    'python',
+    'linux',
+    'android'
 ]
 
 tech_list_expert = [
@@ -186,7 +186,7 @@ def validate_back_to_menu(back_to_menu):
     while True:
         try:    
             if back_to_menu == "y":
-                print()
+                clear_terminal()
                 navigation()
                 break
             elif back_to_menu == "n":
@@ -194,7 +194,7 @@ def validate_back_to_menu(back_to_menu):
                 print("Thank you for playing!")
                 break
             else:
-                print()
+                clear_terminal()
                 navigation()
         except ValueError as e:
             print("Invalid entry:")
@@ -231,15 +231,7 @@ def update_leaderboard(score):
     leaderboard_worksheet.append_row(data)
     data_list = leaderboard_worksheet.get_all_values()
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
-    print(sorted_list)
-
-    # values = [[username, score] for username, score in sorted_list]
-    # leaderboard_worksheet.update('A1:B1', values) #this does work but you get the warning message
-    # leaderboard_worksheet.update(values, 'A1:B1') #this does work but you get the warning message
-    # leaderboard_worksheet.update([[username, score]], 'A1:B1') #this does NOT work. It adds a new row at the top and the bottom and leaves the list unsorted
-    # leaderboard_worksheet.update(sorted_list, 'A1:B1')  #this does work but you get the warning message
-    leaderboard_worksheet.update(sorted_list, "A:B") #this does work but you get the warning message
-
+    leaderboard_worksheet.update(sorted_list, "A:B")
     display_leaderboard()
 
 
@@ -259,7 +251,7 @@ def get_score(shuffled_list, final_seconds):
     score_float = (1 / final_seconds) * multiplier
     score = int(score_float)
 
-    print(f"You scored {score}\n")
+    print(f"You scored {score} points\n")
     print()
     update_leaderboard(score)
 
@@ -304,7 +296,7 @@ def end_game(shuffled_list):
     """
     stop_time()
     final_seconds = seconds
-    print()
+    clear_terminal()
     print("Game complete!")
     print()
 
@@ -503,15 +495,15 @@ def validate_name(name):
     Check name entry for invalid special characters.
     Raise ValueError if name entry is not valid.
     """
-    invalid_chars = ['!', '@', '#', '$', '%', ':', ';', '?', '/', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
+    invalid_chars = ['!', '@', '#', '$', '%', ':', ';', '?', '&' '/', '£', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
     
     if any(char in name for char in invalid_chars):
-        raise ValueError("Invalid characters found in name. Please try again.\n")
+        raise ValueError("Invalid characters found in name.\n")
 
     letter_count = sum(1 for char in name if char.isalpha())
 
     if letter_count < 2:
-        raise ValueError("Your name entry must have a minimum of two letters. Please try again.\n")
+        raise ValueError("Your name must have a minimum of two letters.\n")
     
     return True
 
@@ -523,14 +515,15 @@ def username():
     """
     global name
 
-    print("Welcome to Scrambled Tech")
+    print("Welcome to Scrambled Tech!")
+    print()
    
     while True:
         try:
             name = input("Please enter your name:\n")
             if validate_name(name):
                 print()
-                print(f"Hi {name}, welcome to Scrambled Tech!\n")
+                print(f"Hi {name},\n")
                 break
         except ValueError as e:
             print("Invalid name:", str(e))
@@ -545,7 +538,7 @@ def validate_nav_choice(nav_choice):
     Prompt user to enter another navigation choice.
     """
     if nav_choice != "1" and nav_choice != "2" and nav_choice != "3":
-        raise ValueError
+        raise ValueError("Please select 1, 2 or 3")
 
     return True
 
@@ -571,14 +564,14 @@ def navigation():
                 how_to_play()
                 break
             else:
+                clear_terminal()
                 display_leaderboard()
                 break
-        except ValueError:
-            print("Invalid entry:")
+        except ValueError as e:
+            print("Invalid entry:", str(e))
 
 
 def main():
-    print("testing")
     username()
     navigation()
 
