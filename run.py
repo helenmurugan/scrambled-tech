@@ -77,7 +77,7 @@ tech_med = [
     'android'
 ]
 
-tech_list_exp = [
+tech_exp = [
     'nintendo',
     'username',
     'robotics',
