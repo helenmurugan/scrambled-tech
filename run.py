@@ -4,6 +4,7 @@ import os
 import random
 import time
 import threading
+import warnings
 
 
 SCOPE = [
@@ -19,21 +20,15 @@ SHEET = GSPREAD_CLIENT.open('scrambled_tech')
 
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
-tech_list_easy = [
-    'computer', 
+tech_list_easy = [ 
     'wifi', 
-    'internet', 
     'apple', 
     'laptop',
     'mobile',
     'ipad',
     'tablet',
-    'desktop',
     'iphone',
-    'kindle',
-    'samsung',
     'dell',
-    'website',
     'cloud',
     'gaming',
     'code',
@@ -46,12 +41,18 @@ tech_list_easy = [
     'amazon',
     'google',
     'zoom',
-    'youtube'
+    'youtube',
+    'java'
     ]
 
 tech_list_medium = [
+    'computer',
+    'desktop',
+    'internet', 
+    'website',
     'password',
-    'mousepad',
+    'kindle',
+    'samsung',
     'username',
     'spotify',
     'podcast',
@@ -98,7 +99,6 @@ tech_list_medium = [
     'virtual',
     'backup',
     'virus',
-    'java',
     'windows',
     'python',
     'linux',
@@ -134,13 +134,14 @@ tech_list_expert = [
     'engineer'
 ]
 
-shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
+# shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
 shuffled_list_medium = random.sample(tech_list_medium, len(tech_list_medium))
 shuffled_list_expert = random.sample(tech_list_expert, len(tech_list_expert))
 
 current_index = 0
 stop_timer = False
 leaderboard_worksheet = SHEET.worksheet("leaderboard")
+warnings.filterwarnings('ignore')
 
 
 def scramble_word(shuffled_list):
@@ -241,11 +242,11 @@ def get_score(shuffled_list, final_seconds):
     Print score
     """
 
-    if shuffled_list == shuffled_list_easy:
+    if set(shuffled_list) == set(tech_list_easy):
         multiplier = 1000
-    elif shuffled_list == shuffled_list_medium:
+    elif set(shuffled_list) == set(tech_list_medium):
         multiplier = 100000
-    elif shuffled_list == shuffled_list_expert:
+    elif set(shuffled_list) == set(tech_list_expert):
         multiplier = 1000000
 
     score_float = (1 / final_seconds) * multiplier
@@ -300,11 +301,11 @@ def end_game(shuffled_list):
     print("Game complete!")
     print()
 
-    if shuffled_list == shuffled_list_easy:
+    if set(shuffled_list) == set(tech_list_easy):
         level = "Easy"
-    elif shuffled_list == shuffled_list_medium:
+    elif set(shuffled_list) == set(tech_list_medium):
         level = "Medium"
-    else:
+    elif set(shuffled_list) == set(tech_list_expert):
         level = "Expert"
 
     minutes = final_seconds // 60
@@ -339,6 +340,7 @@ def check_answer(tech_word, answer, shuffled_list):
     else:
         print("Incorrect answer...")
         print("GAME OVER")
+        print()
         play_again()
 
 
@@ -361,6 +363,7 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     answer = input("\n")
    
     check_answer(tech_word, answer, shuffled_list)
+
 
 def play_game(shuffled_list):
     """
@@ -401,12 +404,15 @@ def level_selection():
             validate_level(level)
 
             if level == "1":
+                shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
                 shuffled_list = shuffled_list_easy
                 break
             elif level == "2":
+                shuffled_list_medium = random.sample(tech_list_medium, len(tech_list_medium))
                 shuffled_list = shuffled_list_medium
                 break
             else:
+                shuffled_list_expert = random.sample(tech_list_expert, len(tech_list_expert))
                 shuffled_list = shuffled_list_expert
                 break
         except ValueError:
