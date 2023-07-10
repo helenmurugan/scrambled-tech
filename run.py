@@ -17,7 +17,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('scrambled_tech')
 
-tech_list_easy = [
+tech_easy = [
     'wifi',
     'apple',
     'laptop',
@@ -41,7 +41,7 @@ tech_list_easy = [
     'java'
     ]
 
-tech_list_medium = [
+tech_med = [
     'youtube',
     'desktop',
     'website',
@@ -77,7 +77,7 @@ tech_list_medium = [
     'android'
 ]
 
-tech_list_expert = [
+tech_list_exp = [
     'nintendo',
     'username',
     'robotics',
@@ -222,11 +222,11 @@ def get_score(shuffled_list, final_seconds):
     If score is in top 10 on leaderboard, print "Updating leaderboard..."
     Display leaderboard regardless of score.
     """
-    if set(shuffled_list) == set(tech_list_easy):
+    if set(shuffled_list) == set(tech_easy):
         multiplier = 1000
-    elif set(shuffled_list) == set(tech_list_medium):
+    elif set(shuffled_list) == set(tech_med):
         multiplier = 100000
-    elif set(shuffled_list) == set(tech_list_expert):
+    elif set(shuffled_list) == set(tech_exp):
         multiplier = 1000000
 
     score_float = (1 / final_seconds) * multiplier
@@ -298,11 +298,11 @@ def end_game(shuffled_list):
     print("Game complete!")
     print()
 
-    if set(shuffled_list) == set(tech_list_easy):
+    if set(shuffled_list) == set(tech_easy):
         level = "Easy"
-    elif set(shuffled_list) == set(tech_list_medium):
+    elif set(shuffled_list) == set(tech_med):
         level = "Medium"
-    elif set(shuffled_list) == set(tech_list_expert):
+    elif set(shuffled_list) == set(tech_exp):
         level = "Expert"
 
     minutes = final_seconds // 60
@@ -401,15 +401,15 @@ def level_selection():
             validate_level(level)
 
             if level == "1":
-                shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
+                shuffled_list_easy = random.sample(tech_easy, len(tech_easy))
                 shuffled_list = shuffled_list_easy
                 break
             elif level == "2":
-                shuffled_list_medium = random.sample(tech_list_medium, len(tech_list_medium))
+                shuffled_list_medium = random.sample(tech_med, len(tech_med))
                 shuffled_list = shuffled_list_medium
                 break
             else:
-                shuffled_list_expert = random.sample(tech_list_expert, len(tech_list_expert))
+                shuffled_list_expert = random.sample(tech_exp, len(tech_exp))
                 shuffled_list = shuffled_list_expert
                 break
         except ValueError:
