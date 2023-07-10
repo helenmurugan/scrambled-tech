@@ -17,7 +17,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('scrambled_tech')
 
-
 tech_list_easy = [ 
     'wifi', 
     'apple', 
@@ -51,8 +50,7 @@ tech_list_medium = [
     'spotify',
     'podcast',
     'netflix',
-    'lenovo',
-    'nintendo', 
+    'lenovo', 
     'monitor',
     'printer',
     'scanner',
@@ -80,6 +78,7 @@ tech_list_medium = [
 ]
 
 tech_list_expert = [
+    'nintendo',
     'username',
     'robotics',
     'internet', 
@@ -129,7 +128,6 @@ tech_list_expert = [
 current_index = 0
 stop_timer = False
 leaderboard_worksheet = SHEET.worksheet("leaderboard")
-warnings.filterwarnings('ignore')
 
 
 def scramble_word(shuffled_list):
@@ -147,7 +145,6 @@ def scramble_word(shuffled_list):
     shuffled_letters = random.sample(letters_list, len(letters_list))
     shuffled_letters_upper = [letter.upper() for letter in shuffled_letters]
     scrambled_tech = ''.join(shuffled_letters_upper)
-
     tech_word_upper = tech_word.upper()
 
     if scrambled_tech == tech_word_upper:
@@ -167,7 +164,6 @@ def validate_back_to_menu(back_to_menu):
     """
     Validate that only y or n has been entered.
     Raise ValueError for an exception.
-    For 'y' take back to navigation(), for 'n' print 'Thank you for playing!' message.
     """
     if back_to_menu != "y" and back_to_menu != "n":
         raise ValueError
@@ -205,7 +201,7 @@ def back_to_menu():
 
 def leaderboard():
     """
-    print the first 10 rows of the leaderboard worksheet
+    Print first 10 rows of leaderboard worksheet
     """
     leaderboard = leaderboard_worksheet.get_all_values()
     print("Leaderboard (Top 10):\n")
@@ -220,10 +216,10 @@ def leaderboard():
 
 def get_score(shuffled_list, final_seconds):
     """
-    Calculate score based on the difficulty level and time taken to complete the game.
-    Print difficulty level, time taken and score
+    Calculate score based on the difficulty level and time taken to complete the game
+    Print score
     Update leaderboard
-    If score is in top 10 on leaderboard, print "Updating leaderboard".
+    If score is in top 10 on leaderboard, print "Updating leaderboard..."
     Display leaderboard regardless of score.
     """
     if set(shuffled_list) == set(tech_list_easy):
@@ -237,21 +233,21 @@ def get_score(shuffled_list, final_seconds):
     score = int(score_float)
 
     print(f"You scored {score} points\n")
-    print() # end of codewhen it worked
+    print()
 
     username = name
     data = []
     data.append(username)
     data.append(score)
-
     leaderboard_worksheet.append_row(data)
     data_list = leaderboard_worksheet.get_all_values()
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
+    warnings.filterwarnings('ignore') #filter warning in next line, associated with gspread version 6.0 syntax update
     leaderboard_worksheet.update(sorted_list, "A:B")
 
     if score > int(sorted_list[9][1]):
         print(f"{name}, you have a top score!")
-        print("Updating leaderboard....")
+        print("Updating leaderboard...")
         print()
         leaderboard()
     else:
@@ -293,8 +289,8 @@ def stop_time():
 
 def end_game(shuffled_list):
     """
-    Ends the game by stopping the timer.
-    Prints time taken to complete game.
+    Ends the game by stopping the timer
+    Print level and time taken to complete game
     """
     stop_time()
     final_seconds = seconds
@@ -331,11 +327,10 @@ def get_index(shuffled_list):
 
 def check_answer(tech_word, answer, shuffled_list):
     """
-    Check if answer is correct by comparing tech_word and answer variables.
-    Continue to get_index if correct.
-    Exit game and show score if incorrect.
+    Check if answer is correct by comparing tech_word and answer
+    Continue to get_index if correct
+    Exit game if incorrect
     """
-
     if answer == tech_word:
         get_index(shuffled_list)
     else:
@@ -372,26 +367,26 @@ def play_game(shuffled_list):
     Initiate play by calling scramble_word function
     """
     start_timer()
-    scramble_word(shuffled_list) #does the order of these functions matter?
+    scramble_word(shuffled_list)
 
 
 def validate_level(level):
     """
-    Validate that 1,2 or 3 has been entered.
-    Raise ValueError if any other entry has been made.
+    Validate that 1, 2 or 3 has been entered
+    Raise ValueError if any other entry has been made
     """
     if level != "1" and level != "2" and level != "3":
         raise ValueError
 
 def level_selection():
     """
+    Reset current index to 0 for new game
     Ask user to select a difficulty level
-    Select appropriate tech_list for difficulty level
-    Call scramble_word function to initiate play
+    Select appropriate tech_list for difficulty level and shuffle it
     """
     clear_terminal()
     global current_index
-    current_index = 0 #reset to 0 for play again purposes
+    current_index = 0 
 
     while True:
         try:
@@ -429,7 +424,6 @@ def validate_play_input(play_input):
     If yes, call play game function.
     If no, call navigation function
     """
-    
     if play_input != "y" and play_input != "n":
         raise ValueError
 
@@ -443,6 +437,7 @@ def validate_play_input(play_input):
                 break
         except ValueError as e:
             print("Invalid entry:")
+
 
 def play_again():
     """
@@ -466,8 +461,8 @@ def ready_to_play():
 
 def how_to_play():
     """
-    Display instructions for how to play the game.
-    Prompt user to play the game.
+    Display instructions for how to play the game
+    Prompt user to play the game
     """
     clear_terminal()
 
@@ -498,9 +493,9 @@ COMPUTER
 
 def validate_name(name):
     """
-    Validate there are a minimum of 2 letters in the name entry.
-    Check name entry for invalid special characters.
-    Raise ValueError if name entry is not valid.
+    Validate there are a minimum of 2 letters in the name entry
+    Check name entry for invalid special characters
+    Raise ValueError if name entry is not valid
     """
     invalid_chars = ['!', '@', '#', '$', '%', ':', ';', '?', '&' '/', '£', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
     
@@ -517,7 +512,7 @@ def validate_name(name):
     
 def username():
     """
-    Request name input and welcome user to the game.
+    Request name input and welcome user to the game
     Update global variable name
     """
     global name
@@ -540,9 +535,8 @@ def username():
 
 def validate_nav_choice(nav_choice):
     """
-    Validate that an entry '1','2' or '3' has been made.
-    Raise ValueError if any other entry has been made.
-    Prompt user to enter another navigation choice.
+    Validate that an entry '1','2' or '3' has been made
+    Raise ValueError if any other entry has been made
     """
     if nav_choice != "1" and nav_choice != "2" and nav_choice != "3":
         raise ValueError("Please select 1, 2 or 3")
@@ -551,8 +545,8 @@ def validate_nav_choice(nav_choice):
 
 def navigation():
     """
-    Display navigation options. 
-    Ask user to select one of three options.
+    Display navigation options
+    Ask user to select one of three options
     """
     while True:
         try:
