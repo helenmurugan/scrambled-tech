@@ -223,7 +223,7 @@ def get_score(shuffled_list, final_seconds):
     Display leaderboard regardless of score.
     """
     if set(shuffled_list) == set(tech_easy):
-        multiplier = 1000
+        multiplier = 10000
     elif set(shuffled_list) == set(tech_med):
         multiplier = 100000
     elif set(shuffled_list) == set(tech_exp):
@@ -377,7 +377,7 @@ def validate_level(level):
     Raise ValueError if any other entry has been made
     """
     if level != "1" and level != "2" and level != "3":
-        raise ValueError
+        raise ValueError("Expected 1, 2 or 3")
 
 
 def level_selection():
@@ -474,7 +474,8 @@ HOW TO PLAY:
 * If you answer correctly, you will move on to the next Scrambled Tech.
 * If you answer incorrectly, Game Over!
 * To complete the game, you must correctly unscramble 10 words.
-* You are being timed!
+* The faster you complete the game, the higher your score.
+* Do not copy the Scrambled Tech (using Ctrl+C), as this will close the app!
 
 -------------------------------------
 
