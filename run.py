@@ -6,7 +6,6 @@ import time
 import threading
 import warnings
 
-
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -18,7 +17,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('scrambled_tech')
 
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 tech_list_easy = [ 
     'wifi', 
@@ -41,60 +39,36 @@ tech_list_easy = [
     'amazon',
     'google',
     'zoom',
-    'youtube',
     'java'
     ]
 
 tech_list_medium = [
-    'computer',
+    'youtube',
     'desktop',
-    'internet', 
     'website',
-    'password',
     'kindle',
     'samsung',
-    'username',
     'spotify',
     'podcast',
     'netflix',
     'lenovo',
     'nintendo', 
-    'playstation',
-    'database',
-    'bluetooth',
-    'software',
-    'hardware',
-    'keyboard',
     'monitor',
     'printer',
     'scanner',
     'speaker',
-    'microphone',
     'huawei',
     'device',
     'drone',
-    'robotics',
     'server',
     'browser',
     'network',
     'sensor',
     'battery',
-    'microchip',
-    'headphones',
-    'earphones',
     'upload',
-    'download',
-    'hacking',
-    'cache',
-    'calculator',
     'chrome',
-    'whatsapp',
     'fitbit',
-    'instagram',
     'twitter',
-    'facebook',
-    'linkedin',
-    'whatsapp'
     'machine',
     'virtual',
     'backup',
@@ -106,11 +80,31 @@ tech_list_medium = [
 ]
 
 tech_list_expert = [
+    'username',
+    'robotics',
+    'internet', 
+    'whatsapp',
+    'playstation',
+    'database',
+    'bluetooth',
+    'software',
+    'hardware',
+    'keyboard',
+    'microchip',
+    'headphones',
+    'earphones',
+    'download',
+    'calculator',
+    'instagram',
+    'facebook',
+    'linkedin',
+    'password',
+    'whatsapp',
+    'computer',
     'cryptocurrency',
     'automation',
     'javascript',
     'application',
-    'phishing',
     'cybersecurity',
     'wireless',
     'biometrics',
@@ -119,9 +113,7 @@ tech_list_expert = [
     'analytics',
     'digital',
     'algorithm',
-    'malware',
     'firewall',
-    'router',
     'encryption',
     'semiconductor',
     'satellite',
@@ -234,7 +226,6 @@ def get_score(shuffled_list, final_seconds):
     If score is in top 10 on leaderboard, print "Updating leaderboard".
     Display leaderboard regardless of score.
     """
-
     if set(shuffled_list) == set(tech_list_easy):
         multiplier = 1000
     elif set(shuffled_list) == set(tech_list_medium):
