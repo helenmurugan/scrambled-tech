@@ -134,10 +134,6 @@ tech_list_expert = [
     'engineer'
 ]
 
-# shuffled_list_easy = random.sample(tech_list_easy, len(tech_list_easy))
-shuffled_list_medium = random.sample(tech_list_medium, len(tech_list_medium))
-shuffled_list_expert = random.sample(tech_list_expert, len(tech_list_expert))
-
 current_index = 0
 stop_timer = False
 leaderboard_worksheet = SHEET.worksheet("leaderboard")
@@ -184,6 +180,18 @@ def validate_back_to_menu(back_to_menu):
     if back_to_menu != "y" and back_to_menu != "n":
         raise ValueError
 
+    return True
+
+
+def back_to_menu():
+    """
+    Ask user if they want to return to main menu
+    If yes, go to main menu
+    If no, thank them for playing
+    """
+    back_to_menu = input("Back to Main Menu? (y/n)\n")
+    validate_back_to_menu(back_to_menu)
+
     while True:
         try:    
             if back_to_menu == "y":
@@ -198,15 +206,16 @@ def validate_back_to_menu(back_to_menu):
                 clear_terminal()
                 navigation()
         except ValueError as e:
-            print("Invalid entry:")
+            print("Invalid entry:", str(e))
+            print()
+            navigation()
 
 
-def display_leaderboard():
+def leaderboard():
     """
     print the first 10 rows of the leaderboard worksheet
     """
     leaderboard = leaderboard_worksheet.get_all_values()
-    print()
     print("Leaderboard (Top 10):\n")
 
     for rank, item in enumerate(leaderboard[:10], start=1):
@@ -214,32 +223,16 @@ def display_leaderboard():
         print(f"Rank {rank}: {username} - {score}")
 
     print()
-    back_to_menu = input("Back to Main Menu? (y/n)\n")
-    validate_back_to_menu(back_to_menu)
-
-
-def update_leaderboard(score):
-    """
-    Update leaderboard worksheet, add new row with name and score.
-    Sort rows in order of highest to lowest score
-    """
-    username = name
-    data = []
-    data.append(username)
-    data.append(score)
-    print("Updating leaderboard....\n")
-
-    leaderboard_worksheet.append_row(data)
-    data_list = leaderboard_worksheet.get_all_values()
-    sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
-    leaderboard_worksheet.update(sorted_list, "A:B")
-    display_leaderboard()
-
+    back_to_menu()
+    
 
 def get_score(shuffled_list, final_seconds):
     """
     Calculate score based on the difficulty level and time taken to complete the game.
-    Print score
+    Print difficulty level, time taken and score
+    Update leaderboard
+    If score is in top 10 on leaderboard, print "Updating leaderboard".
+    Display leaderboard regardless of score.
     """
 
     if set(shuffled_list) == set(tech_list_easy):
@@ -253,9 +246,26 @@ def get_score(shuffled_list, final_seconds):
     score = int(score_float)
 
     print(f"You scored {score} points\n")
-    print()
-    update_leaderboard(score)
+    print() # end of codewhen it worked
 
+    username = name
+    data = []
+    data.append(username)
+    data.append(score)
+
+    leaderboard_worksheet.append_row(data)
+    data_list = leaderboard_worksheet.get_all_values()
+    sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
+    leaderboard_worksheet.update(sorted_list, "A:B")
+
+    if score > int(sorted_list[9][1]):
+        print(f"{name}, you have a top score!")
+        print("Updating leaderboard....")
+        print()
+        leaderboard()
+    else:
+        leaderboard()
+        
 
 def timer():
     """
@@ -310,7 +320,7 @@ def end_game(shuffled_list):
 
     minutes = final_seconds // 60
     secs = final_seconds % 60
-    print(f"You completed Scrambled Tech {level} Level in {minutes:02d}:{secs:02d}")
+    print(f"You completed Scrambled Tech {level} Level in {minutes:02d}:{secs:02d} (mins:secs)")
     get_score(shuffled_list, final_seconds)
 
 
@@ -560,7 +570,6 @@ def navigation():
             print("2. How To Play")
             print("3. Leaderboard")
             nav_choice = input("\n")
-
             validate_nav_choice(nav_choice)
 
             if nav_choice == "1":
@@ -571,19 +580,18 @@ def navigation():
                 break
             else:
                 clear_terminal()
-                display_leaderboard()
+                leaderboard()
                 break
         except ValueError as e:
             print("Invalid entry:", str(e))
-
+            print()
+        
 
 def main():
     username()
     navigation()
 
 main()
-# level_selection()
-# update_leaderboard(score)
-# display_leaderboard()
+
 
 
