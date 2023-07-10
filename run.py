@@ -17,9 +17,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('scrambled_tech')
 
-tech_list_easy = [ 
-    'wifi', 
-    'apple', 
+tech_list_easy = [
+    'wifi',
+    'apple',
     'laptop',
     'mobile',
     'ipad',
@@ -50,7 +50,7 @@ tech_list_medium = [
     'spotify',
     'podcast',
     'netflix',
-    'lenovo', 
+    'lenovo',
     'monitor',
     'printer',
     'scanner',
@@ -81,7 +81,7 @@ tech_list_expert = [
     'nintendo',
     'username',
     'robotics',
-    'internet', 
+    'internet',
     'whatsapp',
     'playstation',
     'database',
@@ -181,7 +181,7 @@ def back_to_menu():
     validate_back_to_menu(back_to_menu)
 
     while True:
-        try:    
+        try:
             if back_to_menu == "y":
                 clear_terminal()
                 navigation()
@@ -212,11 +212,11 @@ def leaderboard():
 
     print()
     back_to_menu()
-    
+
 
 def get_score(shuffled_list, final_seconds):
     """
-    Calculate score based on the difficulty level and time taken to complete the game
+    Calculate score based on the level and time taken
     Print score
     Update leaderboard
     If score is in top 10 on leaderboard, print "Updating leaderboard..."
@@ -242,7 +242,7 @@ def get_score(shuffled_list, final_seconds):
     leaderboard_worksheet.append_row(data)
     data_list = leaderboard_worksheet.get_all_values()
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
-    warnings.filterwarnings('ignore') #filter warning in next line, associated with gspread version 6.0 syntax update
+    warnings.filterwarnings('ignore')  # gspread update warning
     leaderboard_worksheet.update(sorted_list, "A:B")
 
     if score > int(sorted_list[9][1]):
@@ -252,7 +252,7 @@ def get_score(shuffled_list, final_seconds):
         leaderboard()
     else:
         leaderboard()
-        
+
 
 def timer():
     """
@@ -266,18 +266,18 @@ def timer():
         seconds += 1
 
     return seconds
-    
+
 
 def start_timer():
     """
-    Use threading to run timer at the same time as show_question 
+    Use threading to run timer at the same time as show_question
     """
     global stop_timer
     stop_timer = False
 
     timer_thread = threading.Thread(target=timer)
     timer_thread.start()
-    
+
 
 def stop_time():
     """
@@ -307,7 +307,8 @@ def end_game(shuffled_list):
 
     minutes = final_seconds // 60
     secs = final_seconds % 60
-    print(f"You completed Scrambled Tech {level} Level in {minutes:02d}:{secs:02d} (mins:secs)")
+    print(f"You completed Scrambled Tech {level} Level")
+    print(f"Your time was {minutes:02d}:{secs:02d} (mins:secs)")
     get_score(shuffled_list, final_seconds)
 
 
@@ -347,7 +348,7 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     Ask for user input to unscramble the word.
     """
     clear_terminal()
-    
+
     question_number = current_index + 1
     print(f"Question {question_number} out of 10")
     print()
@@ -357,7 +358,7 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     print()
     print("Unscrambled Tech:")
     answer = input("\n")
-   
+
     check_answer(tech_word, answer, shuffled_list)
 
 
@@ -378,6 +379,7 @@ def validate_level(level):
     if level != "1" and level != "2" and level != "3":
         raise ValueError
 
+
 def level_selection():
     """
     Reset current index to 0 for new game
@@ -386,11 +388,10 @@ def level_selection():
     """
     clear_terminal()
     global current_index
-    current_index = 0 
+    current_index = 0
 
     while True:
         try:
-            
             print("Please select a level (1, 2 or 3):\n")
             print("1. Easy")
             print("2. Medium")
@@ -415,7 +416,7 @@ def level_selection():
             print("Invalid entry:")
 
     play_game(shuffled_list)
-    
+
 
 def validate_play_input(play_input):
     """
@@ -428,7 +429,7 @@ def validate_play_input(play_input):
         raise ValueError("Expected y or n")
 
     while True:
-        try:    
+        try:
             if play_input == "y":
                 level_selection()
                 break
@@ -468,11 +469,11 @@ def how_to_play():
 
     instructions = """
 HOW TO PLAY:
-* Our tech has been scrambled! 
-* You must use all the letters provided to unscramble the technology-related word.
+* Our tech has been scrambled!
+* You must use all the letters provided to unscramble the tech-related word.
 * If you answer correctly, you will move on to the next Scrambled Tech.
 * If you answer incorrectly, Game Over!
-* To complete the game, you must correctly unscramble 10 words, as fast as you can.
+* To complete the game, you must correctly unscramble 10 words.
 * You are being timed!
 
 -------------------------------------
@@ -483,7 +484,7 @@ Scrambled Tech:
 PROMUTCE
 
 Unscrambled Tech:
-COMPUTER 
+COMPUTER
 -------------------------------------
 
 """
@@ -497,19 +498,19 @@ def validate_name(name):
     Check name entry for invalid special characters
     Raise ValueError if name entry is not valid
     """
-    invalid_chars = ['$', '%', ':', ';', '?', '&' '/', '£', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
-    
+    invalid_chars = ['/', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']
+
     if any(char in name for char in invalid_chars):
         raise ValueError("Invalid special characters found in name.\n")
 
     letter_count = sum(1 for char in name if char.isalpha())
 
     if letter_count < 2:
-        raise ValueError("Please enter a name with a minimum of two letters.\n")
-    
+        raise ValueError("Please enter a minimum of two letters.\n")
+
     return True
 
-    
+
 def username():
     """
     Request name input and welcome user to the game
@@ -519,7 +520,7 @@ def username():
 
     print("Welcome to Scrambled Tech!")
     print()
-   
+
     while True:
         try:
             name = input("Please enter your name:\n")
@@ -531,7 +532,7 @@ def username():
             print("Invalid name:", str(e))
 
     return name
-    
+
 
 def validate_nav_choice(nav_choice):
     """
@@ -542,6 +543,7 @@ def validate_nav_choice(nav_choice):
         raise ValueError("Expected 1, 2 or 3")
 
     return True
+
 
 def navigation():
     """
@@ -570,13 +572,11 @@ def navigation():
         except ValueError as e:
             print("Invalid entry:", str(e))
             print()
-        
+
 
 def main():
     username()
     navigation()
 
+
 main()
-
-
-
