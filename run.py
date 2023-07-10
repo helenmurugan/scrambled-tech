@@ -514,12 +514,15 @@ def validate_name(name):
 
 def username():
     """
-    Request name input and welcome user to the game
+    Welcome message
+    Request name input
     Update global variable name
     """
     global name
 
     print("Welcome to Scrambled Tech!")
+    print()
+    print("The Game Where You Unscramble Our Tech...")
     print()
 
     while True:
