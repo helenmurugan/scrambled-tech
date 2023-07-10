@@ -166,7 +166,7 @@ def validate_back_to_menu(back_to_menu):
     Raise ValueError for an exception.
     """
     if back_to_menu != "y" and back_to_menu != "n":
-        raise ValueError
+        raise ValueError("Expected y or n")
 
     return True
 
@@ -425,7 +425,7 @@ def validate_play_input(play_input):
     If no, call navigation function
     """
     if play_input != "y" and play_input != "n":
-        raise ValueError
+        raise ValueError("Expected y or n")
 
     while True:
         try:    
@@ -436,7 +436,7 @@ def validate_play_input(play_input):
                 navigation()
                 break
         except ValueError as e:
-            print("Invalid entry:")
+            print("Invalid entry:", str(e))
 
 
 def play_again():
@@ -497,15 +497,15 @@ def validate_name(name):
     Check name entry for invalid special characters
     Raise ValueError if name entry is not valid
     """
-    invalid_chars = ['!', '@', '#', '$', '%', ':', ';', '?', '&' '/', '£', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
+    invalid_chars = ['$', '%', ':', ';', '?', '&' '/', '£', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']  
     
     if any(char in name for char in invalid_chars):
-        raise ValueError("Invalid characters found in name.\n")
+        raise ValueError("Invalid special characters found in name.\n")
 
     letter_count = sum(1 for char in name if char.isalpha())
 
     if letter_count < 2:
-        raise ValueError("Your name must have a minimum of two letters.\n")
+        raise ValueError("Please enter a name with a minimum of two letters.\n")
     
     return True
 
@@ -539,7 +539,7 @@ def validate_nav_choice(nav_choice):
     Raise ValueError if any other entry has been made
     """
     if nav_choice != "1" and nav_choice != "2" and nav_choice != "3":
-        raise ValueError("Please select 1, 2 or 3")
+        raise ValueError("Expected 1, 2 or 3")
 
     return True
 
