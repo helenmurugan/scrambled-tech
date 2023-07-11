@@ -435,14 +435,14 @@ def play_again():
     If yes, call level_selection function.
     If no, call navigation function.
     """
-    play_input = input("Play again? (y/n)\n")
-    print()
-    validate_play_input(play_input)
 
     while True:
         try:
+            play_input = input("Play again? (y/n)\n")
+            print()
+            validate_play_input(play_input)
+            
             if play_input == "y":
-                level_selection()
                 break
             elif play_input == "n":
                 navigation()
@@ -524,7 +524,7 @@ def username():
 
     print("Welcome to Scrambled Tech!")
     print()
-    print("The Anagram Solver Game Where You Unscramble our Tech...")
+    print("The Anagram Solver Game Where You Unscramble Our Tech...")
     print()
 
     while True:
