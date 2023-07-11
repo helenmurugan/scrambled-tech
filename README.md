@@ -104,6 +104,8 @@ By Helen Murugan
 
 ## Credits
 ### Code
+* The code
+ for CSS styling was modified from Dayana N https://github.com/Dayana-N/inventory-management-PP3/blob/main/views/layout.html
 ### Content
 * All content was written by the developer
 ### Acknowledgements

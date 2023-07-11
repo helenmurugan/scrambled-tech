@@ -441,8 +441,9 @@ def play_again():
             play_input = input("Play again? (y/n)\n")
             print()
             validate_play_input(play_input)
-            
+
             if play_input == "y":
+                level_selection()
                 break
             elif play_input == "n":
                 navigation()
@@ -456,10 +457,21 @@ def ready_to_play():
     """
     Ask user if they are ready to play the game.
     """
-    play_input = input("Are you ready to play? (y/n)\n")
-    print()
-
-    validate_play_input(play_input)
+    while True:
+        try:
+            play_input = input("Are you ready to play? (y/n)\n")
+            print()
+            validate_play_input(play_input)
+            
+            if play_input == "y":
+                level_selection()
+                break
+            elif play_input == "n":
+                navigation()
+                break
+        except ValueError as e:
+            print("Invalid entry:", str(e))
+            print()
 
 
 def how_to_play():
