@@ -412,8 +412,8 @@ def level_selection():
                 shuffled_list_expert = random.sample(tech_exp, len(tech_exp))
                 shuffled_list = shuffled_list_expert
                 break
-        except ValueError:
-            print("Invalid entry:")
+        except ValueError as e:
+            print("Invalid entry:", str(e))
 
     play_game(shuffled_list)
 
@@ -422,11 +422,22 @@ def validate_play_input(play_input):
     """
     Validate that y or n has been entered.
     Raise ValueError if any other entry has been made.
-    If yes, call play game function.
-    If no, call navigation function
     """
     if play_input != "y" and play_input != "n":
         raise ValueError("Expected y or n")
+    
+    return True
+
+
+def play_again():
+    """
+    Ask user if they want to play again.
+    If yes, call level_selection function.
+    If no, call navigation function.
+    """
+    play_input = input("Play again? (y/n)\n")
+    print()
+    validate_play_input(play_input)
 
     while True:
         try:
@@ -438,16 +449,7 @@ def validate_play_input(play_input):
                 break
         except ValueError as e:
             print("Invalid entry:", str(e))
-
-
-def play_again():
-    """
-    Ask user if they want to play again
-    """
-    play_input = input("Play again? (y/n)\n")
-    print()
-
-    validate_play_input(play_input)
+            print()
 
 
 def ready_to_play():
@@ -522,7 +524,7 @@ def username():
 
     print("Welcome to Scrambled Tech!")
     print()
-    print("The Game Where You Unscramble Our Tech...")
+    print("The Anagram Solver Game Where You Unscramble our Tech...")
     print()
 
     while True:
