@@ -165,7 +165,7 @@ def validate_back_to_menu(back_to_menu):
     Validate that only y or n has been entered.
     Raise ValueError for an exception.
     """
-    if back_to_menu != "y" and back_to_menu != "n":
+    if back_to_menu.lower() != "y" and back_to_menu.lower() != "n":
         raise ValueError("Expected y or n")
 
     return True
@@ -182,11 +182,11 @@ def back_to_menu():
 
     while True:
         try:
-            if back_to_menu == "y":
+            if back_to_menu.lower() == "y":
                 clear_terminal()
                 navigation()
                 break
-            elif back_to_menu == "n":
+            elif back_to_menu.lower() == "n":
                 print()
                 print("Thank you for playing!")
                 break
@@ -332,7 +332,7 @@ def check_answer(tech_word, answer, shuffled_list):
     Continue to get_index if correct
     Exit game if incorrect
     """
-    if answer == tech_word:
+    if answer.lower() == tech_word:
         get_index(shuffled_list)
     else:
         print("Incorrect answer...")
@@ -423,9 +423,9 @@ def validate_play_input(play_input):
     Validate that y or n has been entered.
     Raise ValueError if any other entry has been made.
     """
-    if play_input != "y" and play_input != "n":
+    if play_input.lower() != "y" and play_input.lower() != "n":
         raise ValueError("Expected y or n")
-    
+
     return True
 
 
@@ -442,10 +442,10 @@ def play_again():
             print()
             validate_play_input(play_input)
 
-            if play_input == "y":
+            if play_input.lower() == "y":
                 level_selection()
                 break
-            elif play_input == "n":
+            elif play_input.lower() == "n":
                 navigation()
                 break
         except ValueError as e:
@@ -462,11 +462,11 @@ def ready_to_play():
             play_input = input("Are you ready to play? (y/n)\n")
             print()
             validate_play_input(play_input)
-            
-            if play_input == "y":
+
+            if play_input.lower() == "y":
                 level_selection()
                 break
-            elif play_input == "n":
+            elif play_input.lower() == "n":
                 navigation()
                 break
         except ValueError as e:
@@ -513,10 +513,10 @@ def validate_name(name):
     Check name entry for invalid special characters
     Raise ValueError if name entry is not valid
     """
-    invalid_chars = ['/', '(', ')', '{', '}', '[', ']', '<', '>', '+', '=']
+    invalid_chars = ['/', '(', ')', '{', '}', '[', ']', '<', '>']
 
     if any(char in name for char in invalid_chars):
-        raise ValueError("Invalid special characters found in name.\n")
+        raise ValueError("A name can't contain special characters /(){}[]<>\n")
 
     letter_count = sum(1 for char in name if char.isalpha())
 

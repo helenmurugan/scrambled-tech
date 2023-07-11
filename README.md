@@ -1,43 +1,10 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
-
-## Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
-
-
 # Scrambled Tech
 
 By Helen Murugan
-[View the live site here]()
+[View the live site here](https://scrambled-tech-e7a1bcc283a2.herokuapp.com/)
 
-* Scrambled Tech is a 
+Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this command line application, the user enters a username and selects between three levels of difficulty. The user is shown a technology-related word which has been scrambled to form a Scrambled Tech. The user must enter all the letters provided in the correct order to unscramble the tech word. If they get an answer wrong, the game will be over. The user must unscramble ten Scrambled Tech correctly to complete the game. There is no time limit to answer all of the questions, however, to achieve a good score, they must complete the game as fast as they can; they are being timed! A score is calculated based on the selected difficulty level and the total time taken to complete all ten anagrams. If the user's score is in the top ten recorded scores, their name and score will be added to the leaderboard.
+Scrambled Tech uses a Google Sheets Application Programming Interface(API) to record and update the user scores, sort the scores into descending order and retrieve the ten highest scores for the leaderboard feature.  
 
 # CONTENTS
 * [User Experience](#user-experience)
@@ -87,6 +54,9 @@ By Helen Murugan
     * Enter “CREDS” in the KEY field.
     * Copy and paste the contents of the creds.json file in the VALUES field.
     * Select “Add”.
+* Add another Config Vars
+    * Enter “PORT” in the KEY field.
+    * Enter 8000 in the VALUES field.
 * Add buildpacks
     * Select “Add buildpack”
     * Select “python”, “Add buildpack”
