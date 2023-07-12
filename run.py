@@ -229,7 +229,7 @@ def get_score(shuffled_list, final_seconds):
     elif set(shuffled_list) == set(tech_exp):
         multiplier = 1000000
 
-    score_float = 
+    score_float = (1 / final_seconds) * multiplier
     
     score = int(score_float)
 

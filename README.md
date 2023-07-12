@@ -5,19 +5,16 @@ By Helen Murugan
 
 ![Cover image showing terminal on a colour-gradient (purple/green) background](/documentation/cover-image.jpg)
 
-Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this command line application, the user enters a username and selects between three levels of difficulty. The user is shown a technology-related word which has been scrambled to form a Scrambled Tech. The user must enter all the letters provided in the correct order to unscramble the tech word. If they get an answer wrong, the game will be over. The user must unscramble ten Scrambled Tech correctly to complete the game. There is no time limit to answer all of the questions, however, to achieve a good score, they must complete the game as fast as they can; they are being timed! A score is calculated based on the selected difficulty level and the total time taken to complete all ten anagrams. If the user's score is in the top ten recorded scores, their name and score will be updated and displayed on  the leaderboard. Scrambled Tech uses a Google Sheets or gspread Application Programming Interface(API) to store and manipulate the user score data, which is used by the leaderboard feature.
+Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this command line application, the user enters a username and selects between three levels of difficulty. The user is shown a technology-related word which has been scrambled to form a Scrambled Tech. The user must enter all the letters provided in the correct order to unscramble the tech word. If they get an answer wrong, the game will be over. The user must unscramble ten Scrambled Tech correctly to complete the game. There is no time limit to answer all of the questions, however, to achieve a good score, they must complete the game as fast as they can; they are being timed! A score is calculated based on the selected difficulty level and the total time taken to complete all ten anagrams. If the user's score is in the top ten recorded scores, their name and score will be updated and displayed on  the leaderboard. Scrambled Tech uses a Google Sheets or Gspread Application Programming Interface(API) to store and manipulate the user score data, which is used by the leaderboard feature.
 
 # CONTENTS
 * [User Experience](#user-experience)
-    * [User Stories](#user-stories)
     * [Goals](#goals)
-    * [Scope](#scope)
-* [Design](design)
-    * [Colour Scheme](colour-scheme)
-    * [Flowchart](flowchart)
+    * [Target Audience](#target-audience)
+    * [User Stories](#user-stories)
 * [Planning](#planning)
     * [Wireframes](#wireframes)
-    * [Flowchart](flowchart)
+    * [Logic Flowchart](logic-flowchart)
 * [Features](#features)
     * [Welcome Screen](#welcome-screen)
     * [Username](#username)
@@ -52,38 +49,56 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [Acknowledgements](#acknowledgements)
 
 ## User Experience
+
+### Goals
+* Design and build an interactive application anagram solver game based on technology-related words.
+* Build the project using Python exclusively, run in a command-line interface and deployed using Heroku.
+* Have robust error handling, where all inputs are validated and empty inputs are not accepted.
+* The application should have good UX, be intuitively easy to navigate and simple to understand.
+* The game should be fun and challenging to engage the user.
+* The game should have difficulty options to allow the user to challenge themselves further.
+* The game should have a fair scoring system, and users should be able to understand how to improve their score.
+* Utilise an API to store and manipulate user score data, providing a leaderboard feature.
+
+### Target Audience
+People who may enjoy this game include:
+* Those who have an interest in technology.
+* Those who like playing word games.
+* Those who enjoy solving puzzles.
+* Those who want a distraction from their day with a five-minute application game.
+* The easy level may be appropriate for older children, whilst the expert level is designed to be extremely challenging!
+
 ### User Stories
 As a first time user I want to:
 * Quickly and intuitively understand how to navigate the application.
 * Quickly and intuitively understand how to play the game.
 * Be able to use any case to enter data into the game, without getting an error.
 * Play the game at a difficulty level that suits my ability.
-* play multiple times, until I complete the level, without seeing the same set of questions repeated.
+* Play multiple times, until I complete the level, without seeing the same set of questions repeated.
 * Complete the game for my selected level.
 * See how well I scored.
 * View the leaderboard.
-Exit the application gracefully.
+* Exit the application gracefully, only when I choose to.
 
-As a returning and frequent user I want to:
-* Complete the game for every difficulty level.
+As a returning and/or frequent user I want to:
+* Complete the level in a faster time to improve my score.
+* Move onto harder difficulty levels.
 * Achieve a top score.
-* See my score on the leaderboard.
+* See my score, relative to others, on the leaderboard.
+* Maintain and/or improve my score on the leaderboard.
 
-### Goals
-### Scope
-## Design
-### Colour Scheme
 ## Planning
 ### Wireframes
-Wireframes have been omitted in this README due to the deployment method used for this application. There are no changes within the browser window whilst the program is running, all changes occur within the console itself.
-### Flowchart
-This flowchart was created using [Lucid Chart](lucid.app/lucidchart/). The flowchart shows the main logic of the program. 
-* All user input must pass validation before proceeding to the next stage. 
+Wireframes have been omitted in this README due to the deployment method used for this application. All changes occur within the console itself, not in the browser window.
+### Logic Flowchart
+The flowchart shows the main logic of the program and was created using [Lucid Chart](lucid.app/lucidchart/). 
 * The navigation around the application has been designed and tested to allow intuitive flow around the game for the user, and will lead them in the direction they will most likely want to go.
+* All user input must pass validation before proceeding to the next stage.
 * The flowchart shows how the user can select from three levels of difficulty.
-* Whilst the game is being played a timer is running to allopw the total time to be recorded and fed into the score calculation.
+* Whilst the game is being played, threading is used to simultaneously run a timer in the background, to allow the total time to be recorded and fed into the score calculation.
 
 ![Flowchart diagram showing sequence of play](/documentation/flowchart.jpg)
+
 ## Features
 ### Welcome Screen
 ### Username
@@ -98,7 +113,7 @@ This flowchart was created using [Lucid Chart](lucid.app/lucidchart/). The flowc
 ### Future Features
 ## Testing
 ### Manual Testing
-Manual testing of the application was carried out continuosly from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. Print statements were used throughout the game to ensure correct functionality during development. After deployment, a final full testing has been carried out, as detailed in the table below.
+Manual testing of the application was carried out continuously from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. Print statements were used throughout the game to ensure correct functionality during development. After deployment, a final full testing has been carried out, as detailed in the table below.
 
 ### Validator Testing
 ### Accessibility
