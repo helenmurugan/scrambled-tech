@@ -95,9 +95,9 @@ The flowchart shows the main logic of the program and was created using [Lucid C
 * The navigation around the application has been designed and tested to allow intuitive flow around the game for the user, and will lead them in the direction they will most likely want to go.
 * All user input must pass validation before proceeding to the next stage.
 * The flowchart shows how the user can select from three levels of difficulty.
-* Whilst the game is being played, threading is used to simultaneously run a timer in the background, to allow the total time to be recorded and fed into the score calculation.
+* The chart showes  threading is used to simultaneously run a timer in the background, to allow the total time to be recorded and fed into the score calculation.
 
-![Flowchart diagram showing sequence of play](/documentation/flowchart.jpg)
+![Flowchart diagram showing sequence of play](/documentation/logic-flowchart.jpg)
 
 ## Features
 ### Welcome Screen
@@ -115,14 +115,41 @@ The flowchart shows the main logic of the program and was created using [Lucid C
 ### Manual Testing
 Manual testing of the application was carried out continuously from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. Print statements were used throughout the game to ensure correct functionality during development. After deployment, a final full testing has been carried out, as detailed in the table below.
 
+![Table detailing manual testing](/documentation/manual-testing.jpg)
+
 ### Validator Testing
+Code Institute Python Linter was used to validate the Python code. Several errors were found, relating to whitespace, indentation and line lengths being too long. These are all now rectified and the code passes through the linter with no errors.
+
+![ci-python-linter](/documentation/ci-python-linter.jpg)
+
 ### Accessibility
+The application passed the DevTools lighthose validator.
+
+![lighthouse](/documentation/lighthouse.jpg)
+
 ### Fixed Bugs
+
 ### Unfixed Bugs
+There are no unfixed bugs.
+
 ### Further Testing
+The deployed application was tested by five users. The main feedback was that I need to prevent Ctrl+C from interupting the program so that it can be used to copy the Scrambled Tech, providing an easy way to cheat!
+
 ## Technologies Used
 ### Languages
+* Python
+* The Code Institute template provided HTML used in the deployed project.
+* CSS was used to create an attractive background and center the terminal within the browser window.
+
 ### Python Modules
+* gspread - used as the API for interacting with the Google Sheets.
+* oauth - used to generate the credentials for the API.
+* os - provides operating system-dependent functionality. In this case it is used to clear the terminal.
+* random - used to shuffle lists into a random order.
+* time - used to create a timer.
+* threading - this is used to simultaneously run a timer whilst the game is being played.
+* warnings - this is used to filter a warning. The warning stated that a later version of gspread would include a syntax update. This affected one line of code, and is not an issue for the version currently in use. I used filterwarnings('ignore') within a function to filter out the warning, whilst allowing any other unexpected warnings to show.
+
 ### Technologies and Programs
 ## Deployment
 * Ensure all input methods included “\n” at the end of the string eg. Input(“Enter your name:\n”). This ensures that the text will de displayed when deployed to the Heroku terminal.

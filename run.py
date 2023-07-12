@@ -230,7 +230,6 @@ def get_score(shuffled_list, final_seconds):
         multiplier = 1000000
 
     score_float = (1 / final_seconds) * multiplier
-    
     score = int(score_float)
 
     print(f"You scored {score} points\n")
