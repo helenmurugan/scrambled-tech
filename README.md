@@ -17,7 +17,7 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [Flowchart](flowchart)
 * [Planning](#planning)
     * [Wireframes](#wireframes)
-    * [Flowchart](#flowchart)
+    * [Flowchart](flowchart)
 * [Features](#features)
     * [Welcome Screen](#welcome-screen)
     * [Username](#username)
@@ -53,13 +53,36 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
 
 ## User Experience
 ### User Stories
+As a first time user I want to:
+* Quickly and intuitively understand how to navigate the application.
+* Quickly and intuitively understand how to play the game.
+* Be able to use any case to enter data into the game, without getting an error.
+* Play the game at a difficulty level that suits my ability.
+* play multiple times, until I complete the level, without seeing the same set of questions repeated.
+* Complete the game for my selected level.
+* See how well I scored.
+* View the leaderboard.
+Exit the application gracefully.
+
+As a returning and frequent user I want to:
+* Complete the game for every difficulty level.
+* Achieve a top score.
+* See my score on the leaderboard.
+
 ### Goals
 ### Scope
 ## Design
 ### Colour Scheme
 ## Planning
 ### Wireframes
+Wireframes have been omitted in this README due to the deployment method used for this application. There are no changes within the browser window whilst the program is running, all changes occur within the console itself.
 ### Flowchart
+This flowchart was created using [Lucid Chart](lucid.app/lucidchart/). The flowchart shows the main logic of the program. 
+* All user input must pass validation before proceeding to the next stage. 
+* The navigation around the application has been designed and tested to allow intuitive flow around the game for the user, and will lead them in the direction they will most likely want to go.
+* The flowchart shows how the user can select from three levels of difficulty.
+* Whilst the game is being played a timer is running to allopw the total time to be recorded and fed into the score calculation.
+
 ![Flowchart diagram showing sequence of play](/documentation/flowchart.jpg)
 ## Features
 ### Welcome Screen
@@ -75,6 +98,8 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
 ### Future Features
 ## Testing
 ### Manual Testing
+Manual testing of the application was carried out continuosly from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. Print statements were used throughout the game to ensure correct functionality during development. After deployment, a final full testing has been carried out, as detailed in the table below.
+
 ### Validator Testing
 ### Accessibility
 ### Fixed Bugs
