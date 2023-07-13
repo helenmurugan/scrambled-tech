@@ -414,6 +414,7 @@ def level_selection():
                 break
         except ValueError as e:
             print("Invalid entry:", str(e))
+            print()
 
     play_game(shuffled_list)
 

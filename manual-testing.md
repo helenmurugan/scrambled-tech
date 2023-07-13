@@ -39,4 +39,4 @@ Manual testing of the application was carried out continuously from early develo
  | Play Again? (option offered after Game Over) | 'y' or 'Y' | Take to navigation function | navigation displayed | PASS |
  | | 'n' or 'N' | Quit | "Thank you for playing" | PASS |
  | Validate Play Again | Enter invalid character or submit empty | Raise error | "Invalid entry: Expected y or n" Repeats input request | PASS |
- | Copy using Ctrl+ C (Users who wish to cheat will attempt to copy the Scrambled Tech in order to use an anagram solver) | Ctrl+C | Allow copy using Ctrl+C without interrupting the game | Program exited due to Keyboard Interrupt | FAIL |
+

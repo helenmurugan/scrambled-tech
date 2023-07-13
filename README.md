@@ -5,7 +5,7 @@ By Helen Murugan
 
 ![Cover image showing terminal on a colour-gradient (purple/green) background](/documentation/cover-image.jpg)
 
-Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this command line application, the user enters a username and selects between three levels of difficulty. The user is shown a technology-related word which has been scrambled to form a Scrambled Tech. The user must enter all the letters provided in the correct order to unscramble the tech word. If they get an answer wrong, the game will be over. The user must unscramble ten Scrambled Tech correctly to complete the game. There is no time limit to answer all of the questions, however, to achieve a good score, they must complete the game as fast as they can; they are being timed! A score is calculated based on the selected difficulty level and the total time taken to complete all ten anagrams. If the user's score is in the top ten recorded scores, their name and score will be updated and displayed on  the leaderboard. Scrambled Tech uses a Google Sheets or Gspread Application Programming Interface(API) to store and manipulate the user score data, which is used by the leaderboard feature.
+Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this command line application, the user enters a username and selects between three levels of difficulty. The user is shown a technology-related word which has been scrambled to form a Scrambled Tech. The user must enter all the letters provided in the correct order to unscramble the tech word. If they get an answer wrong, the game will be over. The user must unscramble ten Scrambled Tech correctly to complete the game. There is no time limit to answer all of the questions, however, to achieve a good score, they must complete the game as fast as they can; they are being timed! A score is calculated based on the selected difficulty level and the total time taken to complete all ten anagrams. If the user's score is in the top ten recorded scores, their name and score will be updated and displayed on  the leaderboard. Scrambled Tech uses a Google Sheets or Gspread Application Programming Interface (API) to store and manipulate the user score data, which is used by the leaderboard feature.
 
 # CONTENTS
 * [User Experience](#user-experience)
@@ -33,7 +33,6 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [Accessibility](#accessibility)
     * [Fixed Bugs](#fixed-bugs)
     * [Unfixed Bugs](#unfixed-bugs)
-    * [Further Testing](#further-testing)
 * [Technologies Used](#technologies-used)
     * [Languages](#languages)
     * [Python Modules](#python-modules)
@@ -52,9 +51,9 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
 
 ### Goals
 * Design and build an interactive application anagram solver game based on technology-related words.
-* Build the project using Python exclusively, run in a command-line interface and deployed using Heroku.
-* Have robust error handling, where all inputs are validated and empty inputs are not accepted.
-* The application should have good UX, be intuitively easy to navigate and simple to understand.
+* Build the application using Python exclusively, run in a command-line interface (CLI) and deployed using Heroku.
+* Robust error handling, where all inputs are validated and empty inputs are not accepted.
+* Good UX, the app should be intuitively easy to navigate and simple to understand.
 * The game should be fun and challenging to engage the user.
 * The game should have difficulty options to allow the user to challenge themselves further.
 * The game should have a fair scoring system, and users should be able to understand how to improve their score.
@@ -82,20 +81,20 @@ As a first time user I want to:
 
 As a returning and/or frequent user I want to:
 * Complete the level in a faster time to improve my score.
-* Move onto harder difficulty levels.
+* Progress to more challenging levels.
 * Achieve a top score.
 * See my score, relative to others, on the leaderboard.
 * Maintain and/or improve my score on the leaderboard.
 
 ## Planning
 ### Wireframes
-Wireframes have been omitted in this README due to the deployment method used for this application. All changes occur within the console itself, not in the browser window.
+Wireframes have been omitted in this README due to the CLI deployment method used for this application. All changes occur within the console itself, not in the browser window.
 ### Logic Flowchart
 The flowchart shows the main logic of the program and was created using [Lucid Chart](lucid.app/lucidchart/). 
 * The navigation around the application has been designed and tested to allow intuitive flow around the game for the user, and will lead them in the direction they will most likely want to go.
 * All user input must pass validation before proceeding to the next stage.
 * The flowchart shows how the user can select from three levels of difficulty.
-* The chart showes  threading is used to simultaneously run a timer in the background, to allow the total time to be recorded and fed into the score calculation.
+* The chart shows  threading is used to simultaneously run a timer in the background, to allow the total time to be recorded and fed into the score calculation.
 
 ![Flowchart diagram showing sequence of play](/documentation/logic-flowchart.jpg)
 
@@ -111,14 +110,14 @@ The flowchart shows the main logic of the program and was created using [Lucid C
 ### Leaderboard
 ### Data Storage
 ### Future Features
+Ctrl+C
+
 ## Testing
 ### Manual Testing
-Manual testing of the application was carried out continuously from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. Print statements were used throughout the game to ensure correct functionality during development. After deployment, a final full testing has been carried out, as detailed in the table below.
-
-![Table detailing manual testing](/documentation/manual-testing.jpg)
+Manual testing of the application was carried out continuously from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. After deployment, each function and validation has been manually tested several times. Manual testing logs can be found [here](manual-testing.md)
 
 ### Validator Testing
-Code Institute Python Linter was used to validate the Python code. Several errors were found, relating to whitespace, indentation and line lengths being too long. These are all now rectified and the code passes through the linter with no errors.
+[Code Institute Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python code. Several errors were found, relating to whitespace, indentation and line lengths being too long. These are all now rectified and the code passes through the linter with no errors.
 
 ![ci-python-linter](/documentation/ci-python-linter.jpg)
 
@@ -128,29 +127,36 @@ The application passed the DevTools lighthose validator.
 ![lighthouse](/documentation/lighthouse.jpg)
 
 ### Fixed Bugs
+No major bugs were found during the development. However there are a couple of minor issues detailed below
 
+After deployment, I sometimes see a glitch 
+
+The warning stated that a later version of gspread would include a syntax update. This affected one line of code, and is not an issue for the version currently in use. I used filterwarnings('ignore') within a function to filter out the warning, whilst allowing any other unexpected warnings to show.
 ### Unfixed Bugs
 There are no unfixed bugs.
-
-### Further Testing
-The deployed application was tested by five users. The main feedback was that I need to prevent Ctrl+C from interupting the program so that it can be used to copy the Scrambled Tech, providing an easy way to cheat!
 
 ## Technologies Used
 ### Languages
 * Python
-* The Code Institute template provided HTML used in the deployed project.
+* The Code Institute template provided the HTML used in the deployed project.
 * CSS was used to create an attractive background and center the terminal within the browser window.
 
 ### Python Modules
-* gspread - used as the API for interacting with the Google Sheets.
+* gspread - used as the API for interacting with Google Sheets.
 * oauth - used to generate the credentials for the API.
-* os - provides operating system-dependent functionality. In this case it is used to clear the terminal.
+* os - provides operating system-dependent functionality. Used to clear the terminal.
 * random - used to shuffle lists into a random order.
 * time - used to create a timer.
-* threading - this is used to simultaneously run a timer whilst the game is being played.
-* warnings - this is used to filter a warning. The warning stated that a later version of gspread would include a syntax update. This affected one line of code, and is not an issue for the version currently in use. I used filterwarnings('ignore') within a function to filter out the warning, whilst allowing any other unexpected warnings to show.
+* threading - used to simultaneously run a timer whilst the game is being played.
+* warnings - used to filter a warning. 
 
 ### Technologies and Programs
+* [GitHub](github.com/) - cloud-based system used to host the site.
+* [Gitpod](https://gitpod.io/) -  version control and integrated development environment(IDE) used during development
+* [Heroku](https://id.heroku.com/) - used to deploy the application
+* [CI Python Linter](https://pep8ci.herokuapp.com/) - used to validate the Python code
+* [Lucid Chart](https://lucidchart.com)- used to create the flowchart
+
 ## Deployment
 * Ensure all input methods included “\n” at the end of the string eg. Input(“Enter your name:\n”). This ensures that the text will de displayed when deployed to the Heroku terminal.
 * Create a list of dependencies in the requirements.txt file by using the following command in the terminal ‘pip3 freeze > requirements.txt’.
