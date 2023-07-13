@@ -151,16 +151,19 @@ There are no unfixed bugs.
 * warnings - used to filter a warning. 
 
 ### Technologies and Programs
-* [GitHub](github.com/) - cloud-based system used to host the site.
+* [GitHub](https://github.com/) - cloud-based system used to host the site.
 * [Gitpod](https://gitpod.io/) -  version control and integrated development environment(IDE) used during development
 * [Heroku](https://id.heroku.com/) - used to deploy the application
 * [CI Python Linter](https://pep8ci.herokuapp.com/) - used to validate the Python code
 * [Lucid Chart](https://lucidchart.com)- used to create the flowchart
 
 ## Deployment
+### Before deployment
 * Ensure all input methods included “\n” at the end of the string eg. Input(“Enter your name:\n”). This ensures that the text will de displayed when deployed to the Heroku terminal.
 * Create a list of dependencies in the requirements.txt file by using the following command in the terminal ‘pip3 freeze > requirements.txt’.
 * Set up a Heroku account.
+
+### Deployment
 * From the Heroku dashboard, select dropdown menu “New” and “Create new app”.
 * Name the app “scrambled-tech”.
 * Set the region to “Europe”.
@@ -187,7 +190,26 @@ There are no unfixed bugs.
     * Under “Manual Deploy”, select “Enable Manual Deploy”.
 * After the app has been deployed, the message “Your app was successfully deployed” appears and a button to “View” the app.
 * Enable automatic deploys, so that the deployed site updates every time changes are pushed to GitHub.
-    * Select “Enable Automatic Deploys” under the Automatic Deployment section.
+    * Select “Enable Automatic Deploys” under the Automatic Deployment section. This allows the app to update automatically every time changes are pushed to GitHub.
+
+### Forking
+If another developer wanted to fork the repository, in order to develop it further, they would do so by first forking the repository to create their own version of the codebase. This can be done by following the steps below:
+
+1. Locate the Scrambled Tech respository in GitHub [here](https://github.com/helenmurugan/scrambled-tech)
+2. Select the "Fork" dropdown menu
+3. Select '+ Create a new fork'
+4. Rename new forked repository
+5. Click 'Create Fork'
+
+### Cloning
+Cloning the repository may be beneficial to experiment with the addition of future features to the code, without changing the original repository. This can be done by following the steps below:
+
+1. Locate the Scrambled Tech respository in GitHub [here](https://github.com/helenmurugan/scrambled-tech)
+2. Select the dropdown menu on the green "<> Code" button.
+3. Copy the repository URL 
+5. Open Git Bash and change the working directory to the desired location of the cloned directory.
+6. Type "git clone followed by the copied URL". For example "git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+7. Press enter to create a local clone.
 
 ## Credits
 ### Code
