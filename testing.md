@@ -24,8 +24,7 @@ Manual testing of the application was carried out continuously from early develo
  | Validate back_to_menu | Enter invalid character or submit empty | Raise error | "Invalid entry: Expected y or n" Repeats input request | PASS |
  | Play Game | Select 1 from navigation menu | Take to level_selection function | level selection displayed | PASS |
  | Level selection | 1 | Shows first question from easy level | Confirmed that Scrambled Tech displayed came from correct list | PASS |
- |  | 2 | Shows first question from medium level | Confirmed that Scrambled Tech displayed came from correct list
- | PASS |
+ |  | 2 | Shows first question from medium level | Confirmed that Scrambled Tech displayed came from correct list| PASS |
  |  | 3 | Shows first question from expert level | Confirmed that Scrambled Tech displayed came from correct list | PASS |
  | Validate level selection | Enter invalid character or submit empty | Raise error | "Invalid entry: Expected 1, 2 or 3" Repeats input request | PASS |
  | Playing the Game | Enter valid level from level selection | Question number displayed correctly and incremented with each correct answer | "Question {n} out of 10" | PASS |
@@ -35,3 +34,9 @@ Manual testing of the application was carried out continuously from early develo
  | | Enter correct answer with UPPER, lower or Title case | Next question displayed | Confirmed to work with all cases | PASS |
  | | Enter incorrect answer | Game Over | "Incorrect answer… GAME OVER" "Play again? (y/n)" | PASS |
  | End Game | Unscramble ten words correctly from any of the three levels | End the game after Question 10 and display the difficulty level, time and score | "Game complete! You completed Scrambled Tech Easy level. Your time was 00.31 (mins:secs). You scored 322 points" This is confirmed to work for all three levels | PASS |
+ | Calculate score correctly | Complete the game for each of the three difficulty levels | The score should be calculated using the formula: (1 / final_seconds) * multiplier, where the multiplier is defined by the difficulty level | This is confirmed to calculate correctly for all three difficulty levels | PASS |
+ | Update leaderboard | Complete the game, with a new top score | All scores are added to the leaderboard worksheet, the list is sorted from high to low and the top ten are printed | "Helen, you have a top score! Updating leaderboard…" Confirmed that leaderboard has been updated and displayed correctly | PASS |
+ | Play Again? (option offered after Game Over) | 'y' or 'Y' | Take to navigation function | navigation displayed | PASS |
+ | | 'n' or 'N' | Quit | "Thank you for playing" | PASS |
+ | Validate Play Again | Enter invalid character or submit empty | Raise error | "Invalid entry: Expected y or n" Repeats input request | PASS |
+ | Copy using Ctrl+ C (Users who wish to cheat will attempt to copy the Scrambled Tech in order to use an anagram solver) | Ctrl+C | Allow copy using Ctrl+C without interrupting the game | Program exited due to Keyboard Interrupt | FAIL |
