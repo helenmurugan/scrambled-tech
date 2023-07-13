@@ -7,5 +7,6 @@ Manual testing of the application was carried out continuously from early develo
 |----------------------|--------|---------|---------|----------------|
 | Start | n/a | Automatically runs program | Loads welcome message and asks for username | PASS | 
 | Username entry | Input valid username | "Hi {name}," Load navigation function | "Hi Helen," Load navigation function | PASS |
-
+| Validation of username | Enter single character or enter empty | Raise error | "Invalid name: Please enter a minimum of two letters" Repeats input request | PASS|
+|   | Enter /(){}[]<> | Raise error | "Invalid name: A name can't contain special characters /(){}[]<>" Repeats input request| PASS |
 
