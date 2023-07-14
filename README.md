@@ -71,7 +71,7 @@ As a first time user I want to:
 * Quickly and intuitively understand how to play the game.
 * Be able to use any case to enter data into the game, without getting an error.
 * Play the game at a difficulty level that suits my ability.
-* Play multiple times, until I complete the level, without seeing the same set of questions repeated.
+* Play multiple times, until I complete the level, without seeing the same set of words repeated.
 * Complete the game for my selected level.
 * See how well I scored.
 * View the leaderboard.
