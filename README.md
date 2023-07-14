@@ -26,7 +26,6 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [Timer](#timer)
     * [Score](#score)
     * [Leaderboard](#leaderboard)
-    * [Data Storage](#data-storage)
     * [Future Features](#future-features)
 * [Testing](#testing)
 * [Bugs](#bugs)
@@ -152,10 +151,28 @@ During play, the game has the following features:
 ![Threading Logic Flowchart](/documentation/threading.jpg)
 
 ### Score
+On completion of the game, the score is calculated using the formula:
+
+Score = (1/final_seconds) * multiplier
+
+Where final_seconds is the total time in seconds taken to complete the game.
+The multiplier factors in the chosen difficulty level, so that a higher score is achieved for a higher level:
+Easy level multiplier = 10000
+Medium level multiplier = 100000
+Expert level multiplier = 1000000
+
+These multipliers were adjusted and tested during development by playing the game to ensure the score multipliers make sense.
+
+![Image of Score](/documentation/score.jpg)
+
 ### Leaderboard
-### Data Storage
+The leaderboard is accessible by two routes: from the main navigation menu or by completing a level. Google Sheets is used as the API to store the data for the leaderboard feature. All manipulation of the data is achieved using Python code.
+
+![Image of Leaderboard](/documentation/leaderboard.jpg)
+![Image of Worksheet](/documentation/worksheet.jpg)
+
 ### Future Features
-Ctrl+C
+A feature that would benefit this game would be the ability to disable the Ctrl+C command in the terminal. Whilst users should not cheat at the game, some users may be tempted to copy the Scrambled Tech using Ctrl+C into an anagram solver. This will result in the program being interupted.  
 
 ## Testing
 Testing documentation can be found [here](testing.md)
