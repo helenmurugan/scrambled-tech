@@ -4,7 +4,9 @@
 * [Testing User Stories](#testing-user-stories)
 * [Manual Testing](#manual-testing)
 * [Validator Testing](#validator-testing)
-* [Accessibility](#accessibility)
+    * [Python](#python)
+    * [CSS](#css)
+    * [Accessibility](#accessibility)
 
 ## Testing User Stories
 
@@ -67,11 +69,15 @@ Manual testing of the application was carried out continuously from early develo
  | Validate Play Again | Enter invalid character or submit empty | Raise error | "Invalid entry: Expected y or n" Repeats input request | PASS |
 
  ### Validator Testing
+ ## Python
 [Code Institute Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python code. Several errors were found, relating to whitespace, indentation and line lengths being too long. These are all now rectified and the code passes through the linter with no errors.
 
 ![ci-python-linter](/documentation/ci-python-linter.jpg)
 
-### Accessibility
+## CSS
+A small amount of CSS was included to colour the background and center the terminal. This code passed through the W3C Validator with No Errors Found.
+
+## Accessibility
 The application passed the DevTools lighthose validator.
 
 ![lighthouse](/documentation/lighthouse.jpg)
