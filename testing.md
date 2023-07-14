@@ -13,13 +13,14 @@
 | As a first time user, I want to quickly and intuitively understand how to navigate the application | The navigation is simple and easy to understand. The user is prompted with navigation options after each feature | PASS|
 | As a first time user, I want to quickly and intuitively understand how to play the game. | There is an option to view how to play instructions. These are simple and straightforward. Even if the user does not view the instructions, each step of the game is self-explanatory | PASS|
 | As a first time user, I want to be able to use any case to enter data into the game, without getting an error. | The game accepts all cases in all inputs | PASS |
+| As a first time user, I want to Play the game at a difficulty level that suits my ability. | The user can select from three levels of difficulty | PASS |
+| As a first time user, I want to play multiple times, until I complete the level, without seeing the same set of questions repeated. | The same set of words is not repeated, and the scrambling of the letters is also different every time. This is true when the user chooses to play again after completing the level or failing to complete the level. | PASS |
+| As a first time user, I want to complete the game for my selected level. | At Game Over, the user is prompted to play again. At Game Complete, the user is prompted back to the main menu, where they can choose to play again. | PASS |
+| As a first time user, I want to see how well I scored. | At Game Complete the users level, time and score are printed. The leaderboard is also displayed. | PASS |
+| As a first time user, I want to view the leaderboard. | The leaderboard can be viewd from the main navigation menu or when the game has been completed. | PASS | 
+| As a first time user, I want to exit the application gracefully, only when I choose to. | The navigation has been designed such that the user can replay and move around the game without exiting. There is one route out of the application, which thanks them for playing | PASS |
 
-1. Play the game at a difficulty level that suits my ability.
-1. Play multiple times, until I complete the level, without seeing the same set of questions repeated.
-1. Complete the game for my selected level.
-1. See how well I scored.
-1.View the leaderboard.
-1. Exit the application gracefully, only when I choose to.
+
 
 As a returning and/or frequent user I want to:
 * Complete the level in a faster time to improve my score.

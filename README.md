@@ -27,6 +27,7 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [Leaderboard](#leaderboard)
     * [Data Storage](#data-storage)
     * [Future Features](#future-features)
+* [Testing](#testing)
 * [Bugs](#bugs)
     * [Fixed Bugs](#fixed-bugs)
     * [Unfixed Bugs](#unfixed-bugs)
