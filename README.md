@@ -136,7 +136,8 @@ To fix this error:
 1. I tried including a blank line at the top of the string but the "HOW TO PLAY" line remained with the new blank line.
 1.  I tried, deleting the the first line to see whether the same would happen with the next line, but it didn't. This told me there was something the program didnt like about "HOW TO PLAY" at the top of my multiline string. 
 1. I used a seperate print statement for "HOW TO PLAY" but the same problem persisted.
-1. I inluded HOW TO PLAY as a bullet point in the list in the multiline string.
+1. I inluded HOW TO PLAY as a bullet point in the list in the multiline string but the same problem persisted.
+1. I removed the colon from "HOW TO PLAY"
 
 ### Unfixed Bugs
 There are no unfixed bugs.
