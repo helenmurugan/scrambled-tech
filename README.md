@@ -180,7 +180,7 @@ Google Sheets is used as the API to store the data for the leaderboard feature. 
 A feature that would benefit this game would be the ability to disable the Ctrl+C command in the terminal. Whilst users should not cheat at the game, some users may be tempted to copy the Scrambled Tech using Ctrl+C into an anagram solver. This will result in the program being interupted.  
 
 ## Testing
-Testing documentation can be found [here](testing.md)
+The application has been thoroughly tested and code validated. All testing documentation can be found [here](testing.md)
 
 ## Bugs
 ### Fixed Bugs
