@@ -1,7 +1,7 @@
 # Scrambled Tech Testing
 
 ## CONTENTS
-* [Testing User Storeis](#testing-user-stories)
+* [Testing User Stories](#testing-user-stories)
 * [Manual Testing](#manual-testing)
 * [Validator Testing](#validator-testing)
 * [Accessibility](#accessibility)
@@ -19,15 +19,11 @@
 | As a first time user, I want to see how well I scored. | At Game Complete the users level, time and score are printed. The leaderboard is also displayed. | PASS |
 | As a first time user, I want to view the leaderboard. | The leaderboard can be viewd from the main navigation menu or when the game has been completed. | PASS | 
 | As a first time user, I want to exit the application gracefully, only when I choose to. | The navigation has been designed such that the user can replay and move around the game without exiting. There is one route out of the application, which thanks them for playing | PASS |
+| As a returning and/or frequent user I want to complete the level in a faster time to improve my score | Users have the option to repeat the level and view their time and score on completion | PASS |
+| As a returning and/or frequent user I want to progress to more challenging levels. | Users can select from three levels which have a marked difference in difficulty | PASS |
+| As a returning and/or frequent user I want to achieve a top score. | The user is told if they have achieved a top score on completion of the game.| PASS |
+| As a returning and/or frequent user I want to maintain and/or improve my score on the leaderboard. | If the user has multiple top scores, they will all appear in descending order on the leaderboard. | PASS |
 
-
-
-As a returning and/or frequent user I want to:
-* Complete the level in a faster time to improve my score.
-* Progress to more challenging levels.
-* Achieve a top score.
-* See my score, relative to others, on the leaderboard.
-* Maintain and/or improve my score on the leaderboard.
 
 ## Manual Testing
 Manual testing of the application was carried out continuously from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. After deployment, each function and validation has been manually tested several times. 
