@@ -128,10 +128,10 @@ The application passed the DevTools lighthose validator.
 
 ### Fixed Bugs
 No major bugs were found during the development. However there are a couple of minor issues detailed below
+ 
 
-After deployment, I sometimes see a glitch 
+When runniong the get_score function a warning would apper in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code, and is not an issue for the version currently in use. I used filterwarnings('ignore') within a function to filter out that warning, whilst allowing any other unexpected warnings to show.
 
-The warning stated that a later version of gspread would include a syntax update. This affected one line of code, and is not an issue for the version currently in use. I used filterwarnings('ignore') within a function to filter out the warning, whilst allowing any other unexpected warnings to show.
 ### Unfixed Bugs
 There are no unfixed bugs.
 
@@ -208,16 +208,18 @@ Cloning the repository may be beneficial to experiment with the addition of futu
 2. Select the dropdown menu on the green "<> Code" button.
 3. Copy the repository URL 
 5. Open Git Bash and change the working directory to the desired location of the cloned directory.
-6. Type "git clone followed by the copied URL". For example "git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+6. Type "git clone" and then paste the copied URL.
 7. Press enter to create a local clone.
 
 ## Credits
 ### Code
 * The code for CSS styling was modified from [inventory-management-PP3 by Dayana-N](https://github.com/Dayana-N/inventory-management-PP3/blob/main/views/layout.html)
+
 ### Content
 * All content was written by the developer
+
 ### Acknowledgements
 * I would like to thank my mentor Victor Miclovich for his excellent advice and guidance during the development of this project.
-* I would like to thank Tutor Support at Code Institute for their support.
+* I would like to thank the Code Institute Tutors for their help and support during the development of this project.
 
 
