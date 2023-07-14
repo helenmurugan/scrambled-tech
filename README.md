@@ -131,7 +131,11 @@ No major bugs were found during the development. However there are a couple of m
  
 * When runniong the get_score function a warning would apper in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
 
-* After deployment, I noticed that if you navigate to "How to play" and then proceed to play the game, the first line of the multiline string ("HOW TO PLAY:") would remain in the terminal when the rest of the multiline string had been cleared. Although it remained in the terminal, it was right at the top, so that you could only see it if you actively scrolled up. To fix this error, I tried including a blank line but the "HOW TO PLAY" line remained with the new blank line. Then I tried, deleting the the first line to see whether the same would happen with the new first line, but it didnt. This told me there was something the program didnt like about "HOW TO PLAY" at the top of my multiline string. 
+* After deployment, I noticed that if you navigate to "How to play" and then proceed to play the game, the first line of the multiline string ("HOW TO PLAY:") would remain in the terminal when the rest of the multiline string had been cleared. The unwanted line was right at the top of the terminal, you could only see it if you actively scrolled up. 
+To fix this error:
+    * I tried including a blank line at the top of the string but the "HOW TO PLAY" line remained with the new blank line.
+    * I tried, deleting the the first line to see whether the same would happen with the next line, but it didn't. This told me there was something the program didnt like about "HOW TO PLAY" at the top of my multiline string. 
+    * I used a seperate print statement for "HOW TO PLAY" 
 
 ### Unfixed Bugs
 There are no unfixed bugs.
