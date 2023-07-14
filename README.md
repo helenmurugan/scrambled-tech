@@ -5,7 +5,7 @@ By Helen Murugan
 
 ![Cover image showing terminal on a colour-gradient (purple/green) background](/documentation/cover-image.jpg)
 
-Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this command line application, the user enters a username and selects between three levels of difficulty. The user is shown a technology-related word which has been scrambled to form a Scrambled Tech. The user must enter all the letters provided in the correct order to unscramble the tech word. If they get an answer wrong, the game will be over. The user must unscramble ten Scrambled Tech correctly to complete the game. There is no time limit to answer all of the questions, however, to achieve a good score, they must complete the game as fast as they can; they are being timed! A score is calculated based on the selected difficulty level and the total time taken to complete all ten anagrams. If the user's score is in the top ten recorded scores, their name and score will be updated and displayed on  the leaderboard. Scrambled Tech uses a Google Sheets or Gspread Application Programming Interface (API) to store and manipulate the user score data, which is used by the leaderboard feature.
+Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this command line application, the user enters a username and selects between three levels of difficulty. The user is shown a technology-related word which has been scrambled to form a Scrambled Tech. The user must enter all the letters provided in the correct order to unscramble the tech word. If they get an answer wrong, the game will be over. The user must unscramble ten Scrambled Tech correctly to complete the game. There is no time limit to answer all of the questions, however, to achieve a good score, they must complete the game as fast as they can; they are being timed! A score is calculated based on the selected difficulty level and the total time taken to complete all ten anagrams. If the user's score is in the top ten recorded scores, their name and score will be updated and displayed on  the leaderboard. Scrambled Tech uses a Google Sheets and Gspread Application Programming Interface (API) to store and manipulate the user score data, which is used by the leaderboard feature.
 
 ## CONTENTS
 * [User Experience](#user-experience)
@@ -14,7 +14,7 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [User Stories](#user-stories)
 * [Planning](#planning)
     * [Wireframes](#wireframes)
-    * [Logic Flowchart](logic-flowchart)
+    * [Logic Flowchart](#logic-flowchart)
 * [Features](#features)
     * [Welcome Screen](#welcome-screen)
     * [Username](#username)
@@ -36,8 +36,8 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [Python Modules](#python-modules)
     * [Technologies and Programs](#technologies-and-programs)
 * [Deployment](#Deployment)
-    * [Before Deployment](before-deployment)
-    * [Deployment on Heroku](deployment-on-heroku)
+    * [Before Deployment](#before-deployment)
+    * [Deployment on Heroku](#deployment-on-heroku)
     * [Creating a fork](#creating-a-fork)
     * [Cloning the repository](#cloning-the-repository)
 * [Credits](#credits)
@@ -75,7 +75,7 @@ As a first time user I want to:
 * Complete the game for my selected level.
 * See how well I scored.
 * View the leaderboard.
-* Exit the application gracefully, only when I choose to.
+* Exit the application gracefully, only if I choose to.
 
 As a returning and/or frequent user I want to:
 * Complete the level in a faster time to improve my score.
@@ -86,7 +86,8 @@ As a returning and/or frequent user I want to:
 
 ## Planning
 ### Wireframes
-Wireframes have been omitted in this README due to the CLI deployment method used for this application. All changes occur within the console itself, not in the browser window.
+Wireframes have been omitted in this README due to the CLI deployment method used for this application. All changes occur within the terminal itself, not in the browser window.
+
 ### Logic Flowchart
 The flowchart shows the main logic of the program and was created using [Lucid Chart](lucid.app/lucidchart/). 
 * The navigation around the application has been designed and tested to allow intuitive flow around the game for the user, and will lead them in the direction they will most likely want to go.
@@ -133,6 +134,7 @@ During play, the game has the following features:
 * The order of the letters are shuffled at random.
 * The input is not sensitive to case; the user can choose to enter upper or lower case.
 * A correct answer will lead to the terminal being cleared and the next word shown until ten words have been unscrambled correctly.
+* The terminal is cleared between each Scrambled Tech so as not to clutter the terminal.
 
 ![Image of Scrambled Tech](/documentation/scrambled-tech.jpg)
 
@@ -146,7 +148,7 @@ During play, the game has the following features:
 * Threading is used to run a timer which starts from 0 and counts up in one second increments.
 * The timer runs simultaneously to the game being played.
 * The timer is stopped when the user has correctly unscrambled the tenth word.
-* Unfortunately, it was not possible to display the timer visually at the same time as expecting a user input in the CLI. Howver, it is running in the background.
+* Unfortunately, it was not possible to display the timer visually at the same time as expecting a user input in the CLI. However, it is running in the background.
 
 ![Threading Logic Flowchart](/documentation/threading.jpg)
 
@@ -157,9 +159,9 @@ Score = (1/final_seconds) * multiplier
 
 Where final_seconds is the total time in seconds taken to complete the game.
 The multiplier factors in the chosen difficulty level, so that a higher score is achieved for a higher level:
-Easy level multiplier = 10000
-Medium level multiplier = 100000
-Expert level multiplier = 1000000
+* Easy level multiplier = 10000
+* Medium level multiplier = 100000
+* Expert level multiplier = 1000000
 
 These multipliers were adjusted and tested during development by playing the game to ensure the score multipliers make sense.
 
@@ -182,16 +184,16 @@ Testing documentation can be found [here](testing.md)
 
 ## Bugs
 ### Fixed Bugs
-No major bugs were found during the development. However there are a couple of minor issues detailed below
+No major bugs were found during the development. However there are a couple of minor issues detailed below:
  
-* When running the get_score function, a warning would apper in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
+* When running the get_score function, a warning would appear in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
 
-* After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game. The unwanted line was right at the top of the terminal, where you could only see it if you actively scrolled up. 
+* After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game, despite the terminal being cleared between features. The unwanted line was right at the top of the terminal, hidden but where you could see it if you actively scrolled up. 
 To fix this error I tried the following:
 1. Including a blank line at the top of the string.
-1. Using a seperate print statement for "HOW TO PLAY:".
+1. Using a separate print statement for "HOW TO PLAY:".
 1. Repositioning HOW TO PLAY as a bullet point in the list in the multiline string.
-My reasonable attempts to fix the problem were unsuccessful, so I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal but the problem is resolved and the page still makes sense to the user.
+My reasonable attempts to fix the problem were unsuccessful, so I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal, but the problem is resolved and the page still makes sense to the user.
 
 ### Unfixed Bugs
 There are no unfixed bugs.
@@ -206,17 +208,17 @@ There are no unfixed bugs.
 * gspread - used as the API for interacting with Google Sheets.
 * oauth - used to generate the credentials for the API.
 * os - provides operating system-dependent functionality. Used to clear the terminal.
-* random - used to shuffle lists into a random order.
+* random - used to shuffle lists of strings into a random order.
 * time - used to create a timer.
 * threading - used to simultaneously run a timer whilst the game is being played.
 * warnings - used to filter a warning. 
 
 ### Technologies and Programs
 * [GitHub](https://github.com/) - cloud-based system used to host the site.
-* [Gitpod](https://gitpod.io/) -  version control and integrated development environment(IDE) used during development
-* [Heroku](https://id.heroku.com/) - used to deploy the application
-* [CI Python Linter](https://pep8ci.herokuapp.com/) - used to validate the Python code
-* [Lucid Chart](https://lucidchart.com)- used to create the flowchart
+* [Gitpod](https://gitpod.io/) -  version control and integrated development environment(IDE) used during development.
+* [Heroku](https://id.heroku.com/) - used to deploy the application.
+* [CI Python Linter](https://pep8ci.herokuapp.com/) - used to validate the Python code.
+* [Lucid Chart](https://lucidchart.com)- used to create the flowchart.
 
 ## Deployment
 ### Before deployment
@@ -251,30 +253,30 @@ There are no unfixed bugs.
     * Under “Manual Deploy”, select “Enable Manual Deploy”.
 * After the app has been deployed, the message “Your app was successfully deployed” appears and a button to “View” the app.
 * Enable automatic deploys, so that the deployed site updates every time changes are pushed to GitHub.
-    * Select “Enable Automatic Deploys” under the Automatic Deployment section. This allows the app to update automatically every time changes are pushed to GitHub.
+    * Select “Enable Automatic Deploys” under the Automatic Deployment section.
 
 ### Forking
-If another developer wanted to fork the repository, in order to develop it further, they would do so by first forking the repository to create their own version of the codebase. This can be done by following the steps below:
+If another developer wanted to fork the repository, in order to develop it further, they would do so by following the steps below:
 
-1. Locate the Scrambled Tech respository in GitHub [here](https://github.com/helenmurugan/scrambled-tech)
-2. Select the "Fork" dropdown menu
-3. Select '+ Create a new fork'
-4. Rename new forked repository
-5. Click 'Create Fork'
+1. Locate the Scrambled Tech respository in GitHub [here](https://github.com/helenmurugan/scrambled-tech).
+2. Select the "Fork" dropdown menu.
+3. Select '+ Create a new fork'.
+4. Rename new forked repository.
+5. Click 'Create Fork'.
 
 ### Cloning
 Cloning the repository may be beneficial to experiment with the addition of future features to the code, without changing the original repository. This can be done by following the steps below:
 
-1. Locate the Scrambled Tech respository in GitHub [here](https://github.com/helenmurugan/scrambled-tech)
+1. Locate the Scrambled Tech respository in GitHub [here](https://github.com/helenmurugan/scrambled-tech).
 2. Select the dropdown menu on the green "<> Code" button.
-3. Copy the repository URL 
+3. Copy the repository URL. 
 5. Open Git Bash and change the working directory to the desired location of the cloned directory.
 6. Type "git clone" and then paste the copied URL.
 7. Press enter to create a local clone.
 
 ## Credits
 ### Code
-* The code for CSS styling was modified from [inventory-management-PP3 by Dayana-N](https://github.com/Dayana-N/inventory-management-PP3/blob/main/views/layout.html)
+* The code for CSS styling was modified from that of another Code Institute student's project [inventory-management-PP3 by Dayana-N](https://github.com/Dayana-N/inventory-management-PP3/blob/main/views/layout.html)
 
 ### Content
 * All content was written by the developer

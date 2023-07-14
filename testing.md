@@ -18,7 +18,7 @@
 | As a first time user, I want to complete the game for my selected level. | At Game Over, the user is prompted to play again. Thee user can play as many times as it takes to complete the level. | PASS |
 | As a first time user, I want to see how well I scored. | On completion of the level, the level, time and score are printed. The leaderboard is also displayed. | PASS |
 | As a first time user, I want to view the leaderboard. | The leaderboard can be viewed from the main navigation menu or by completing a level. | PASS | 
-| As a first time user, I want to exit the application gracefully, only when I choose to. | The navigation has been designed such that the user can replay and move around the game without exiting. There is one route out of the application, which thanks them for playing | PASS |
+| As a first time user, I want to exit the application gracefully, only if I choose to. | The navigation has been designed such that the user can replay and move around the game without exiting. There is one route out of the application, which thanks them for playing | PASS |
 | As a returning and/or frequent user, I want to complete the level in a faster time to improve my score. | Users have the option to repeat the level and view their time and score on completion. | PASS |
 | As a returning and/or frequent user, I want to progress to more challenging levels. | Users can select from three levels which have a marked difference in difficulty. | PASS |
 | As a returning and/or frequent user, I want to achieve a top score. | The user is told if they have achieved a top score on completion of the game.| PASS |
@@ -60,6 +60,7 @@ Manual testing of the application was carried out continuously from early develo
  | | Enter incorrect answer | Game Over | "Incorrect answer… GAME OVER" "Play again? (y/n)" | PASS |
  | End Game | Unscramble ten words correctly from any of the three levels | End the game after Question 10 and display the difficulty level, time and score | "Game complete! You completed Scrambled Tech Easy level. Your time was 00.31 (mins:secs). You scored 322 points" This is confirmed to work for all three levels | PASS |
  | Calculate score correctly | Complete the game for each of the three difficulty levels | The score should be calculated using the formula: (1 / final_seconds) * multiplier, where the multiplier is defined by the difficulty level | This is confirmed to calculate correctly for all three difficulty levels | PASS |
+ | Fair scoring system | Complete the game at different levels and with different times | The scoring system has been tested to ensure the formula used creates a fair result. Playing a higher level will usually result in a higher score. The scoring system makes sense | PASS |
  | Update leaderboard | Complete the game, with a new top score | All scores are added to the leaderboard worksheet, the list is sorted from high to low and the top ten are printed | "Helen, you have a top score! Updating leaderboard…" Confirmed that leaderboard has been updated and displayed correctly | PASS |
  | Play Again? (option offered after Game Over) | 'y' or 'Y' | Take to navigation function | navigation displayed | PASS |
  | | 'n' or 'N' | Quit | "Thank you for playing" | PASS |
