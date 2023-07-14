@@ -1,7 +1,35 @@
 # Scrambled Tech Testing
 
+## CONTENTS
+* [Testing User Storeis](#testing-user-stories)
+* [Manual Testing](#manual-testing)
+* [Validator Testing](#validator-testing)
+* [Accessibility](#accessibility)
+
+## Testing User Stories
+
+| User Story | Does the app meet this expectation? | Pass/Fail | 
+|---|---|---|
+| As a first time user, I want to quickly and intuitively understand how to navigate the application | The navigation is simple and easy to understand. The user is prompted with navigation options after each feature | PASS|
+| As a first time user, I want to quickly and intuitively understand how to play the game. | There is an option to view how to play instructions. These are simple and straightforward. Even if the user does not view the instructions, each step of the game is self-explanatory | PASS|
+| As a first time user, I want to be able to use any case to enter data into the game, without getting an error. | The game accepts all cases in all inputs | PASS |
+
+1. Play the game at a difficulty level that suits my ability.
+1. Play multiple times, until I complete the level, without seeing the same set of questions repeated.
+1. Complete the game for my selected level.
+1. See how well I scored.
+1.View the leaderboard.
+1. Exit the application gracefully, only when I choose to.
+
+As a returning and/or frequent user I want to:
+* Complete the level in a faster time to improve my score.
+* Progress to more challenging levels.
+* Achieve a top score.
+* See my score, relative to others, on the leaderboard.
+* Maintain and/or improve my score on the leaderboard.
+
 ## Manual Testing
-Manual testing of the application was carried out continuously from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. Print statements were used throughout the game to ensure correct functionality during development. After deployment, a final full testing has been carried out, as detailed in the table below. 
+Manual testing of the application was carried out continuously from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. After deployment, each function and validation has been manually tested several times. 
 
 | What is being tested | How | Expected Response | Actual Response | Pass/ Fail |
 |----------------------|--------|---------|---------|----------------|
@@ -39,4 +67,14 @@ Manual testing of the application was carried out continuously from early develo
  | Play Again? (option offered after Game Over) | 'y' or 'Y' | Take to navigation function | navigation displayed | PASS |
  | | 'n' or 'N' | Quit | "Thank you for playing" | PASS |
  | Validate Play Again | Enter invalid character or submit empty | Raise error | "Invalid entry: Expected y or n" Repeats input request | PASS |
+
+ ### Validator Testing
+[Code Institute Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python code. Several errors were found, relating to whitespace, indentation and line lengths being too long. These are all now rectified and the code passes through the linter with no errors.
+
+![ci-python-linter](/documentation/ci-python-linter.jpg)
+
+### Accessibility
+The application passed the DevTools lighthose validator.
+
+![lighthouse](/documentation/lighthouse.jpg)
 

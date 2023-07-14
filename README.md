@@ -7,7 +7,7 @@ By Helen Murugan
 
 Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this command line application, the user enters a username and selects between three levels of difficulty. The user is shown a technology-related word which has been scrambled to form a Scrambled Tech. The user must enter all the letters provided in the correct order to unscramble the tech word. If they get an answer wrong, the game will be over. The user must unscramble ten Scrambled Tech correctly to complete the game. There is no time limit to answer all of the questions, however, to achieve a good score, they must complete the game as fast as they can; they are being timed! A score is calculated based on the selected difficulty level and the total time taken to complete all ten anagrams. If the user's score is in the top ten recorded scores, their name and score will be updated and displayed on  the leaderboard. Scrambled Tech uses a Google Sheets or Gspread Application Programming Interface (API) to store and manipulate the user score data, which is used by the leaderboard feature.
 
-# CONTENTS
+## CONTENTS
 * [User Experience](#user-experience)
     * [Goals](#goals)
     * [Target Audience](#target-audience)
@@ -27,10 +27,7 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [Leaderboard](#leaderboard)
     * [Data Storage](#data-storage)
     * [Future Features](#future-features)
-* [Testing](#testing)
-    * [Manual Testing](#manual-testing)
-    * [Validator Testing](#validator-testing)
-    * [Accessibility](#accessibility)
+* [Bugs](#bugs)
     * [Fixed Bugs](#fixed-bugs)
     * [Unfixed Bugs](#unfixed-bugs)
 * [Technologies Used](#technologies-used)
@@ -113,32 +110,20 @@ The flowchart shows the main logic of the program and was created using [Lucid C
 Ctrl+C
 
 ## Testing
-### Manual Testing
-Manual testing of the application was carried out continuously from early development to ensure all bugs were fixed and any issues with functionality were resolved at an early stage. After deployment, each function and validation has been manually tested several times. Manual testing logs can be found [here](manual-testing.md)
+Testing documentation can be found [here](testing.md)
 
-### Validator Testing
-[Code Institute Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python code. Several errors were found, relating to whitespace, indentation and line lengths being too long. These are all now rectified and the code passes through the linter with no errors.
-
-![ci-python-linter](/documentation/ci-python-linter.jpg)
-
-### Accessibility
-The application passed the DevTools lighthose validator.
-
-![lighthouse](/documentation/lighthouse.jpg)
-
+## Bugs
 ### Fixed Bugs
 No major bugs were found during the development. However there are a couple of minor issues detailed below
  
-* When runniong the get_score function a warning would apper in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
+* When running the get_score function, a warning would apper in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
 
-* After deployment, I noticed that if you navigate to "How to play" and then proceed to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game. The unwanted line was right at the top of the terminal, you could only see it if you actively scrolled up. 
-To fix this error I tried the following but the problem persisted:
+* After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game. The unwanted line was right at the top of the terminal, where you could only see it if you actively scrolled up. 
+To fix this error I tried the following:
 1. Including a blank line at the top of the string.
 1. Using a seperate print statement for "HOW TO PLAY:".
 1. Repositioning HOW TO PLAY as a bullet point in the list in the multiline string.
-1. Removing the colon from "HOW TO PLAY"
-As my reasonable attempts to fix the problem were unsuccessful, I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal but the problem is resolved and the page still makes sense to the user.
-
+My reasonable attempts to fix the problem were unsuccessful, so I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal but the problem is resolved and the page still makes sense to the user.
 
 ### Unfixed Bugs
 There are no unfixed bugs.
