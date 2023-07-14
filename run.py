@@ -503,7 +503,7 @@ COMPUTER
 -------------------------------------
 
 """
-    print(HOW TO PLAY:)
+    print("HOW TO PLAY:")
     print(instructions)
     ready_to_play()
 
