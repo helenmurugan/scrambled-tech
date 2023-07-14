@@ -167,9 +167,10 @@ These multipliers were adjusted and tested during development by playing the gam
 
 ### Leaderboard
 The leaderboard is accessible by two routes: from the main navigation menu or by completing a level, when the leaderboard is updated. The leaderboard shows the top ten scores.
-Google Sheets is used as the API to store the data for the leaderboard feature. All manipulation of the data is achieved using Python code. 
 
 ![Image of Leaderboard](/documentation/leaderboard.jpg)
+
+Google Sheets is used as the API to store the data for the leaderboard feature. All manipulation of the data is achieved using Python code. 
 
 ![Image of Worksheet](/documentation/worksheet.jpg)
 
