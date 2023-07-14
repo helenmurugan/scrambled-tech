@@ -101,22 +101,22 @@ The flowchart shows the main logic of the program and was created using [Lucid C
 ### Welcome Screen
 The welcome screen gives a short message, and prompts the user to enter their name.
 
-[Welcome Screen](/documentation/welcome.jpg)
+![Image of Welcome Screen](/documentation/welcome.jpg)
 
 ### Username
 The username feature allows users the opportunity to have their name placed on the leaderboard. The input is validated; an error will be raised if the name contains less than two letters or contains certain special characters. The error message describes clearly to the user why the error is raised and repeats the request for the username input. This validation is depicted in the image below:
 
-[Username](/documentation/username.jpg)
+![Image of Username](/documentation/username.jpg)
 
 ### Navigation
 The navigation menu provides three navigation options. These have been placed in the most intuitive order for ease of navigation. The input is validated as depicted in the image below:
 
-[Navigation](/documentation/navigation.jpg)
+![Image of Navigation Menu](/documentation/navigation.jpg)
 
 ### How To Play
 Simple and straightforward instructions are provided with an example. The user can understand from this what they are required to do, how many words to complete the game and how to improve their score.
 
-[How To Play](/documentation/how-to-play.jpg)
+![Image of How To Play](/documentation/how-to-play.jpg)
 
 ### Level Selection
 Three levels with marked increase in difficulty are available. 
@@ -124,7 +124,7 @@ Three levels with marked increase in difficulty are available.
 * Medium level is typically 5-8 letter words.
 * Expert level is extremely challenging even for Tech experts and contains 8+ letter words. 
 
-[Level Selection](/documentation/level-selection.jpg)
+![Image of Level Selection](/documentation/level-selection.jpg)
 
 ### Play
 During play, the game has the following features:
@@ -134,13 +134,23 @@ During play, the game has the following features:
 * The order of the letters are shuffled at random.
 * The input is not sensitive to case; the user can choose to enter upper or lower case.
 * A correct answer will lead to the terminal being cleared and the next word shown until ten words have been unscrambled correctly.
-* An incorrect answer will lead to Game Over.
 
-[Scrambled Tech](/documentation/scrambled-tech.jpg)
+![Image of Scrambled Tech](/documentation/scrambled-tech.jpg)
 
 ### Game Over
+* An incorrect answer will lead to Game Over.
+* The user is prompted to play again, and as always, the input is validated.
+
+![Image of Game Over](/documentation/game-over.jpg)
 
 ### Timer
+* Threading is used to run a timer which starts from 0 and counts up in one second increments.
+* The timer runs simultaneously to the game being played.
+* The timer is stopped when the user has correctly unscrambled the tenth word.
+* Unfortunately, it was not possible to display the timer visually at the same time as expecting a user input in the CLI. Howver, it is running in the background.
+
+![Threading Logic Flowchart](/documentation/threading.jpg)
+
 ### Score
 ### Leaderboard
 ### Data Storage
