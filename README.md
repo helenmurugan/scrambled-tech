@@ -133,9 +133,10 @@ No major bugs were found during the development. However there are a couple of m
 
 * After deployment, I noticed that if you navigate to "How to play" and then proceed to play the game, the first line of the multiline string ("HOW TO PLAY:") would remain in the terminal when the rest of the multiline string had been cleared. The unwanted line was right at the top of the terminal, you could only see it if you actively scrolled up. 
 To fix this error:
-    * I tried including a blank line at the top of the string but the "HOW TO PLAY" line remained with the new blank line.
-    * I tried, deleting the the first line to see whether the same would happen with the next line, but it didn't. This told me there was something the program didnt like about "HOW TO PLAY" at the top of my multiline string. 
-    * I used a seperate print statement for "HOW TO PLAY" 
+1. I tried including a blank line at the top of the string but the "HOW TO PLAY" line remained with the new blank line.
+1.  I tried, deleting the the first line to see whether the same would happen with the next line, but it didn't. This told me there was something the program didnt like about "HOW TO PLAY" at the top of my multiline string. 
+1. I used a seperate print statement for "HOW TO PLAY" but the same problem persisted.
+1. I inluded HOW TO PLAY as a bullet point in the list in the multiline string.
 
 ### Unfixed Bugs
 There are no unfixed bugs.
