@@ -131,13 +131,14 @@ No major bugs were found during the development. However there are a couple of m
  
 * When runniong the get_score function a warning would apper in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
 
-* After deployment, I noticed that if you navigate to "How to play" and then proceed to play the game, the first line of the multiline string ("HOW TO PLAY:") would remain in the terminal when the rest of the multiline string had been cleared. The unwanted line was right at the top of the terminal, you could only see it if you actively scrolled up. 
-To fix this error:
-1. I tried including a blank line at the top of the string but the "HOW TO PLAY" line remained with the new blank line.
-1.  I tried, deleting the the first line to see whether the same would happen with the next line, but it didn't. This told me there was something the program didnt like about "HOW TO PLAY" at the top of my multiline string. 
-1. I used a seperate print statement for "HOW TO PLAY" but the same problem persisted.
-1. I inluded HOW TO PLAY as a bullet point in the list in the multiline string but the same problem persisted.
-1. I removed the colon from "HOW TO PLAY"
+* After deployment, I noticed that if you navigate to "How to play" and then proceed to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game. The unwanted line was right at the top of the terminal, you could only see it if you actively scrolled up. 
+To fix this error I tried the following but the problem persisted:
+1. Including a blank line at the top of the string.
+1. Using a seperate print statement for "HOW TO PLAY:".
+1. Repositioning HOW TO PLAY as a bullet point in the list in the multiline string.
+1. Removing the colon from "HOW TO PLAY"
+As my reasonable attempts to fix the problem were unsuccessful, I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal but the problem is resolved and the page still makes sense to the user.
+
 
 ### Unfixed Bugs
 There are no unfixed bugs.
