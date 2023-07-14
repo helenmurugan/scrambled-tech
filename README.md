@@ -22,6 +22,7 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [How To Play](#how-to-play)
     * [Level Selection](#level-selection)
     * [Play](#play)
+    * [Game Over](#game-over)
     * [Timer](#timer)
     * [Score](#score)
     * [Leaderboard](#leaderboard)
@@ -98,11 +99,47 @@ The flowchart shows the main logic of the program and was created using [Lucid C
 
 ## Features
 ### Welcome Screen
+The welcome screen gives a short message, and prompts the user to enter their name.
+
+[Welcome Screen](/documentation/welcome.jpg)
+
 ### Username
+The username feature allows users the opportunity to have their name placed on the leaderboard. The input is validated; an error will be raised if the name contains less than two letters or contains certain special characters. The error message describes clearly to the user why the error is raised and repeats the request for the username input. This validation is depicted in the image below:
+
+[Username](/documentation/username.jpg)
+
 ### Navigation
+The navigation menu provides three navigation options. These have been placed in the most intuitive order for ease of navigation. The input is validated as depicted in the image below:
+
+[Navigation](/documentation/navigation.jpg)
+
 ### How To Play
+Simple and straightforward instructions are provided with an example. The user can understand from this what they are required to do, how many words to complete the game and how to improve their score.
+
+[How To Play](/documentation/how-to-play.jpg)
+
 ### Level Selection
+Three levels with marked increase in difficulty are available. 
+* Easy level may be suitable (though still challenging) for older children, easy words are typically 4-6 letters long.
+* Medium level is typically 5-8 letter words.
+* Expert level is extremely challenging even for Tech experts and contains 8+ letter words. 
+
+[Level Selection](/documentation/level-selection.jpg)
+
 ### Play
+During play, the game has the following features:
+* Question number out of 10 displayed at the top.
+* Scrambled Tech is displayed clearly for the user to unscramble.
+* The same words will never be repeated in the same game.
+* The order of the letters are shuffled at random.
+* The input is not sensitive to case; the user can choose to enter upper or lower case.
+* A correct answer will lead to the terminal being cleared and the next word shown until ten words have been unscrambled correctly.
+* An incorrect answer will lead to Game Over.
+
+[Scrambled Tech](/documentation/scrambled-tech.jpg)
+
+### Game Over
+
 ### Timer
 ### Score
 ### Leaderboard

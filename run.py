@@ -335,6 +335,7 @@ def check_answer(tech_word, answer, shuffled_list):
     if answer.lower() == tech_word:
         get_index(shuffled_list)
     else:
+        print()
         print("Incorrect answer...")
         print("GAME OVER")
         print()
