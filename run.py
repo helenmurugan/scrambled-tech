@@ -483,7 +483,6 @@ def how_to_play():
     clear_terminal()
 
     instructions = """
-How to play:
 * Our tech has been scrambled!
 * You must use all the letters provided to unscramble the tech-related word.
 * If you answer correctly, you will move on to the next Scrambled Tech.
@@ -504,6 +503,7 @@ COMPUTER
 -------------------------------------
 
 """
+    print(HOW TO PLAY:)
     print(instructions)
     ready_to_play()
 
