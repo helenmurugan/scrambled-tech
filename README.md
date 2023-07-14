@@ -284,5 +284,3 @@ Cloning the repository may be beneficial to experiment with the addition of futu
 ### Acknowledgements
 * I would like to thank my mentor Victor Miclovich for his excellent advice and guidance during the development of this project.
 * I would like to thank the Code Institute Tutors for their help and support during the development of this project.
-
-
