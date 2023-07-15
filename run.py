@@ -242,7 +242,7 @@ def get_score(shuffled_list, final_seconds):
     leaderboard_worksheet.append_row(data)
     data_list = leaderboard_worksheet.get_all_values()
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
-    warnings.filterwarnings('ignore')  # gspread update warning
+    warnings.filterwarnings('ignore') 
     leaderboard_worksheet.update(sorted_list, "A:B")
 
     if score > int(sorted_list[9][1]):

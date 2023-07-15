@@ -18,7 +18,7 @@
 | As a first time user, I want to play the game at a difficulty level that suits my ability. | The user can select from three levels of difficulty. | PASS |
 | As a first time user, I want to play multiple times, until I complete the level, without seeing the same set of words repeated. | The same set of words is not repeated, and the scrambling of the letters is also different every time. This is true when the user chooses to play again after completing the level or failing to complete the level. | PASS |
 | As a first time user, I want to complete the game for my selected level. | At Game Over, the user is prompted to play again. Thee user can play as many times as it takes to complete the level. | PASS |
-| As a first time user, I want to see how well I scored. | On completion of the level, the level, time and score are printed. The leaderboard is also displayed. | PASS |
+| As a first time user, I want to see how well I scored. | On completion of the level, feedback is provided to the user on the level, time and score achieved. The leaderboard is also displayed. | PASS |
 | As a first time user, I want to view the leaderboard. | The leaderboard can be viewed from the main navigation menu or by completing a level. | PASS | 
 | As a first time user, I want to exit the application gracefully, only if I choose to. | The navigation has been designed such that the user can replay and move around the game without exiting. There is one route out of the application, which thanks them for playing | PASS |
 | As a returning and/or frequent user, I want to complete the level in a faster time to improve my score. | Users have the option to repeat the level and view their time and score on completion. | PASS |
@@ -77,7 +77,7 @@ Manual testing of the application was carried out continuously from early develo
 ### CSS
 A small amount of CSS was included to colour the background and center the terminal. This code passed through the W3C Validator with No Errors Found.
 
-## Accessibility
+### Accessibility
 The application passed the DevTools lighthose validator.
 
 ![lighthouse](/documentation/lighthouse.jpg)

@@ -33,7 +33,7 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
     * [Unfixed Bugs](#unfixed-bugs)
 * [Technologies Used](#technologies-used)
     * [Languages](#languages)
-    * [Python Modules](#python-modules)
+    * [Python Modules and Libraries](#python-modules-and-libraries)
     * [Technologies and Programs](#technologies-and-programs)
 * [Deployment](#Deployment)
     * [Before Deployment](#before-deployment)
@@ -51,6 +51,7 @@ Scrambled Tech is an anagram solver game aimed at tech enthusiasts! In this comm
 * Design and build an interactive application anagram solver game based on technology-related words.
 * Build the application using Python exclusively, run in a command-line interface (CLI) and deployed using Heroku.
 * Robust error handling, where all inputs are validated and empty inputs are not accepted.
+* When an error is raised from user input, feedback is provided to the user.
 * Good UX, the app should be intuitively easy to navigate and simple to understand.
 * The game should be fun and challenging to engage the user.
 * The game should have difficulty options to allow the user to challenge themselves further.
@@ -104,7 +105,7 @@ The welcome screen gives a short message, and prompts the user to enter their na
 ![Image of Welcome Screen](/documentation/welcome.jpg)
 
 ### Username
-The username feature allows users the opportunity to have their name placed on the leaderboard. The input is validated; an error will be raised if the name contains less than two letters or contains certain special characters. The error message describes clearly to the user why the error is raised and repeats the request for the username input. This validation is depicted in the image below:
+The username feature allows users the opportunity to have their name placed on the leaderboard if they achieve a high score. The input is validated; an error will be raised if the name contains less than two letters or contains certain special characters. The error message describes clearly to the user why the error is raised and repeats the request for the username input. This validation is depicted in the image below:
 
 ![Image of Username](/documentation/username.jpg)
 
@@ -122,48 +123,52 @@ Simple and straightforward instructions are provided with an example. The user c
 Three levels with marked increase in difficulty are available. 
 * Easy level may be suitable (though still challenging) for older children, easy words are typically 4-6 letters long.
 * Medium level is typically 5-8 letter words.
-* Expert level is extremely challenging even for Tech experts and contains 8+ letter words. 
+* Expert level is extremely challenging, even for Tech experts and contains 8+ letter words. 
 
 ![Image of Level Selection](/documentation/level-selection.jpg)
 
 ### Play
 During play, the game has the following features:
 * Question number out of 10 displayed at the top.
-* Scrambled Tech is displayed clearly for the user to unscramble.
+* The Scrambled Tech is displayed clearly for the user to unscramble.
 * The same words will never be repeated in the same game.
 * The order of the letters are shuffled at random.
 * The input is not sensitive to case; the user can choose to enter upper or lower case.
-* A correct answer will lead to the terminal being cleared and the next word shown until ten words have been unscrambled correctly.
+* A correct answer will lead to the next Scrambled Tech until ten words have been unscrambled correctly.
 * The terminal is cleared between each Scrambled Tech so as not to clutter the terminal.
 
 ![Image of Scrambled Tech](/documentation/scrambled-tech.jpg)
 
 ### Game Over
 * An incorrect answer will lead to Game Over.
-* The user is prompted to play again, and as always, the input is validated.
+* The user is prompted to play again.
 
 ![Image of Game Over](/documentation/game-over.jpg)
+
+* The play again input is validated, and will raise an error message if anything other than 'y'/'Y' or 'n'/'N' is entered.  When a error is raised feedback is provided to the user and the request for input repeated, as shown in the image below:
+
+![Image of play again error](/documentation/play-again-error.jpg)
 
 ### Timer
 * Threading is used to run a timer which starts from 0 and counts up in one second increments.
 * The timer runs simultaneously to the game being played.
 * The timer is stopped when the user has correctly unscrambled the tenth word.
-* Unfortunately, it was not possible to display the timer visually at the same time as expecting a user input in the CLI. However, it is running in the background.
+* It was not possible to display the timer visually at the same time as expecting a user input in the CLI. This is satisfactory, as the user does not need to see their time until the level is completed.
 
 ![Threading Logic Flowchart](/documentation/threading.jpg)
 
 ### Score
 On completion of the game, the score is calculated using the formula:
 
-Score = (1/final_seconds) * multiplier
+score = (1/final_seconds) * multiplier
 
 Where final_seconds is the total time in seconds taken to complete the game.
 The multiplier factors in the chosen difficulty level, so that a higher score is achieved for a higher level:
-* Easy level multiplier = 10000
-* Medium level multiplier = 100000
-* Expert level multiplier = 1000000
+* Easy level multiplier = 10,000
+* Medium level multiplier = 100,000
+* Expert level multiplier = 1,000,000
 
-These multipliers were adjusted and tested during development by playing the game to ensure the score multipliers make sense.
+These multipliers were adjusted and tested during development, by playing the game to ensure the score multipliers make sense and the scoring system is fair.
 
 ![Image of Score](/documentation/score.jpg)
 
@@ -176,24 +181,31 @@ Google Sheets is used as the API to store the data for the leaderboard feature. 
 
 ![Image of Worksheet](/documentation/worksheet.jpg)
 
+After viewing the leaderboard, the user is asked if they would like to return to the main menu. The input is validated and will raise an error message if anything other than 'y'/'Y' or 'n'/'N' is entered. When a error is raised feedback is provided to the user and the request for input repeated, as shown in the image below:
+
+![Image of back to menu error](/documentation/back-to-menu-error.jpg)
+
 ### Future Features
-A feature that would benefit this game would be the ability to disable the Ctrl+C command in the terminal. Whilst users should not cheat at the game, some users may be tempted to copy the Scrambled Tech using Ctrl+C into an anagram solver. This will result in the program being interupted.  
+A feature that would benefit this game would be the ability to disable the Ctrl+C command in the terminal. Whilst users should not cheat(!), some users may be tempted to copy the Scrambled Tech using Ctrl+C into an anagram solver. This will result in the program being interrupted.  
 
 ## Testing
-The application has been thoroughly tested and code validated. All testing documentation can be found [here](testing.md)
+The application has been thoroughly tested and code validated. All testing documentation can be found in the separate [testing.md](testing.md) file.
 
 ## Bugs
 ### Fixed Bugs
-No major bugs were found during the development. However there are a couple of minor issues detailed below:
- 
+A couple of minor issues were discovered and resolved during development and deployment as detailed below:
+
 * When running the get_score function, a warning would appear in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
 
-* After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game, despite the terminal being cleared between features. The unwanted line was right at the top of the terminal, hidden but where you could see it if you actively scrolled up. 
+![Image of Warning](/documentation/warning.jpg)
+
+* After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game, despite the terminal being cleared between features. The unwanted line was right at the top of the terminal, initially hidden, but where you could see it if you actively scrolled up. 
+
 To fix this error I tried the following:
 1. Including a blank line at the top of the string.
 1. Using a separate print statement for "HOW TO PLAY:".
-1. Repositioning HOW TO PLAY as a bullet point in the list in the multiline string.
-My reasonable attempts to fix the problem were unsuccessful, so I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal, but the problem is resolved and the page still makes sense to the user.
+1. Repositioning "HOW TO PLAY:" as a bullet point in the list in the multiline string.
+My reasonable attempts to fix the problem were unsuccessful, so I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal, but the problem is resolved and the page still makes sense to the user, as they have already selected to navigate to "how to play".
 
 ### Unfixed Bugs
 There are no unfixed bugs.
@@ -204,25 +216,25 @@ There are no unfixed bugs.
 * The Code Institute template provided the HTML used in the deployed project.
 * CSS was used to create an attractive background and center the terminal within the browser window.
 
-### Python Modules
-* gspread - used as the API for interacting with Google Sheets.
-* oauth - used to generate the credentials for the API.
-* os - provides operating system-dependent functionality. Used to clear the terminal.
-* random - used to shuffle lists of strings into a random order.
-* time - used to create a timer.
-* threading - used to simultaneously run a timer whilst the game is being played.
-* warnings - used to filter a warning. 
+### Python Modules and Libraries
+* gspread - external Python library used as the API for interacting with Google Sheets.
+* oauth - external framework used to generate the credentials for the API.
+* os - built-in python module that provides operating system-dependent functionality. Used to clear the terminal.
+* random - built-in python module used to generate pseudo-random variables. Used to shuffle lists of strings into a random order. 
+* time - built-in python module used to create a timer.
+* threading - built-in python module used to simultaneously run a timer whilst the game is being played.
+* warnings - built-in python module used to filter a warning associated with future syntax update. 
 
 ### Technologies and Programs
 * [GitHub](https://github.com/) - cloud-based system used to host the site.
-* [Gitpod](https://gitpod.io/) -  version control and integrated development environment(IDE) used during development.
+* [Gitpod](https://gitpod.io/) -  version control and integrated development environment (IDE) used during development.
 * [Heroku](https://id.heroku.com/) - used to deploy the application.
 * [CI Python Linter](https://pep8ci.herokuapp.com/) - used to validate the Python code.
-* [Lucid Chart](https://lucidchart.com)- used to create the flowchart.
+* [Lucid Chart](https://lucidchart.com)- used to create the logic flowchart.
 
 ## Deployment
 ### Before deployment
-* Ensure all input methods included “\n” at the end of the string eg. Input(“Enter your name:\n”). This ensures that the text will de displayed when deployed to the Heroku terminal.
+* Ensure all input methods include “\n” at the end of the string eg. Input(“Enter your name:\n”). This ensures that the text will de displayed when deployed to the Heroku terminal.
 * Create a list of dependencies in the requirements.txt file by using the following command in the terminal ‘pip3 freeze > requirements.txt’.
 * Set up a Heroku account.
 
@@ -276,11 +288,11 @@ Cloning the repository may be beneficial to experiment with the addition of futu
 
 ## Credits
 ### Code
-* The code for CSS styling was modified from that of another Code Institute student's project [inventory-management-PP3 by Dayana-N](https://github.com/Dayana-N/inventory-management-PP3/blob/main/views/layout.html)
+* The code for CSS styling was modified from that of another Code Institute student's project [inventory-management-PP3 by Dayana-N](https://github.com/Dayana-N/inventory-management-PP3/blob/main/views/layout.html).
 
 ### Content
-* All content was written by the developer
+* All content was written by the developer.
 
 ### Acknowledgements
-* I would like to thank my mentor Victor Miclovich for his excellent advice and guidance during the development of this project.
-* I would like to thank the Code Institute Tutors for their help and support during the development of this project.
+* I would like to thank my mentor Victor Miclovich for his excellent advice and support during the development of this project.
+* I would like to thank the Code Institute Tutors for their technical guidance.
