@@ -195,11 +195,11 @@ The application has been thoroughly tested and code validated. All testing docum
 ### Fixed Bugs
 A couple of minor issues were discovered and resolved during development and deployment as detailed below:
 
-1. When running the get_score function, a warning would appear in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
+* When running the get_score function, a warning would appear in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
 
 ![Image of Warning](/documentation/warning.jpg)
 
-1. After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game, despite the terminal being cleared between features. The unwanted line was right at the top of the terminal, initially hidden, but where you could see it if you actively scrolled up. 
+* After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game, despite the terminal being cleared between features. The unwanted line was right at the top of the terminal, initially hidden, but where you could see it if you actively scrolled up. 
 
 To fix this error I tried the following:
 1. Importing sys and using command "sys.stdout.write("\033[F\033[K" * times)" to delete the lines from the terminal rather than an os command to clear the terminal.
