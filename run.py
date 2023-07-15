@@ -547,8 +547,9 @@ def username():
         try:
             name = input("Please enter your name:\n")
             if validate_name(name):
-                print()
-                print(f"Hi {name},\n")
+                # print()
+                # print(f"Hi {name},\n")
+                navigation()
                 break
         except ValueError as e:
             print("Invalid name:", str(e))
@@ -572,6 +573,8 @@ def navigation():
     Display navigation options
     Ask user to select one of three options
     """
+    clear_terminal()
+
     while True:
         try:
             print("Where would you like to go? (1, 2 or 3)\n")
