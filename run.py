@@ -5,7 +5,6 @@ import random
 import time
 import threading
 import warnings
-import sys
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -599,7 +598,6 @@ def navigation():
 
 def main():
     username()
-    navigation()
 
 
 main()
