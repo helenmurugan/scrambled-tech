@@ -5,7 +5,6 @@ import random
 import time
 import threading
 import warnings
-import sys
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -159,13 +158,6 @@ def clear_terminal():
     Clear the terminal
     """
     os.system("clear")
-
-
-def delete_lines(times):
-    """
-    Delete print statements from the terminal
-    """
-    sys.stdout.write("\033[F\033[K" * times)
 
 
 def validate_back_to_menu(back_to_menu):
@@ -472,11 +464,11 @@ def ready_to_play():
             validate_play_input(play_input)
 
             if play_input.lower() == "y":
-                delete_lines(100)
+                clear_terminal()
                 level_selection()
                 break
             elif play_input.lower() == "n":
-                delete_lines(100)
+                clear_terminal()
                 navigation()
                 break
         except ValueError as e:
