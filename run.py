@@ -177,11 +177,12 @@ def back_to_menu():
     If yes, go to main menu
     If no, thank them for playing
     """
-    back_to_menu = input("Back to Main Menu? (y/n)\n")
-    validate_back_to_menu(back_to_menu)
 
     while True:
         try:
+            back_to_menu = input("Back to Main Menu? (y/n)\n")
+            validate_back_to_menu(back_to_menu)
+
             if back_to_menu.lower() == "y":
                 clear_terminal()
                 navigation()
@@ -190,13 +191,9 @@ def back_to_menu():
                 print()
                 print("Thank you for playing!")
                 break
-            else:
-                clear_terminal()
-                navigation()
         except ValueError as e:
             print("Invalid entry:", str(e))
             print()
-            navigation()
 
 
 def leaderboard():
@@ -242,7 +239,7 @@ def get_score(shuffled_list, final_seconds):
     leaderboard_worksheet.append_row(data)
     data_list = leaderboard_worksheet.get_all_values()
     sorted_list = sorted(data_list, key=lambda x: int(x[1]), reverse=True)
-    warnings.filterwarnings('ignore') 
+    warnings.filterwarnings('ignore')
     leaderboard_worksheet.update(sorted_list, "A:B")
 
     if score > int(sorted_list[9][1]):
