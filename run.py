@@ -5,6 +5,7 @@ import random
 import time
 import threading
 import warnings
+import sys
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -153,11 +154,12 @@ def scramble_word(shuffled_list):
         show_question(scrambled_tech, tech_word, shuffled_list)
 
 
-def clear_terminal():
+def clear_terminal(times):
     """
     Clear the terminal
     """
-    os.system("clear")
+    # os.system("clear")
+    sys.stdout.write("\033[F\033[K" * times)
 
 
 def validate_back_to_menu(back_to_menu):
@@ -184,7 +186,7 @@ def back_to_menu():
             validate_back_to_menu(back_to_menu)
 
             if back_to_menu.lower() == "y":
-                clear_terminal()
+                clear_terminal(1000)
                 navigation()
                 break
             elif back_to_menu.lower() == "n":
@@ -289,9 +291,9 @@ def end_game(shuffled_list):
     Ends the game by stopping the timer
     Print level and time taken to complete game
     """
+    clear_terminal(1000)
     stop_time()
     final_seconds = seconds
-    clear_terminal()
     print("Game complete!")
     print()
 
@@ -345,7 +347,7 @@ def show_question(scrambled_tech, tech_word, shuffled_list):
     Display a scrambled tech word.
     Ask for user input to unscramble the word.
     """
-    clear_terminal()
+    clear_terminal(100)
 
     question_number = current_index + 1
     print(f"Question {question_number} out of 10")
@@ -384,7 +386,7 @@ def level_selection():
     Ask user to select a difficulty level
     Select appropriate tech_list for difficulty level and shuffle it
     """
-    clear_terminal()
+    clear_terminal(100)
     global current_index
     current_index = 0
 
@@ -478,9 +480,10 @@ def how_to_play():
     Display instructions for how to play the game
     Prompt user to play the game
     """
-    clear_terminal()
+    clear_terminal(100)
 
     instructions = """
+HOW TO PLAY:
 * Our tech has been scrambled!
 * You must use all the letters provided to unscramble the tech-related word.
 * If you answer correctly, you will move on to the next Scrambled Tech.
@@ -582,7 +585,7 @@ def navigation():
                 how_to_play()
                 break
             else:
-                clear_terminal()
+                clear_terminal(100)
                 leaderboard()
                 break
         except ValueError as e:
