@@ -195,20 +195,28 @@ The application has been thoroughly tested and code validated. All testing docum
 ### Fixed Bugs
 A couple of minor issues were discovered and resolved during development and deployment as detailed below:
 
-* When running the get_score function, a warning would appear in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
+1. When running the get_score function, a warning would appear in the terminal. The warning stated that a later version of gspread (version 6.0.0) would include a syntax update. This affected one line of code only, and is not an issue for the version currently in use. I used filterwarnings('ignore') within the function to filter out that warning, whilst allowing any other unexpected warnings to show.
 
 ![Image of Warning](/documentation/warning.jpg)
 
-* After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game, despite the terminal being cleared between features. The unwanted line was right at the top of the terminal, initially hidden, but where you could see it if you actively scrolled up. 
+1. After deployment, I noticed that if you navigate to "How to play" and then proceed away from this page to play the game, the first line of the multiline string, which said "HOW TO PLAY:" would remain in the terminal during the game, despite the terminal being cleared between features. The unwanted line was right at the top of the terminal, initially hidden, but where you could see it if you actively scrolled up. 
 
 To fix this error I tried the following:
+1. Importing sys and using command "sys.stdout.write("\033[F\033[K" * times)" to delete the lines from the terminal rather than an os command to clear the terminal.
 1. Including a blank line at the top of the string.
 1. Using a separate print statement for "HOW TO PLAY:".
 1. Repositioning "HOW TO PLAY:" as a bullet point in the list in the multiline string.
-My reasonable attempts to fix the problem were unsuccessful, so I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal, but the problem is resolved and the page still makes sense to the user, as they have already selected to navigate to "how to play".
+My reasonable attempts to fix the problem were unsuccessful, so I decided to remove the line "HOW TO PLAY:" entirely. This is not ideal, but the problem is less severe and the page still makes sense to the user, as they have already selected to navigate to "how to play".
 
 ### Unfixed Bugs
-There are no unfixed bugs.
+There is one unfixed bug in the application, where print statements, either as blank lines or lines of text are sometimes hidden at the top of the terminal. The user must actively scroll up to see these print statements. The bug is apparent if and when the user raises errors or updates the leaderboard because this creates more lines of text in the terminal. The image below shows an example of what can be seen after navigating to how to play, raising an error and then navigating to play game. All of the text above the level selection is initially hiding at the top of the terminal, and should not be there.
+
+![Image of Bug](/documentation/bug.jpg)
+
+Many hours were spent attempting to debug this issue, using the following methods:
+* Adding additional clear_terminal commands, although I had some success with this, it prevented my input validations from working correctly.
+* I imported the sys module and replaced the clear_terminal function which uses os.system("clear"), with a delete_lines function that used "sys.stdout.write("\033[F\033[K" * times)" to delete the specific number of lines from the terminal. Where times is the number of lines to be deleted, and this number was fed into the function as an argument. This did not work, however, following up this method would be my course of action if time allowed.
+
 
 ## Technologies Used
 ### Languages
