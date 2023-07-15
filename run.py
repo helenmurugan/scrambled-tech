@@ -466,9 +466,11 @@ def ready_to_play():
             validate_play_input(play_input)
 
             if play_input.lower() == "y":
+                clear_terminal()
                 level_selection()
                 break
             elif play_input.lower() == "n":
+                clear_terminal()
                 navigation()
                 break
         except ValueError as e:
@@ -484,7 +486,7 @@ def how_to_play():
     clear_terminal()
 
     instructions = """
-HOW TO PLAY:
+
 * Our tech has been scrambled!
 * You must use all the letters provided to unscramble the tech-related word.
 * If you answer correctly, you will move on to the next Scrambled Tech.
