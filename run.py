@@ -573,10 +573,10 @@ def navigation():
     Display navigation options
     Ask user to select one of three options
     """
-
+    clear_terminal()
+    
     while True:
         try:
-            clear_terminal()
             print("Where would you like to go? (1, 2 or 3)\n")
             print("1. Play Game")
             print("2. How To Play")
